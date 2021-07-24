@@ -11,14 +11,13 @@
 //     async exec(error) {
 //         if (error == "TypeError: Cannot read property 'send' of undefined" && this.client.user == null) {
 //             console.log(`Invalid token, or other login error.`)
-//             console.log(error.stack)
-//             //process.exit()
+//             process.exit()
 //         }
 
 //         if (error == "TypeError: Cannot read property 'send' of undefined" && this.client.user != null) {
 //             console.error(error)
 //         }
 
-//         //this.client.error(error)
+//         this.client.error(error)
 //     }
 // }

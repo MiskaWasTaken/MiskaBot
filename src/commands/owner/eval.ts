@@ -8,6 +8,8 @@ import { BotCommand } from '@extensions/BotCommand'
 import importUtils from '@functions/utils'
 const utils = importUtils
 
+import importHMfull from 'hmfull'
+const HMfull = importHMfull
 
 const sh = promisify(exec);
 
@@ -54,9 +56,7 @@ export default class evaluate extends BotCommand {
             output = errorStack
         }
 
-        if (inspect(output).includes(process.env['token'])) { return message.util.send('Message containing token wasn\'t sent.') }
-        if (inspect(output).includes(process.env['pctoken'])) { return message.util.send('Message containing token wasn\'t sent.') }
-        if (inspect(output).includes(process.env['devtoken'])) { return message.util.send('Message containing token wasn\'t sent.') }
+        if (inspect(output).includes(this.client.token)) { return message.util.send('Message containing token wasn\'t sent.') }
 
         const evalEmbedDisabledGuilds = [
             '794610828317032458'
@@ -87,7 +87,7 @@ export default class evaluate extends BotCommand {
         }
         if (args.silent) {
             if (args.codeToEval.includes('message.delete')) { return }
-            message.react('<:success:838816341007269908>')
+            //message.react('<:success:838816341007269908>')
         }
     }
 }

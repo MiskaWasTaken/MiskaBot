@@ -46,7 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["chalk", "npm:4.1.1"],
             ["discord-akairo", "https://github.com/SkyBlockDev/discord-akairo.git#commit=2aa37574353a0ac175d9a94a6870bee074bbea2d"],
             ["discord-api-types", "npm:0.20.2"],
-            ["discord.js", "npm:13.0.0-dev.f200f14.1626436969"],
+            ["discord.js", "npm:13.0.0-dev.4886ae2.1627128182"],
             ["dotenv", "npm:10.0.0"],
             ["eslint", "npm:7.20.0"],
             ["got", "npm:11.8.2"],
@@ -288,10 +288,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/ws", [
-        ["npm:7.4.6", {
-          "packageLocation": "./.yarn/cache/@types-ws-npm-7.4.6-292d5dff7c-bf81b170ab.zip/node_modules/@types/ws/",
+        ["npm:7.4.7", {
+          "packageLocation": "./.yarn/cache/@types-ws-npm-7.4.7-d0c95c0958-38dee1bc2e.zip/node_modules/@types/ws/",
           "packageDependencies": [
-            ["@types/ws", "npm:7.4.6"],
+            ["@types/ws", "npm:7.4.7"],
             ["@types/node", "npm:16.3.3"]
           ],
           "linkType": "HARD",
@@ -915,10 +915,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["npm:0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e", {
-          "packageLocation": "./.yarn/cache/discord-api-types-npm-0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e-fde7b8b106-ca53bf2bd5.zip/node_modules/discord-api-types/",
+        ["npm:0.19.0", {
+          "packageLocation": "./.yarn/cache/discord-api-types-npm-0.19.0-f6b522b719-a435ab8fd9.zip/node_modules/discord-api-types/",
           "packageDependencies": [
-            ["discord-api-types", "npm:0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e"]
+            ["discord-api-types", "npm:0.19.0"]
           ],
           "linkType": "HARD",
         }],
@@ -931,19 +931,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["discord.js", [
-        ["npm:13.0.0-dev.f200f14.1626436969", {
-          "packageLocation": "./.yarn/cache/discord.js-npm-13.0.0-dev.f200f14.1626436969-f8a642a704-b352f1c01b.zip/node_modules/discord.js/",
+        ["npm:13.0.0-dev.4886ae2.1627128182", {
+          "packageLocation": "./.yarn/cache/discord.js-npm-13.0.0-dev.4886ae2.1627128182-ce1eab306b-fc4456646d.zip/node_modules/discord.js/",
           "packageDependencies": [
-            ["discord.js", "npm:13.0.0-dev.f200f14.1626436969"],
+            ["discord.js", "npm:13.0.0-dev.4886ae2.1627128182"],
             ["@discordjs/builders", "npm:0.2.0"],
             ["@discordjs/collection", "npm:0.1.6"],
             ["@discordjs/form-data", "npm:3.0.1"],
             ["@sapphire/async-queue", "npm:1.1.4"],
-            ["@types/ws", "npm:7.4.6"],
+            ["@types/ws", "npm:7.4.7"],
             ["abort-controller", "npm:3.0.0"],
-            ["discord-api-types", "npm:0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e"],
+            ["discord-api-types", "npm:0.19.0"],
             ["node-fetch", "npm:2.6.1"],
-            ["ws", "virtual:f8a642a704f6f554fcf8dfdf9098ecf066157de6b642dd3e1c710f28514cb944a506b9301100da13c2efbc890f1ec6339fb68e12c71b9e93ea453bfe0d0a79d6#npm:7.5.3"]
+            ["ws", "virtual:ce1eab306bfe37eb3946bd3498ff06b6a18fd6257175df011070f006901bcf328f293b113d01886012cddc82b5be8add014920eab837bc4c7ed26890905a1e4d#npm:7.5.3"]
           ],
           "linkType": "HARD",
         }]
@@ -2058,7 +2058,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["chalk", "npm:4.1.1"],
             ["discord-akairo", "https://github.com/SkyBlockDev/discord-akairo.git#commit=2aa37574353a0ac175d9a94a6870bee074bbea2d"],
             ["discord-api-types", "npm:0.20.2"],
-            ["discord.js", "npm:13.0.0-dev.f200f14.1626436969"],
+            ["discord.js", "npm:13.0.0-dev.4886ae2.1627128182"],
             ["dotenv", "npm:10.0.0"],
             ["eslint", "npm:7.20.0"],
             ["got", "npm:11.8.2"],
@@ -2381,10 +2381,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:f8a642a704f6f554fcf8dfdf9098ecf066157de6b642dd3e1c710f28514cb944a506b9301100da13c2efbc890f1ec6339fb68e12c71b9e93ea453bfe0d0a79d6#npm:7.5.3", {
-          "packageLocation": "./.yarn/$$virtual/ws-virtual-bda65f69de/0/cache/ws-npm-7.5.3-3a046a0b1a-77ce9a2129.zip/node_modules/ws/",
+        ["virtual:ce1eab306bfe37eb3946bd3498ff06b6a18fd6257175df011070f006901bcf328f293b113d01886012cddc82b5be8add014920eab837bc4c7ed26890905a1e4d#npm:7.5.3", {
+          "packageLocation": "./.yarn/$$virtual/ws-virtual-5b7436e873/0/cache/ws-npm-7.5.3-3a046a0b1a-77ce9a2129.zip/node_modules/ws/",
           "packageDependencies": [
-            ["ws", "virtual:f8a642a704f6f554fcf8dfdf9098ecf066157de6b642dd3e1c710f28514cb944a506b9301100da13c2efbc890f1ec6339fb68e12c71b9e93ea453bfe0d0a79d6#npm:7.5.3"],
+            ["ws", "virtual:ce1eab306bfe37eb3946bd3498ff06b6a18fd6257175df011070f006901bcf328f293b113d01886012cddc82b5be8add014920eab837bc4c7ed26890905a1e4d#npm:7.5.3"],
             ["@types/bufferutil", null],
             ["@types/utf-8-validate", null],
             ["bufferutil", null],

@@ -201,11 +201,11 @@ __metadata:
   linkType: hard
 
 "@types/ws@npm:^7.4.5":
-  version: 7.4.6
-  resolution: "@types/ws@npm:7.4.6"
+  version: 7.4.7
+  resolution: "@types/ws@npm:7.4.7"
   dependencies:
     "@types/node": "*"
-  checksum: bf81b170ab2caeb5f602e1094058d31b2e19fbb725d25007fbca01c1043c10c3fdd0ee67dd29cadab3bdfed52cf930d9d0ec06bb51b811e67176959476cbd043
+  checksum: 38dee1bc2e480b610e44e9df92c76cae549a55491eee5454dd80d5c5039d6b7bf3f6884ffac5a72d0f638651cf3f2595b5cf172bea5e075c64f265256249e745
   languageName: node
   linkType: hard
 
@@ -690,10 +690,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e":
-  version: 0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e
-  resolution: "discord-api-types@npm:0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e"
-  checksum: ca53bf2bd5f85edc9e08e3bec58cb341eb1b4ebf32f2cf1c67a8d43a78146f2f78d0bb61d3124ded6642b30b84ab3e172b2f8c635df192de62c864d6e5ab15f9
+"discord-api-types@npm:^0.19.0":
+  version: 0.19.0
+  resolution: "discord-api-types@npm:0.19.0"
+  checksum: a435ab8fd908f788bcc916d1bbaf4ee6d689dd19a7b78a09afe20cb7a5114d82956d22bd03e76bde7cfbb3af2417e1d5dd78cfabbefd423b2c21b497c1d6fba4
   languageName: node
   linkType: hard
 
@@ -705,8 +705,8 @@ __metadata:
   linkType: hard
 
 "discord.js@npm:dev":
-  version: 13.0.0-dev.f200f14.1626436969
-  resolution: "discord.js@npm:13.0.0-dev.f200f14.1626436969"
+  version: 13.0.0-dev.4886ae2.1627128182
+  resolution: "discord.js@npm:13.0.0-dev.4886ae2.1627128182"
   dependencies:
     "@discordjs/builders": ^0.2.0
     "@discordjs/collection": ^0.1.6
@@ -714,10 +714,10 @@ __metadata:
     "@sapphire/async-queue": ^1.1.4
     "@types/ws": ^7.4.5
     abort-controller: ^3.0.0
-    discord-api-types: ^0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e
+    discord-api-types: ^0.19.0
     node-fetch: ^2.6.1
     ws: ^7.5.1
-  checksum: b352f1c01bc014892d9aff79f20d0ef02bfb86008975c0500f5913fc54ce9c76cb731cc59b0e56f2d384e81f8b0f558633905f6cbe515adcaf7dff69f069aeab
+  checksum: fc4456646d24ff55eee6546dbb69531d368a3b3b54e0b4f1872fb9d294625ecc1970107207c7540142dfbfb748d6aba3bb42c80020c610089423d68b3dc59c77
   languageName: node
   linkType: hard
 

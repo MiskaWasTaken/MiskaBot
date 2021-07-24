@@ -1,9 +1,10 @@
+import utils from "@functions/utils"
 import chalk from "chalk"
 import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler, TaskHandler } from "discord-akairo"
 import { Intents, MessageEmbed, TextChannel } from "discord.js"
 import { join } from "path"
 
-import {token} from '../extensions/config/config'
+import { token } from '../extensions/config/config'
 //import {BotClientUtils} from '@extensions/BotClientUtils'
 
 
@@ -33,34 +34,40 @@ class BotClient extends AkairoClient {
 	})
 
 
-	// public error = async (error: Error, type?: string) => {
-	// 	const errorChannel = await this.channels.cache.get('868575406331158548') as TextChannel
+	public error = async (error: Error, type?: string) => {
+		const errorChannel = await this.channels.cache.get('868575406331158548') as TextChannel
 
-	// 	const errorCode = utils.getRandomInt(69696969696969)
+		const errorCode = utils.getRandomInt(69696969696969)
 
-	// 	let errorStack = error.stack
+		let errorStack = error.stack
 
-	// 	if (errorStack.length > 1000) {
-	// 		errorStack = errorStack.substring(0, 1000)
-	// 	}
+		if (errorStack.length > 1000) {
+			errorStack = errorStack.substring(0, 1000)
+		}
 
-	// 	const errorEmbed = new MessageEmbed()
-	// 	if (!type) { errorEmbed.setTitle('An error occured!') }
-	// 	else { errorEmbed.setTitle(`A${type} error occured!`) }
-	// 	errorEmbed.addField('Error code', `\`${errorCode}\``)
-	// 	errorEmbed.setDescription(`\`\`\`js\n${errorStack}\`\`\``)
-	// 	errorEmbed.setColor('DARK_RED')
+		const errorEmbed = new MessageEmbed()
+		if (!type) { errorEmbed.setTitle('An error occured!') }
+		else { errorEmbed.setTitle(`A${type} error occured!`) }
+		errorEmbed.addField('Error code', `\`${errorCode}\``)
+		errorEmbed.setDescription(`\`\`\`js\n${errorStack}\`\`\``)
+		errorEmbed.setColor('DARK_RED')
 
-	// 	//errorChannel.send({ /*content: `\`\`\`js\n${errorStack}\`\`\``,*/ embeds: [errorEmbed] })
-	// 	//console.log(errorChannel)
+		//errorChannel.send({ /*content: `\`\`\`js\n${errorStack}\`\`\``,*/ embeds: [errorEmbed] })
+		//console.log(errorChannel)
 
-	// 	const returnErrorEmbed = new MessageEmbed()
-	// 		.setTitle('An error occured!')
-	// 		.setDescription(`Please give my developer code \`${errorCode}\``)
-	// 		.setColor('DARK_RED')
+		const returnErrorEmbed = new MessageEmbed()
+			.setTitle('An error occured!')
+			.setDescription(`Please give my developer code \`${errorCode}\``)
+			.setColor('DARK_RED')
 
-	// 	return returnErrorEmbed
-	// }
+		return returnErrorEmbed
+	}
+
+	public notNsfwEmbed = new MessageEmbed()
+		.setColor('#ff0000')
+		.setTitle('You can\'t use this command here.')
+		.setDescription('This channel isn\'t NSFW, so you cannot use this command here.')
+		.setImage('https://i.imgur.com/oe4iK5i.gif')
 
 	public constructor() {
 		super({

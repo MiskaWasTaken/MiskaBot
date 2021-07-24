@@ -8,8 +8,8 @@ export default class templateCommand extends BotCommand {
             description: 'This is an example command!',
             usage: '-templateCommand',
 
-            slash: true,
-            slashGuilds: utils.slashGuilds
+            // slash: true,
+            // slashGuilds: utils.slashGuilds
         })
     }
     async exec(message, args) {

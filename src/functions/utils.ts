@@ -2,7 +2,7 @@ import axios from "axios";
 import chalk from "chalk";
 import { TextChannel, GuildMember, User, Message, MessageEmbed } from "discord.js";
 import got from "got/dist/source";
-
+import HMfull from 'hmfull'
 import client from '@src/index'
 
 const slashGuilds = ['868532678318780496']
@@ -258,6 +258,17 @@ function funnyNumber(number: number) {
     else { return false }
 }
 
+async function hentai(thing) {
+    
+    const embed = new MessageEmbed()
+        .setColor('#16a157')
+        .setImage(HMfull.HMtai.nsfw[thing]().url)
+        .setTimestamp()
+        .setFooter('Hentai NSFW')
+
+    return embed
+}
+
 export default {
     slashGuilds,
     haste,
@@ -271,5 +282,6 @@ export default {
     getRolePriority,
     getRandomInt,
     splitArrayIntoMultiple,
-    funnyNumber
+    funnyNumber,
+    hentai
 }
