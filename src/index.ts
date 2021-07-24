@@ -1,5 +1,17 @@
-import { BotClient } from './lib/extensions/BotClient';
-import * as config from './config/options';
+import 'module-alias/register'
 
-const client = new BotClient(config);
-client.start();
+// require('dotenv').config()
+// const { MongoClient } = require('mongodb')
+// const uri = process.env['mongodb']
+
+//starting the bot
+
+import BotClient from "@extensions/BotClient"
+
+const client = new BotClient()
+
+//console.log(process.env)
+try { client.start() }
+catch (error) { console.error(error) }
+
+export default client

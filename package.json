@@ -1,40 +1,55 @@
 {
-	"name": "akairo-template",
-	"version": "1.0.0",
+	"name": "skyclientbot",
+	"version": "0.0.0",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
 		"test": "yarn run lint && yarn run build",
 		"build": "yarn rimraf dist/ && yarn tsc",
 		"lint": "yarn eslint --ext js,jsx,ts,tsx src",
-		"format": "yarn prettier --write .",
 		"start": "yarn build && node --trace-warnings -r source-map-support/register dist/index.js"
 	},
-	"author": "Tyman",
-	"license": "MIT",
+	"author": "Zordlan",
+	"license": "FUCKOFF",
+	"private": true,
 	"devDependencies": {
-		"@types/node": "^14.14.31",
-		"@types/prettier": "^2",
-		"@typescript-eslint/eslint-plugin": "^4.25.0",
-		"@typescript-eslint/parser": "^4.25.0",
-		"discord-api-types": "^0.18.1",
+		"@types/module-alias": "^2",
+		"@types/node": "^14.17.6",
+		"@types/prettier": "^2.2.3",
+		"@typescript-eslint/eslint-plugin": "^4.15.2",
+		"@typescript-eslint/parser": "^4.15.2",
+		"discord-api-types": "^0.20.2",
 		"eslint": "^7.20.0",
-		"eslint-config-prettier": "^8.3.0",
-		"prettier": "^2.3.0",
+		"prettier": "^2.2.1",
 		"rimraf": "^3.0.2",
 		"source-map-support": "^0.5.19",
 		"typescript": "^4.2.2"
 	},
 	"dependencies": {
-		"discord-akairo": "SkyblockDev/discord-akairo#59db80742b2bba62cdcfa5505b4522a7134e8e04",
-		"discord.js": "discordjs/discord.js#f7643f7bbe64003ad8b221006190dd15529651e9"
+		"axios": "^0.21.1",
+		"chalk": "^4.1.1",
+		"discord-akairo": "git+https://github.com/SkyBlockDev/discord-akairo.git",
+		"discord.js": "dev",
+		"dotenv": "^10.0.0",
+		"got": "^11.8.2",
+		"hmfull": "^1.2.5",
+		"module-alias": "^2.2.2",
+		"mongodb": "^4.0.0"
 	},
 	"prettier": {
+		"tabWidth": 4,
+		"singleQuote": false,
+		"semi": true,
+		"bracketSpacing": true,
+		"arrowParens": "always",
+		"printWidth": 200,
 		"useTabs": true,
-		"quoteProps": "consistent",
-		"singleQuote": true,
-		"trailingComma": "none",
 		"endOfLine": "lf"
+	},
+	"_moduleAliases": {
+		"@functions": "dist/functions",
+		"@extensions": "dist/extensions",
+		"@src": "dist"
 	},
 	"eslintConfig": {
 		"env": {
@@ -43,8 +58,7 @@
 		},
 		"extends": [
 			"eslint:recommended",
-			"plugin:@typescript-eslint/recommended",
-			"prettier"
+			"plugin:@typescript-eslint/recommended"
 		],
 		"parser": "@typescript-eslint/parser",
 		"parserOptions": {
@@ -56,6 +70,10 @@
 		],
 		"ignorePatterns": [
 			"dist"
-		]
+		],
+		"rules": {
+			"@typescript-eslint/explicit-module-boundary-types": "off",
+			"@typescript-eslint/no-var-requires": "off"
+		}
 	}
 }

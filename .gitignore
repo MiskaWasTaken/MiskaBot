@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,yarn
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,node,yarn
+# Created by https://www.toptal.com/developers/gitignore/api/node,vscode
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,vscode
 
 ### Node ###
 # Logs
@@ -128,7 +128,7 @@ dist/
 tmp/
 temp/
 
-### VisualStudioCode ###
+### vscode ###
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -136,28 +136,16 @@ temp/
 !.vscode/extensions.json
 *.code-workspace
 
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
+# End of https://www.toptal.com/developers/gitignore/api/node,vscode
 
-### yarn ###
-# https://yarnpkg.com/advanced/qa#which-files-should-be-gitignored
+config
+testing
+fuckyoubot
 
-.yarn/*
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-
-# if you are NOT using Zero-installs, then:
-# comment the following lines
-# !.yarn/cache
-
-# and uncomment the following lines
-# .pnp.*
-
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,yarn
-
-# src/config/*
-!src/config/example-*
+# yarn shit # 
+.yarn/cache/*
+.yarn/sdks/eslint/*
+.yarn/sdks/prettier/*
+.yarn/install-state.gz
+.yarn/build-state.url
+.yarn/releases.gz
