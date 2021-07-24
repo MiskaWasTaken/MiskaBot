@@ -8,9 +8,6 @@ export default class ass extends BotCommand {
             aliases: ['ass', 'butt'],
             description: '[NSFW CHANNELS ONLY] ass picture',
             usage: '-ass',
-
-            slash: true,
-            slashGuilds: utils.slashGuilds
         })
     }
     async exec(message) {

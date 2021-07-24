@@ -10,9 +10,6 @@ export default class boobs extends BotCommand {
             aliases: [thing],
             description: `[NSFW CHANNELS ONLY] ${thing} picture`,
             usage: `-${thing}`,
-
-            slash: true,
-            slashGuilds: utils.slashGuilds
         })
     }
     async exec(message) {

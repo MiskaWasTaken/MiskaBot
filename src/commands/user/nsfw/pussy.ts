@@ -10,9 +10,6 @@ export default class vagina extends BotCommand {
             aliases: [thing, 'pussy'],
             description: `[NSFW CHANNELS ONLY] ${thing} picture`,
             usage: `-${thing}`,
-
-            slash: true,
-            slashGuilds: utils.slashGuilds
         })
     }
     async exec(message) {

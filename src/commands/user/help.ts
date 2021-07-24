@@ -16,7 +16,7 @@ export default class help extends BotCommand {
             let commandIDs = await commandManager.getAllCommandIDs()
             commandIDs = commandIDs.filter(ID => ID != 'help')
 
-            message.channel.send(commandIDs)
+            message.reply(JSON.stringify(commandIDs))
         }
         if (args.command) {
             const command = this.client.commandHandler.modules.get(args.command) as BotCommand
@@ -26,7 +26,7 @@ export default class help extends BotCommand {
                 .setDescription(command.description)
                 .addField('Usage', command.usage)
 
-            message.channel.send(helpEmbed)
+            message.channel.send({embeds:[helpEmbed]})
         }
     }
 }

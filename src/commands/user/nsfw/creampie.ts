@@ -8,9 +8,6 @@ export default class creampie extends BotCommand {
             aliases: ['creampie'],
             description: '[NSFW CHANNELS ONLY] creampie picture',
             usage: '-creampie',
-
-            slash: true,
-            slashGuilds: utils.slashGuilds
         })
     }
     async exec(message) {
