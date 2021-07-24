@@ -5,7 +5,7 @@ import got from "got/dist/source";
 import HMfull from 'hmfull'
 import client from '@src/index'
 
-const slashGuilds = ['868532678318780496']
+const slashGuilds = []
 
 async function haste(content: string) {
 
