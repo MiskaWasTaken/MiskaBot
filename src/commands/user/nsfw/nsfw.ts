@@ -71,7 +71,12 @@ export default class nsfw extends BotCommand {
         if (!times.includes(args.time)) { time = 'week' }
         else { time = args.time }
 
-        const body = await axios.get(`https://www.reddit.com/r/nsfw.json?sort=top&t=${time}`)
+        //if (message.interaction) { return message.reply('For whatever stupid reason, the government blocked me from accessing this when I\'m hosted in this location.') }
+
+        let body
+
+        try { body = await axios.get(`https://www.reddit.com/r/nsfw.json?sort=top&t=${time}`) }
+        catch (error) { this.handler.emit('error', error) }
 
         const redditPost = body.data.data.children[utils.getRandomInt(body.data.data.children.length)].data
 
