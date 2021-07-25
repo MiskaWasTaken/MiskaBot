@@ -10,10 +10,46 @@ export default class nsfw extends BotCommand {
             description: `nsfw`,
             usage: `-nsfw`,
 
-            args:[
+            args: [
                 {
                     id: 'time',
-                    type:'string'
+                    type: 'string'
+                }
+            ],
+
+            slash: true,
+            slashGuilds: ['868532678318780496'],
+            slashOptions: [
+                {
+                    name: 'time',
+                    description: 'timespan',
+                    type: 'STRING',
+                    choices: [
+                        {
+                            name: 'hour',
+                            value: 'hour'
+                        },
+                        {
+                            name: 'day',
+                            value: 'day'
+                        },
+                        {
+                            name: 'week',
+                            value: 'week'
+                        },
+                        {
+                            name: 'month',
+                            value: 'month'
+                        },
+                        {
+                            name: 'year',
+                            value: 'year'
+                        },
+                        {
+                            name: 'all',
+                            value: 'all time'
+                        },
+                    ]
                 }
             ]
         })
@@ -22,7 +58,7 @@ export default class nsfw extends BotCommand {
         if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
 
         let time
-        
+
         const times = [
             'hour',
             'day',
@@ -32,8 +68,8 @@ export default class nsfw extends BotCommand {
             'all'
         ]
 
-        if (!times.includes(args.time)) {time = 'week'}
-        else {time = args.time}
+        if (!times.includes(args.time)) { time = 'week' }
+        else { time = args.time }
 
         const body = await axios.get(`https://www.reddit.com/r/nsfw.json?sort=top&t=${time}`)
 
@@ -42,9 +78,9 @@ export default class nsfw extends BotCommand {
         const embed = new MessageEmbed()
             .setColor('RANDOM')
             .setTitle(`${redditPost.title}`)
-            .setDescription(`Posted by: ${redditPost.author_fullname}`)
+            .setDescription(`Posted by u/${redditPost.author}`)
             .setImage(`${redditPost.url}`)
-            .setFooter(`Boners provided by https://www.reddit.com/r/nsfw`)
+            .setFooter(`Images from https://www.reddit.com/r/nsfw`)
 
         message.reply({ embeds: [embed] })
     }
