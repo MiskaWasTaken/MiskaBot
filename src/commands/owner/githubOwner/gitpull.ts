@@ -17,7 +17,7 @@ export default class gitpull extends BotCommand {
     async exec(message) {
         const githubembed = new MessageEmbed()
 
-        const pull = sh('git pull')
+        const pull = await sh('git pull')
         githubembed.setDescription(`\`\`\`js\n${inspect(pull)}\`\`\``)
 
         message.util.reply({ embeds: [githubembed] })
