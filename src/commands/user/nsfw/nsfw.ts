@@ -76,7 +76,7 @@ export default class nsfw extends BotCommand {
         let body
 
         try { body = await axios.get(`https://www.reddit.com/r/nsfw.json?sort=top&t=${time}`) }
-        catch (error) { this.handler.emit('error', error) }
+        catch (error) { return this.handler.emit('error', error) }
 
         const redditPost = body.data.data.children[utils.getRandomInt(body.data.data.children.length)].data
 
