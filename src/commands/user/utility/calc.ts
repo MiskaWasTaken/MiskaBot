@@ -1,4 +1,5 @@
 import { BotCommand } from '@extensions/BotCommand';
+import { MessageEmbed } from 'discord.js';
 const math = require('mathjs')
 
 export default class calc extends BotCommand {
@@ -26,8 +27,17 @@ export default class calc extends BotCommand {
 
         if (!sum) return message.channel.send('please provide a maths equation')
 
+
         const result = JSON.stringify(math.evaluate(sum))
 
-        message.reply(`${args.equation} = ${result}`)
+        const calc = new MessageEmbed()
+        .setColor('RANDOM')
+        .setTitle(`**${args.equation} = ${result}**`)
+        .setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+        .setTimestamp()
+        .setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg')
+
+
+        message.reply({ embeds: [calc] })
     }
 }
