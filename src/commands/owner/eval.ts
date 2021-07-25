@@ -11,6 +11,8 @@ const utils = importUtils
 import importHMfull from 'hmfull'
 const HMfull = importHMfull
 
+const ms = require('ms')
+
 const sh = promisify(exec);
 
 export default class evaluate extends BotCommand {
