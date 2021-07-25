@@ -1,5 +1,5 @@
-import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
+import { MessageEmbed } from 'discord.js';
 const math = require('mathjs')
 
 export default class calc extends BotCommand {
@@ -10,42 +10,27 @@ export default class calc extends BotCommand {
             usage: '$calc',
             args: [
                 {
-                    id: '1',
-                    type: 'number',
-                    default: 0
-                },
-                {
-                    id: '2',
-                    type: 'number',
-                    default: 0
+                    id: 'equation',
+                    type: 'string',
+                    match: 'restContent'
                 }
             ]
         })
     }
     async exec(message, args) {
-        const crash = [':'];
 
-if(message.content.includes(':')){
+        if (message.content.includes(':')) {
+            return message.channel.send('That question is too powerful for me!')
+        }
 
-  return message.channel.send('That question is too powerful for me!'); return;
-} 
+        const sum = args.equation
 
-console.log(args)
-    //const question = args.calc(' ') 
-    const sum =  args.numOne + args.numTwo + args.numThree;
+        if (!sum) return message.channel.send('please provide a maths equation')
 
-    if(!sum) return message.channel.send('please provide a maths equation')
+        const result = JSON.stringify(math.evaluate(sum))
 
-    let result;
-    try {
-        result = math.evaluate(sum);
+        const msgArg = message.content.replace(`-calc `, '')
 
-
-    } catch (e) {
-        return message.channel.send('please provide a valid equation') 
+        message.reply(`${result} = ${msgArg}`)
     }
-
-
-    return message.channel.send(`${sum} = ${result}`)
-
-}}
+}
