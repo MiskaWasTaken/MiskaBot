@@ -37,7 +37,7 @@ export default class gitpush extends BotCommand {
         const gitadd = await sh('git add .')
         githubEmbed.addField(`\`git add .\``, `\`\`\`js\n${inspect(gitadd)}\`\`\``)
 
-        const gitcommit = await sh('git commit -m "${args.commitReason}"')
+        const gitcommit = await sh(`git commit -m "${args.commitReason}"`)
         githubEmbed.addField(`\`git commit "${args.commitReason}"\``, `\`\`\`js\n${inspect(gitcommit)}\`\`\``)
 
         const githubpush = await sh('git push')
