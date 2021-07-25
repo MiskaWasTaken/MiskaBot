@@ -264,7 +264,7 @@ async function hentai(thing) {
         .setColor('#16a157')
         .setImage(HMfull.HMtai.nsfw[thing]().url)
         .setTimestamp()
-        .setFooter('Hentai NSFW')
+        .setFooter('Hentai')
 
     return embed
 }
