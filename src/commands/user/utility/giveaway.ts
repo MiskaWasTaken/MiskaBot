@@ -42,10 +42,12 @@ export default class avatar extends BotCommand {
             .setColor(0x3333ff)
             .setTitle("New Giveaway!")
             .setDescription(`**${item}**`)
+            .addFields(
+                { name: `RIP`, value: "**Command gets broken when bot restarts**", inline: true })
             .addField(`Duration : `, ms(ms(time), {
                 long: true
             }), true)
-            .setFooter("React to this message with 🎉 to participate!")
+            .setFooter(`React to this message with 🎉 to participate!`) 
         const embedSent = await message.channel.send({ embeds: [embed] })
         embedSent.react("🎉")
 
