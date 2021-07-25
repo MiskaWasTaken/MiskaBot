@@ -14,9 +14,9 @@ export default class invite extends BotCommand {
 
         const inviteEmbed = new MessageEmbed()
             .setTitle('Invite Me')
-            .setDescription(`[Click here to invite me to your server!](${inviteLink})`)
+            .setDescription(`${inviteLink}`)
             .setColor(message.member.roles.highest.color)
 
-        message.channel.send(inviteEmbed)
+            message.reply({ embeds: [inviteEmbed] });
     }
 }

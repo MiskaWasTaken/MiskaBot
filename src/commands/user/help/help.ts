@@ -1,32 +1,43 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
 import commandManager from '@functions/commandManager';
+import utils from '@functions/utils';
+
+
+
 
 export default class help extends BotCommand {
     constructor() {
         super('help', {
             aliases: ['help'],
-            args: [{ id: 'command', type: 'string' }],
-            description: 'You already know what this does, otherwise you wouldnt be using it, right?',
-            usage: '-help\n-help <command ID>',
+            description: 'You know what this is',
+            usage: '$help',
         })
     }
-    async exec(message, args) {
-        if (!args.command) {
-            let commandIDs = await commandManager.getAllCommandIDs()
-            commandIDs = commandIDs.filter(ID => ID != 'help')
 
-            message.reply(JSON.stringify(commandIDs))
-        }
-        if (args.command) {
-            const command = this.client.commandHandler.modules.get(args.command) as BotCommand
+    async exec(message) {
+;
 
-            const helpEmbed = new MessageEmbed()
-                .setTitle(command.id)
-                .setDescription(command.description)
-                .addField('Usage', command.usage)
+const helpEmbed = new MessageEmbed()
+	.setColor('RANDOM')
+	.setTitle('Help Command')
+	.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+	.setAuthor('Miska Bot', 'https://i.imgur.com/I8qSDdc.jpg', 'https://discordbotlist.com/bots/miska-bot')
+	.setDescription('There are the different category available in Miska Bot, Please choose one.')
+	.addFields(
+		{ name: `📷Image Manipulation`, value: "`$helpimage`", inline: true },
+		{ name: '🎈Fun', value: "`$helpfun`", inline: true },
+		{ name: '🤖Moderation', value: "`$helpmod`", inline: true },
+		{ name: '🎧Music', value: "`$helpmusic`", inline: true },
+		{ name: '🔞NSFW', value: "`$helpnsfw`", inline: true },
+		{ name: '👩‍💻Config', value: "`$config`", inline: true },
+		{ name: '😉SFW', value: "`$helpsfw`", inline: true },
+		{ name: '🐱‍💻Utility', value: "`$helputility`", inline: true },
+		{ name: '🆘Help Me', value: "`$helpme`", inline: true }
+	)
+	.setTimestamp()
+	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
 
-            message.channel.send({embeds:[helpEmbed]})
-        }
-    }
-}
+message.reply({ embeds: [helpEmbed] });
+
+}}
