@@ -77,9 +77,11 @@ export default class nsfw extends BotCommand {
 
         try { body = await axios.get(`https://www.reddit.com/r/nsfw.json?sort=top&t=${time}`) }
         catch (error) {
-            //@ts-expect-error eee
-            try { return eeeeeeeeeee }
-            catch (error) { this.handler.emit('error', error) }
+            if (error == 'Error: Request failed with status code 451') { return message.reply('For whatever stupid reason, the government blocked me from accessing this when I\'m hosted in this location.') }
+            else {
+                //@ts-expect-error eee
+                eee
+            }
         }
 
         const redditPost = body.data.data.children[utils.getRandomInt(body.data.data.children.length)].data
