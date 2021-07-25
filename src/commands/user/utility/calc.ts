@@ -1,5 +1,4 @@
 import { BotCommand } from '@extensions/BotCommand';
-import { MessageEmbed } from 'discord.js';
 const math = require('mathjs')
 
 export default class calc extends BotCommand {
@@ -29,8 +28,6 @@ export default class calc extends BotCommand {
 
         const result = JSON.stringify(math.evaluate(sum))
 
-        const msgArg = message.content.replace(`-calc `, '')
-
-        message.reply(`${result} = ${msgArg}`)
+        message.reply(`${args.equation} = ${result}`)
     }
 }
