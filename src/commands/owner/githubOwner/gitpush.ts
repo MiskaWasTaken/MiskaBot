@@ -29,7 +29,7 @@ export default class gitpush extends BotCommand {
         }
 
         const hiyesthisisanembed = new MessageEmbed()
-            .setDescription(`Pushing changes to [GitHub](https://github.com/Zordlan/SkyClientBot)`)
+            .setDescription(`Pushing changes to [GitHub](https://github.com/Zordlan/MiskaBot)`)
         message.util.send({ embeds: [hiyesthisisanembed] })
 
         const githubembed = new MessageEmbed()
