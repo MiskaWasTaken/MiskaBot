@@ -4,13 +4,13 @@ import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler, TaskHa
 import { Intents, MessageEmbed, TextChannel } from "discord.js"
 import { join } from "path"
 
-import { token } from '../extensions/config/config'
+import { token, prefix } from '../extensions/config/config'
 //import {BotClientUtils} from '@extensions/BotClientUtils'
 
 
 class BotClient extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
-		prefix: ['$'],
+		prefix: prefix,
 		commandUtil: true,
 		handleEdits: true,
 		directory: join(__dirname, "..", "commands"),
