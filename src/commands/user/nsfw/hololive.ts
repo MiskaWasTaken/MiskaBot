@@ -23,7 +23,7 @@ export default class hololive extends BotCommand {
             .setTitle(`${redditPost.title}`)
             .setDescription(`Posted by: ${redditPost.author_fullname}`)
             .setImage(`${redditPost.url}`)
-            .setFooter(`Boners provided by ${redditPost.subsubreddit_name_prefixed}`)
+            .setFooter(`Boners provided by https://www.reddit.com/r/HololiveLewds`)
 
         message.reply({ embeds: [embed] })
     }
