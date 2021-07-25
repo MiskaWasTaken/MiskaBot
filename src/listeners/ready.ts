@@ -18,6 +18,8 @@ class ReadyListener extends BotListener {
         // logChannel.send(`Logged in as **${this.client.user.tag}**`)
 
         //this.client.user.setActivity('Zordlan create me', { type: 'WATCHING' })
+        this.client.user.setActivity("owo", {type: "STREAMING", url: "https://www.youtube.com/watch?v=UdheRbl9uOQ"})
+
     }
 }
 
