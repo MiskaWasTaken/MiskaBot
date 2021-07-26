@@ -18,6 +18,8 @@ const ms = require('ms')
 
 const sh = promisify(exec);
 
+const fs = require('fs')
+
 export default class evaluate extends BotCommand {
     constructor() {
         super('eval', {
