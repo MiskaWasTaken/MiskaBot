@@ -49,7 +49,6 @@ export default class evaluate extends BotCommand {
 
         try {
             output = await eval(`(async () => {${args.codeToEval}})()`)
-            //if (args.codeToEval == '520 == 300') { output = true }
             output = inspect(output, { depth: 0 })
         }
         catch (err) {
@@ -59,6 +58,8 @@ export default class evaluate extends BotCommand {
         }
 
         if (inspect(output).includes(this.client.token)) { return message.util.send('Message containing token wasn\'t sent.') }
+
+
 
         const evalEmbedDisabledGuilds = [
             '794610828317032458'
@@ -72,24 +73,20 @@ export default class evaluate extends BotCommand {
             else { return message.react('<:success:838816341007269908>') }
         }
 
-
         if (!args.silent && !args.codeToEval.includes('message.channel.delete()')) {
             const evalOutputEmbed = new MessageEmbed()
                 .setTitle('Evaluated Code')
                 .addField(':inbox_tray: **Input**', `\`\`\`js\n${args.codeToEval}\`\`\``)
                 .setColor(message.member.displayColor)
 
-            // if (inspect(output, { depth: 0 }).length > 1000) {
-            //     await evalOutputEmbed.addField(':outbox_tray: **Output**', await utils.haste(inspect(output, { depth: 0 })))
-            // }
-
-            evalOutputEmbed.addField(':outbox_tray: **Output**', `\`\`\`js\n${output}\`\`\``)
+            if (output.length >= 1000) { output = await utils.haste(output) }
+            else { output = `\`\`\`js\n${output}\`\`\`` }
+            evalOutputEmbed.addField(':outbox_tray: **Output**', output)
 
             await message.util.reply({ embeds: [evalOutputEmbed] })
         }
         if (args.silent) {
             if (args.codeToEval.includes('message.delete')) { return }
-            //message.react('<:success:838816341007269908>')
         }
     }
 }
