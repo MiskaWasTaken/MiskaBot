@@ -10,17 +10,17 @@ export default class avatar extends BotCommand {
         })
     }
 
- async exec(message) {
-    
+    async exec(message) {
+
         const user = message.mentions.users.first() || message.author;
-    
-        const avatar = user.displayAvatarURL({size: 4096, dynamic: true})
-    
+
+        const avatar = user.displayAvatarURL({ size: 4096, dynamic: true })
+
         const embed = new MessageEmbed()
-        .setTitle(`${user.tag}'s Avatar`)
-        .setURL(avatar)
-        .setImage(avatar)
-        .setColor('RANDOM')
+            .setTitle(`${user.tag}'s Avatar`)
+            .setURL(avatar)
+            .setImage(avatar)
+            .setColor('RANDOM')
         message.reply({ embeds: [embed] });
-    }}
-    
+    }
+}
