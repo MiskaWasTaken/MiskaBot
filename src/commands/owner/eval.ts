@@ -11,6 +11,9 @@ const utils = importUtils
 import importHMfull from 'hmfull'
 const HMfull = importHMfull
 
+import importCommandManager from '@functions/commandManager'
+const commandManager = importCommandManager
+
 const ms = require('ms')
 
 const sh = promisify(exec);

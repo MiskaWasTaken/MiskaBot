@@ -11,7 +11,7 @@ export default class templateCommand extends BotCommand {
     }
     async exec(message) {
         
-        message.channel.send(`🏓Latency is ${Date.now() - message.createdTimestamp}ms. API Latency is ${Math.round(this.client.ws.ping)}ms`)
 
+        message.channel.send(`🏓Latency is ${message.createdTimestamp - Date.now()}ms. API Latency is ${Math.round(this.client.ws.ping)}ms`)
     }
 }

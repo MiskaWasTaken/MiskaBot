@@ -12,12 +12,11 @@ export default class templateCommand extends BotCommand {
     async exec(message) {
 
         const ownerEmbed = new MessageEmbed()
-        .setColor('#03dbfc')
-        .setTitle('Credits')
-        .setDescription('Mentally absused by Zordlan#3560, physically abused by Miska#6969')
-        .setTimestamp()
-    
-        message.reply({ embeds: [ownerEmbed] });
+            .setColor('#03dbfc')
+            .setTitle('Credits')
+            .setDescription('Mentally absused by Zordlan#3560, physically abused by Miska#6969')
+            .setTimestamp()
 
+        message.reply({ embeds: [ownerEmbed] });
     }
 }
