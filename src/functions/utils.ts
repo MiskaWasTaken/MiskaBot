@@ -21,14 +21,17 @@ async function haste(content: string) {
     ]
 
     for (const url of urls) {
-        const body = await got.post(`${url}/documents`, {
-            body: content,
-            responseType: 'json'
-        }).json()
+        try {
+            const body = await got.post(`${url}/documents`, {
+                body: content,
+                responseType: 'json'
+            }).json()
 
-        const key = body['key']
+            const key = body['key']
 
-        return `${url}/${key}`
+            return `${url}/${key}`
+        }
+        catch (err) { continue }
     }
     return 'Couldn\'t post'
 }
@@ -46,14 +49,17 @@ async function hasteJson(content: Record<string, unknown>) {
     ]
 
     for (const url of urls) {
-        const body = await got.post(`${url}/documents`, {
-            body: JSON.stringify(content, null, 4),
-            responseType: 'json'
-        }).json()
+        try {
+            const body = await got.post(`${url}/documents`, {
+                body: JSON.stringify(content, null, 4),
+                responseType: 'json'
+            }).json()
 
-        const key = body['key']
+            const key = body['key']
 
-        return `${url}/${key}`
+            return `${url}/${key}`
+        }
+        catch (err) { continue }
     }
     return 'Couldn\'t post'
 }
@@ -259,7 +265,7 @@ function funnyNumber(number: number) {
 }
 
 async function hentai(thing) {
-    
+
     const embed = new MessageEmbed()
         .setColor('#16a157')
         .setImage(HMfull.HMtai.nsfw[thing]().url)
