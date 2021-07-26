@@ -14,7 +14,7 @@ export default class hololive extends BotCommand {
     async exec(message) {
         if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
 
-        const body = await axios.get('https://www.reddit.com/r/HololiveLewds.json?sort=top&t=week')
+        const body = await axios.get('https://www.reddit.com/r/HoloLewd.json?sort=top&t=week')
 
         const redditPost = body.data.data.children[utils.getRandomInt(body.data.data.children.length)].data
 
@@ -23,7 +23,7 @@ export default class hololive extends BotCommand {
             .setTitle(`${redditPost.title}`)
             .setDescription(`Posted by: ${redditPost.author_fullname}`)
             .setImage(`${redditPost.url}`)
-            .setFooter(`Boners provided by https://www.reddit.com/r/HololiveLewds`)
+            .setFooter(`Boners provided by https://www.reddit.com/r/HoloLewd`)
 
         message.reply({ embeds: [embed] })
     }
