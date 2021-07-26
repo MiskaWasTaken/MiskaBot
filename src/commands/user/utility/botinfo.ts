@@ -28,7 +28,7 @@ export default class botinfo extends BotCommand {
         **Users:** ${this.client.users.cache.size}
         **Discord.js Version:** 13.0.0-dev.4886ae2.1627171445
         **Node.js Version:** 16.6.0
-        **Custom Bot Verson:** Early Release 1.0`
+        **Custom Bot Verson:** RW0.1`
     )
     message.reply({ embeds: [botEmbed] })
 }}

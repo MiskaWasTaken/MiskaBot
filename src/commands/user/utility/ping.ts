@@ -1,6 +1,6 @@
 import { BotCommand } from '@extensions/BotCommand';
 
-export default class templateCommand extends BotCommand {
+export default class ping extends BotCommand {
     constructor() {
         super('ping', {
             aliases: ['ping'],
