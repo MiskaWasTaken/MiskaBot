@@ -1,6 +1,5 @@
 import { BotCommand } from '@extensions/BotCommand';
 import utils from '@functions/utils';
-import { MessageEmbed } from 'discord.js';
 
 const thing = 'ero'
 

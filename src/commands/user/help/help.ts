@@ -1,7 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
-import commandManager from '@functions/commandManager';
-import utils from '@functions/utils';
+	
 
 
 
@@ -16,7 +15,7 @@ export default class help extends BotCommand {
     }
 
     async exec(message) {
-;
+
 
 const helpEmbed = new MessageEmbed()
 	.setColor('RANDOM')
