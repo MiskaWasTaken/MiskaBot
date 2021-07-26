@@ -76,7 +76,7 @@ export default class nsfw extends BotCommand {
         let body
 
         try {
-            body = await axios.get(`https://www.reddit.com/r/nsfw.json?sort=top&t=${time}`)
+            body = await axios.get(`https://www.reddit.com/r/nude_.json?sort=top&t=${time}`)
         }
         catch (error) {
             if (error == 'Error: Request failed with status code 451') { return message.reply('For whatever stupid reason, the government blocked me from accessing this when I\'m hosted in this location.') }
@@ -92,7 +92,7 @@ export default class nsfw extends BotCommand {
             .setTitle(`${redditPost.title}`)
             .setDescription(`Posted by u/${redditPost.author}`)
             .setImage(`${redditPost.url}`)
-            .setFooter(`Images from https://www.reddit.com/r/nsfw`)
+            .setFooter(`Images from https://www.reddit.com/r/nude_  `)
 
         message.reply({ embeds: [embed] })
     }

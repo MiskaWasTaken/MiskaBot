@@ -1,13 +1,14 @@
 import { BotTasks } from '@extensions/BotTasks'
 
+
 export default class extends BotTasks {
 	constructor() {
 		super("hello", {
-			delay: 20000,
+			delay: 5000,
 			runOnStart: false
 		});
 	}
 	async exec() {
-		//console.log("hello from", this.client.user.username)
+//aaaaaaaaaaaaaaaaaaaaaaaaa
 	}
 }

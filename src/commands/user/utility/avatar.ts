@@ -7,12 +7,19 @@ export default class avatar extends BotCommand {
             aliases: ['avatar'],
             description: 'Show someones avatar',
             usage: '$avatar',
+
+            args: [
+                {
+                    id: 'pain',
+                    type: 'user',
+                    match: 'restContent'
+                }
+            ]
         })
     }
 
- async exec(message) {
-    
-        const user = message.mentions.users.first() || message.author;
+ async exec(message, args) {
+        const user = args.pain || message.author
     
         const avatar = user.displayAvatarURL({size: 4096, dynamic: true})
     
@@ -22,5 +29,5 @@ export default class avatar extends BotCommand {
         .setImage(avatar)
         .setColor('RANDOM')
         message.reply({ embeds: [embed] });
-    }}
-    
+    }
+}
