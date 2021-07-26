@@ -1,9 +1,8 @@
 import { BotCommand } from '@extensions/BotCommand';
-import utils from '@functions/utils';
 import { MessageEmbed } from 'discord.js';
 const googleIt = require('google-it')
 
-export default class templateCommand extends BotCommand {
+export default class google extends BotCommand {
     constructor() {
         super('google', {
             aliases: ['google'],
@@ -27,14 +26,14 @@ export default class templateCommand extends BotCommand {
             .setColor('RANDOM')
             .setTimestamp()
                 
-            let google = args.google
+            const google = args.google
 
             const noarg = new MessageEmbed()
             .setTitle(`Google Command`)
             .setDescription(`You need to provide a query.\n example: $google discord`)
             .setColor('RANDOM')
 
-            if (!args.google) {return message.reply({ embeds: [noarg] })};
+            if (!args.google) {return message.reply({ embeds: [noarg] })}
 
         googleIt({'query': google[0]}).then(results => {
             results.forEach(function(item, index) { 
@@ -44,8 +43,8 @@ export default class templateCommand extends BotCommand {
             message.reply({ embeds: [embed] })
         })
             // any possible errors that might have occurred (like no Internet connection)
-        };
-    };
+        }
+    }
     
 
     

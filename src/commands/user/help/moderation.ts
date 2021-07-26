@@ -1,7 +1,5 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
-import commandManager from '@functions/commandManager';
-import utils from '@functions/utils';
 
 
 
@@ -16,7 +14,7 @@ export default class moderation extends BotCommand {
     }
 
     async exec(message) {
-;
+
 
 const helpmusicEmbed = new MessageEmbed()
 	.setColor('RANDOM')

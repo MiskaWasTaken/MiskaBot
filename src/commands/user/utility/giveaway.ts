@@ -3,7 +3,7 @@ import { BotCommand } from '@extensions/BotCommand';
 
 const ms = require('ms');
 
-export default class avatar extends BotCommand {
+export default class giveaway extends BotCommand {
     constructor() {
         super('giveaway', {
             aliases: ['giveaway'],

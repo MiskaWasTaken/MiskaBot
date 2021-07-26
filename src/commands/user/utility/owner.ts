@@ -1,7 +1,7 @@
 import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
 
-export default class templateCommand extends BotCommand {
+export default class owner extends BotCommand {
     constructor() {
         super('owner', {
             aliases: ['owner'],

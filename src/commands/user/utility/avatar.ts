@@ -11,10 +11,10 @@ export default class avatar extends BotCommand {
     }
 
  async exec(message) {
-    ;
-        let user = message.mentions.users.first() || message.author;
     
-        let avatar = user.displayAvatarURL({size: 4096, dynamic: true})
+        const user = message.mentions.users.first() || message.author;
+    
+        const avatar = user.displayAvatarURL({size: 4096, dynamic: true})
     
         const embed = new MessageEmbed()
         .setTitle(`${user.tag}'s Avatar`)
