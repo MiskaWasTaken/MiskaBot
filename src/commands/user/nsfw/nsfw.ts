@@ -94,6 +94,6 @@ export default class nsfw extends BotCommand {
             .setImage(`${redditPost.url}`)
             .setFooter(`Images from https://www.reddit.com/r/nude_  `)
 
-        message.reply({ embeds: [embed] })
+        message.reply({ embeds: [embed], ephemeral: true })
     }
 }
