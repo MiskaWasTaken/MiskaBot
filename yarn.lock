@@ -5,6 +5,13 @@ __metadata:
   version: 4
   cacheKey: 8
 
+"@aero/centra@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@aero/centra@npm:1.0.3"
+  checksum: 134bb7befa4371f857e4b24e11917af40c7e997cedce8d36a84f1f33989185cd6a0d3fe1628834dee4fdfc323add079f43f60733b9262d1384aa76330ff64679
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:7.12.11":
   version: 7.12.11
   resolution: "@babel/code-frame@npm:7.12.11"
@@ -101,6 +108,15 @@ __metadata:
   version: 1.2.0
   resolution: "@humanwhocodes/object-schema@npm:1.2.0"
   checksum: 40b75480376de8104d65f7c44a7dd76d30fb57823ca8ba3a3239b2b568323be894d93440578a72fd8e5e2cc3df3577ce0d2f0fe308b990dd51cf35392bf3c9a2
+  languageName: node
+  linkType: hard
+
+"@iamtraction/google-translate@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@iamtraction/google-translate@npm:1.1.2"
+  dependencies:
+    got: ^11.8.1
+  checksum: 148e647bc12c587328b9c7f89e6e8676d91700959c0f976dca95ada9657c3da772e72f388b2fb6c37a5718246bec5b07bedae66f00cdea71c38097daacd8cc32
   languageName: node
   linkType: hard
 
@@ -219,6 +235,16 @@ __metadata:
   dependencies:
     moment: ">=2.14.0"
   checksum: 84fe8cf1582fb51f588ce46edaf876bbe92523062bb2750d7b8a60a853a5fd59cc8edcd6b2ca7db6c91e3d0479e36e86b52997adc472e3156ca51011be46a260
+  languageName: node
+  linkType: hard
+
+"@types/node-fetch@npm:^2":
+  version: 2.5.12
+  resolution: "@types/node-fetch@npm:2.5.12"
+  dependencies:
+    "@types/node": "*"
+    form-data: ^3.0.0
+  checksum: ad63c85ba6a9477b8e057ec8682257738130d98e8ece4e31141789bd99df9d9147985cc8bc0cb5c8983ed5aa6bb95d46df23d1e055f4ad5cf8b82fc69cf626c7
   languageName: node
   linkType: hard
 
@@ -955,6 +981,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"covidapi@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "covidapi@npm:0.5.0"
+  dependencies:
+    "@aero/centra": 1.0.3
+  checksum: 41a67964fc4de8755ea28201dec10f79730dfc31553b5caa82daea07fad0186c1cc3c6cc2c73c5dc0b1b66c2c53dd8a6be8853ee4f7df35aabd166cc102bfc59
+  languageName: node
+  linkType: hard
+
 "cross-spawn@npm:^7.0.2":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
@@ -1635,6 +1670,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"form-data@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "form-data@npm:3.0.1"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: b019e8d35c8afc14a2bd8a7a92fa4f525a4726b6d5a9740e8d2623c30e308fbb58dc8469f90415a856698933c8479b01646a9dff33c87cc4e76d72aedbbf860d
+  languageName: node
+  linkType: hard
+
 "form-data@npm:~2.3.2":
   version: 2.3.3
   resolution: "form-data@npm:2.3.3"
@@ -1785,7 +1831,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"got@npm:^11.8.2":
+"got@npm:^11.8.1, got@npm:^11.8.2":
   version: 11.8.2
   resolution: "got@npm:11.8.2"
   dependencies:
@@ -2475,15 +2521,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "miskabot@workspace:."
   dependencies:
+    "@iamtraction/google-translate": ^1.1.2
     "@types/module-alias": ^2
     "@types/moment-duration-format": ^2
     "@types/node": ^14.17.6
+    "@types/node-fetch": ^2
     "@types/prettier": ^2.2.3
     "@types/snekfetch": ^4
     "@typescript-eslint/eslint-plugin": ^4.15.2
     "@typescript-eslint/parser": ^4.15.2
     axios: ^0.21.1
     chalk: ^4.1.1
+    covidapi: ^0.5.0
     discord-akairo: "git+https://github.com/SkyBlockDev/discord-akairo#commit=2aa37574353a0ac175d9a94a6870bee074bbea2d"
     discord-api-types: ^0.20.2
     discord-buttons: ^4.0.0
@@ -2500,6 +2549,7 @@ __metadata:
     moment: ^2.29.1
     moment-duration-format: ^2.3.2
     ms: ^2.1.3
+    node-fetch: ^2.6.1
     prettier: ^2.2.1
     pretty-ms: ^7.0.1
     quick.db: ^7.1.3

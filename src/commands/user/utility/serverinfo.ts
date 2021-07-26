@@ -2,7 +2,7 @@ import { BotCommand } from '@extensions/BotCommand';
 const discord = require('discord.js');
 const moment = require(`moment`)
 
-export default class templateCommand extends BotCommand {
+export default class serverinfo extends BotCommand {
     constructor() {
         super('serverinfo', {
             aliases: ['serverinfo'],

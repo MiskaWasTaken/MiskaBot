@@ -2,7 +2,7 @@ import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from "discord.js"
 
 
-export default class templateCommand extends BotCommand {
+export default class servercount extends BotCommand {
     constructor() {
         super('servercount', {
             aliases: ['servercount'],
