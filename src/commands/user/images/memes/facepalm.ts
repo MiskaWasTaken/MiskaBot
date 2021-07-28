@@ -5,23 +5,22 @@ const Discord = require('discord.js')
 
 export default class blur extends BotCommand {
     constructor() {
-        super('blur', {
-            aliases: ['blur'],
-            description: 'blur someone kek',
-            usage: '$blur @user',
+        super('facepalm', {
+            aliases: ['facepalm'],
+            description: 'Face Palm',
+            usage: '$facepalm @user',
         })
     }
     async exec(message) {
+
+        const user = message.mentions.users.first() || message.author;
         
-        const avatar = message.author.displayAvatarURL({ dynamic: false, format: 'png' });
+        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image
-        const img = await new DIG.Delete().getImage(avatar)
+        const img = await new DIG.Facepalm().getImage(avatar)
         // Add the image as an attachement
         const attach = new Discord.MessageAttachment(img, "delete.png");
 
-        message.reply(attach)
+        message.reply({ files: [attach]  })
        
-    }   
-
-
-    }
+    }}

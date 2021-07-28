@@ -26,7 +26,7 @@ const helpfEmbed = new MessageEmbed()
 	.addFields(
 		{ name: `Covid`, value: "`$covid USA`", inline: true },
 		{ name: 'Hug', value: "`$hug @user`", inline: true },
-		{ name: 'Meme', value: "`$Grey @user`", inline: true },
+		{ name: 'Meme', value: "`$meme`", inline: true },
 		{ name: 'More coming soon', value: "Give me time please", inline: true}
 	)
 	.setTimestamp()
