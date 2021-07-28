@@ -24,7 +24,7 @@ export default class ban extends BotCommand {
     }
     async exec(message, args) {
 
-        const users = args.userid
+        const user = args.userid
 
         const permEmbed = new MessageEmbed()
         .setColor('#ff0000')
@@ -41,21 +41,17 @@ export default class ban extends BotCommand {
           else {
             if (!message.guild) return;
         
-            const user = message.mentions.members.first() || message.guild.members.cache.get(users[0]);
             const reason = args.reasons
 
             if (user) {
          
               const member= message.mentions.members.first() || message.guild.members.cache.get(user[0])
+
+              if (!args.userid) {return message.reply(`<a:xmark:869969568301477929> user not provided!`)}
         
               if (member) {
         
                 member
-      
-                if (!user) return message.channel.send('please provide a member to ban!')
-                if (!users) return message.channel.send('please provide a member to ban!')
-                if (!reason) return message.channel.send('please provide a reason for the ban!')
-                if (!member) return message.channel.send('please provide a member to ban!')
 
                 // banning code 
                 await message.guild.members.ban(user, { reason });
@@ -63,11 +59,10 @@ export default class ban extends BotCommand {
       
                   const sucEmbed = new MessageEmbed()
                   .setColor('#7303fc')
-                  .setTitle('Ban Command')
-                  .setDescription('User has been successfully banned!')
+                  .setDescription(`<a:check:869968688793681921> ${user} has been successfully banned!`)
                   .setTimestamp()
-                  .setFooter('Moderation')
-      
+                  .setFooter(`Requested by: ${message.author.username}`);
+                
                     message.reply({ embeds: [sucEmbed] })
                   
                   // log err in the console
@@ -75,10 +70,9 @@ export default class ban extends BotCommand {
                     
                     const errorEmbed = new MessageEmbed()
                     .setColor('#fc036f')
-                    .setTitle('Ban Command')
-                    .setDescription('Unable to ban user!')
+                    .setDescription(`<a:xmark:869969568301477929> Unable to ban ${user}!`)
                     .setTimestamp()
-                    .setFooter('Moderation Error')
+                    .setFooter(`Requested by: ${message.author.username}`);
       
                     message.reply({ embeds: [errorEmbed] })
         
@@ -89,10 +83,9 @@ export default class ban extends BotCommand {
       
                 const notEmbed = new MessageEmbed()
                 .setColor('#fc036f')
-                .setTitle('Ban Command')
-                .setDescription('That user is not in this guild!')
+                .setDescription(`<a:xmark:869969568301477929> That ${user} is not in this guild!`)
                 .setTimestamp()
-                .setFooter('Moderation Error')
+                .setFooter(`Requested by: ${message.author.username}`);
       
                 message.reply({ embeds: [notEmbed] })
               }
@@ -101,10 +94,9 @@ export default class ban extends BotCommand {
       
              const invalidEmbed = new MessageEmbed()
              .setColor('#fc036f')
-             .setTitle('Ban Command')
-             .setDescription('You did not mention the user to ban!')
+             .setDescription('<a:xmark:869969568301477929> You did not mention the user to ban!')
              .setTimestamp()
-             .setFooter('Moderation Error')
+             .setFooter(`Requested by: ${message.author.username}`);
       
              message.reply({ embeds: [invalidEmbed] })
             }

@@ -24,7 +24,7 @@ export default class ban extends BotCommand {
     }
     async exec(message, args) {
 
-        const users = args.userid
+        const user = args.userid
 
         const permEmbed = new MessageEmbed()
         .setColor('#ff0000')
@@ -41,8 +41,16 @@ export default class ban extends BotCommand {
           else {
             if (!message.guild) return;
         
-            const user = message.mentions.members.first() || message.guild.members.cache.get(users[0]);
+            
             const reason = args.reasons
+
+            const invalidEmbed = new MessageEmbed()
+            .setColor('#fc036f')
+            .setDescription('<a:xmark:869969568301477929> You did not mention the user to kick!')
+            .setTimestamp()
+            .setFooter('Moderation Error')
+     
+            if (!args.userid) {return message.reply({ embeds: [invalidEmbed] })}
 
             if (user) {
          
@@ -51,22 +59,15 @@ export default class ban extends BotCommand {
               if (member) {
         
                 member
-      
-                if (!user) return message.channel.send('please provide a member to kick!')
-                if (!users) return message.channel.send('please provide a member to kick!')
-                if (!reason) return message.channel.send('please provide a reason for the kick!')
-                if (!member) return message.channel.send('please provide a member to kick!')
-
                 // banning code 
                 await message.guild.members.kick(user, { reason });
 
       
                   const sucEmbed = new MessageEmbed()
                   .setColor('#7303fc')
-                  .setTitle('Kick Command')
-                  .setDescription('User has been successfully kicked!')
+                  .setDescription(`<a:check:869968688793681921> ${user} has been successfully kicked!`)
                   .setTimestamp()
-                  .setFooter('Moderation')
+                  .setFooter(`Requested by: ${message.author.username}`);
       
                     message.reply({ embeds: [sucEmbed] })
                   
@@ -75,10 +76,9 @@ export default class ban extends BotCommand {
                     
                     const errorEmbed = new MessageEmbed()
                     .setColor('#fc036f')
-                    .setTitle('Kick Command')
-                    .setDescription('Unable to Kick user!')
+                    .setDescription(`<a:xmark:869969568301477929> Unable to Kick ${user}!`)
                     .setTimestamp()
-                    .setFooter('Moderation Error')
+                    .setFooter(`Requested by: ${message.author.username}`);
       
                     message.reply({ embeds: [errorEmbed] })
         
@@ -89,10 +89,9 @@ export default class ban extends BotCommand {
       
                 const notEmbed = new MessageEmbed()
                 .setColor('#fc036f')
-                .setTitle('Kick Command')
-                .setDescription('That user is not in this guild!')
+                .setDescription(`<a:xmark:869969568301477929> ${user} is not in this guild!`)
                 .setTimestamp()
-                .setFooter('Moderation Error')
+                .setFooter(`Requested by: ${message.author.username}`);
       
                 message.reply({ embeds: [notEmbed] })
               }
@@ -101,8 +100,7 @@ export default class ban extends BotCommand {
       
              const invalidEmbed = new MessageEmbed()
              .setColor('#fc036f')
-             .setTitle('Kick Command')
-             .setDescription('You did not mention the user to kick!')
+             .setDescription('<a:xmark:869969568301477929> You did not mention the user to kick!')
              .setTimestamp()
              .setFooter('Moderation Error')
       
