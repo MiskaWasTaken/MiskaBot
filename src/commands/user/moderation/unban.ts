@@ -4,27 +4,23 @@ import { MessageEmbed } from 'discord.js';
 
 export default class ban extends BotCommand {
     constructor() {
-        super('ban', {
-            aliases: ['ban'],
+        super('unban', {
+            aliases: ['unban'],
             description: 'rekt',
-            usage: '$ban @user',
+            usage: '$unban @user',
             args: [
                 {
                     id: 'userid',
-                    type: 'user',
-                    match: 'restContent'
-                },
-                {
-                    id: 'reasons',
                     type: 'string',
                     match: 'restContent'
-                }
+                },
             ]
         })
     }
     async exec(message, args) {
 
         const user = args.userid
+
 
         const permEmbed = new MessageEmbed()
         .setColor('#ff0000')
@@ -40,14 +36,13 @@ export default class ban extends BotCommand {
       
           else {
             if (!message.guild) return;
-        
-            const reason = args.reasons
 
             if (user) {
          
-              const member= message.mentions.members.first() || message.guild.members.cache.get(user[0])
+              const member= this.client.users.fetch(user[0])
+              
 
-              if (!args.userid) {return message.reply(`<a:xmark:869969568301477929> user not provided!`)}
+              if (!user) {return message.reply(`<a:xmark:869969568301477929> user ID not provided!`)}
         
               if (member) {
         
@@ -57,11 +52,12 @@ export default class ban extends BotCommand {
 
                 const sucEmbed = new MessageEmbed()
                 .setColor('#7303fc')
-                .setDescription(`<a:check:869968688793681921> ${user} has been successfully banned!`)
+                .setDescription(`<a:check:869968688793681921> ${user} has been successfully unbanned!`)
                 .setTimestamp()
                 .setFooter(`Requested by: ${message.author.username}`);
+              
 
-                await message.guild.members.ban(user, { reason });
+                await message.guild.members.unban(user); {message.reply({ embeds: [sucEmbed] })}
                 await  message.reply({ embeds: [sucEmbed] })
                   
                   // log err in the console
@@ -69,7 +65,7 @@ export default class ban extends BotCommand {
                     
                     const errorEmbed = new MessageEmbed()
                     .setColor('#fc036f')
-                    .setDescription(`<a:xmark:869969568301477929> Unable to ban ${user}!`)
+                    .setDescription(`<a:xmark:869969568301477929> Unable to unban ${user}!`)
                     .setTimestamp()
                     .setFooter(`Requested by: ${message.author.username}`);
       
@@ -77,28 +73,17 @@ export default class ban extends BotCommand {
         
                     console.error(err);
                   });
-              } else {
-                
-      
-                const notEmbed = new MessageEmbed()
-                .setColor('#fc036f')
-                .setDescription(`<a:xmark:869969568301477929> That ${user} is not in this guild!`)
-                .setTimestamp()
-                .setFooter(`Requested by: ${message.author.username}`);
-      
-                message.reply({ embeds: [notEmbed] })
-              }
-            } else {
-             
-      
-             const invalidEmbed = new MessageEmbed()
-             .setColor('#fc036f')
-             .setDescription('<a:xmark:869969568301477929> You did not mention the user to ban!')
-             .setTimestamp()
-             .setFooter(`Requested by: ${message.author.username}`);
-      
-             message.reply({ embeds: [invalidEmbed] })
-            }
-        }
-      }
-    }
+                } else {
+                 
+          
+                 const invalidEmbed = new MessageEmbed()
+                 .setColor('#fc036f')
+                 .setDescription('<a:xmark:869969568301477929> You did not provide the user ID of banned user!')
+                 .setTimestamp()
+                 .setFooter(`Requested by: ${message.author.username}`);
+          
+                 message.reply({ embeds: [invalidEmbed] })
+             }  
+         }  
+     }
+}  }
