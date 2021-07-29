@@ -2,7 +2,7 @@ import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
 
 
-export default class ban extends BotCommand {
+export default class kick extends BotCommand {
     constructor() {
         super('kick', {
             aliases: ['kick'],
