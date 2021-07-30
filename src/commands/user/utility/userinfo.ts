@@ -19,7 +19,7 @@ export default class userinfo extends BotCommand {
         })
     }
     async exec(message, args) {
-
+// if user not provided say "provide a user" or make it see info about urself
         const idk = args.idk
 
         let user;

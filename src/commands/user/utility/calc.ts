@@ -18,7 +18,7 @@ export default class calc extends BotCommand {
         })
     }
     async exec(message, args) {
-
+// if an incorrect math statment is provided say "please provide a correct math statment"
         if (message.content.includes(':')) {
             return message.channel.send('That question is too powerful for me!')
         }

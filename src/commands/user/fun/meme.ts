@@ -91,7 +91,7 @@ export default class nsfw extends BotCommand {
             .setTitle(`${redditPost.title}`)
             .setDescription(`Posted by u/${redditPost.author}`)
             .setImage(`${redditPost.url}`)
-            .setFooter(`Images from https://www.reddit.com/r/dankmemes/`)
+            .setFooter(`Memes from https://www.reddit.com/r/dankmemes/`)
 
         message.reply({ embeds: [embed] })
     }

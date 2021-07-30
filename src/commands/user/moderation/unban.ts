@@ -18,7 +18,7 @@ export default class unban extends BotCommand {
         })
     }
     async exec(message, args) {
-
+//if no id provided say: "please provide an id". if incorrect id say "that user is not banned, or you have provided an incorrect id"
         const user = args.userid
 
 

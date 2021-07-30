@@ -33,6 +33,8 @@
 	"dependencies": {
 		"@discordjs/opus": "^0.5.3",
 		"@discordjs/voice": "^0.5.5",
+		"@distube/soundcloud": "^0.1.3",
+		"@distube/spotify": "^0.4.1",
 		"@iamtraction/google-translate": "^1.1.2",
 		"axios": "^0.21.1",
 		"chalk": "^4.1.1",
@@ -43,6 +45,7 @@
 		"discord-image-generation": "^1.4.9",
 		"discord.js": "dev",
 		"discordjs-button-pagination": "^1.0.4",
+		"distube": "alpha",
 		"dotenv": "^10.0.0",
 		"ffmpeg-static": "^4.4.0",
 		"google-it": "^1.6.2",
@@ -60,7 +63,8 @@
 		"pretty-ms": "^7.0.1",
 		"python": "^0.0.4",
 		"quick.db": "^7.1.3",
-		"youtube-dl": "^3.5.0"
+		"youtube-dl": "^3.5.0",
+		"ytdl-core": "^4.9.0"
 	},
 	"prettier": {
 		"tabWidth": 4,

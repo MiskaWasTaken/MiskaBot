@@ -23,6 +23,7 @@ export default class ban extends BotCommand {
         })
     }
     async exec(message, args) {
+// if role mentioned say "Please mention a user not a role"
 
         const user = args.userid
 

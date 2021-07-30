@@ -21,7 +21,7 @@ export default class blur extends BotCommand {
 
     
     async exec(message, args) {
-
+//"Error: You must provide a text of 300 characters or less." if text not provided say "please provide a text message"
         const texts = args.text
 
         // Make the image

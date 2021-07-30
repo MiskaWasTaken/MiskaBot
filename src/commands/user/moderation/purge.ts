@@ -21,7 +21,7 @@ export default class purge extends BotCommand {
 
 
     async exec(message, args) {
-
+//nothing to do here
         let purge = args.amount
         purge += 1
 

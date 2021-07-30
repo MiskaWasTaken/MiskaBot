@@ -11,7 +11,7 @@ export default class nuke extends BotCommand {
         })
     }
     async exec(message) {
-
+//nothing to do here
         const upermEmbed = new MessageEmbed()
         .setColor('#03dbfc')
         .setTitle('Nuke Command')

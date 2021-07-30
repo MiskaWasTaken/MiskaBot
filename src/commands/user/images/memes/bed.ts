@@ -12,12 +12,18 @@ export default class blur extends BotCommand {
         })
     }
     async exec(message) {
-
-        const user = message.mentions.users.first() || message.author;
+// here it gives displayavatarurl of undefined. instead make it say "please mention a user"
+        const user = message.mentions.users.first() 
         
         const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
+
+        const user2 = message.author
+
+        const avatar2 = user2.displayAvatarURL({ dynamic: false, format: 'jpg' });
+
+
         // Make the image
-        const img = await new DIG.Bed().getImage(avatar)
+        const img = await new DIG.Bed().getImage(avatar2, avatar)
         // Add the image as an attachement
         const attach = new Discord.MessageAttachment(img, "delete.png");
 

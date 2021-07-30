@@ -12,7 +12,7 @@ export default class blur extends BotCommand {
         })
     }
     async exec(message) {
-
+// here it gives displayavatarurl of undefined. instead make it say "please mention a user"
         const user = message.mentions.users.first() 
         
         const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
