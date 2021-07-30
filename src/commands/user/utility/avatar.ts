@@ -18,14 +18,16 @@ export default class avatar extends BotCommand {
         })
     }
 
-    async exec(message) {
+    async exec(message, args) {
 
-        const user = message.mentions.users.first() || message.author;
+        const pain = args.pain
 
-        const avatar = user.displayAvatarURL({ size: 4096, dynamic: true })
+        //const user = message.mentions.users.first() || message.author;
+
+        const avatar = pain.displayAvatarURL({ size: 4096, dynamic: true })
 
         const embed = new MessageEmbed()
-            .setTitle(`${user.tag}'s Avatar`)
+            .setTitle(`${pain}'s Avatar`)
             .setURL(avatar)
             .setImage(avatar)
             .setColor('RANDOM')
