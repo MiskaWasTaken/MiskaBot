@@ -4,13 +4,13 @@ import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler, TaskHa
 import { Intents, MessageEmbed, TextChannel } from "discord.js"
 import { join } from "path"
 
-import { token, prefix } from '../extensions/config/config'
+import config from '../extensions/config/config'
 //import {BotClientUtils} from '@extensions/BotClientUtils'
 
 
 class BotClient extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
-		prefix: prefix,
+		prefix: config.prefix,
 		commandUtil: true,
 		handleEdits: true,
 		directory: join(__dirname, "..", "commands"),
@@ -52,8 +52,8 @@ class BotClient extends AkairoClient {
 		errorEmbed.setDescription(`\`\`\`js\n${errorStack}\`\`\``)
 		errorEmbed.setColor('DARK_RED')
 
-		//errorChannel.send({ /*content: `\`\`\`js\n${errorStack}\`\`\``,*/ embeds: [errorEmbed] })
-		//console.log(errorChannel)
+		errorChannel.send({ /*content: `\`\`\`js\n${errorStack}\`\`\``,*/ embeds: [errorEmbed] })
+		console.log(errorChannel)
 
 		const returnErrorEmbed = new MessageEmbed()
 			.setTitle('An error occured!')
@@ -114,7 +114,7 @@ class BotClient extends AkairoClient {
 
 	public async start(): Promise<string> {
 		await this._init()
-		return this.login(token)
+		return this.login(config.token)
 	}
 }
 

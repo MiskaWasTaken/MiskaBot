@@ -10,7 +10,7 @@ export default class avatar extends BotCommand {
 
             args: [
                 {
-                    id: 'pain',
+                    id: 'user',
                     type: 'user',
                     match: 'restContent'
                 }
@@ -19,18 +19,13 @@ export default class avatar extends BotCommand {
     }
 
     async exec(message, args) {
-
-        const pain = args.pain
-
-        //const user = message.mentions.users.first() || message.author;
-
-        const avatar = pain.displayAvatarURL({ size: 4096, dynamic: true })
+        const avatar = args.user.displayAvatarURL({ size: 4096, dynamic: true })
 
         const embed = new MessageEmbed()
-            .setTitle(`${pain}'s Avatar`)
+            .setTitle(`${args.user.tag}'s Avatar`)
             .setURL(avatar)
             .setImage(avatar)
             .setColor('RANDOM')
-        message.reply({ embeds: [embed] });
+        await message.reply({ embeds: [embed] });
     }
 }
