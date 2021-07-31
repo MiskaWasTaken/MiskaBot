@@ -7,7 +7,7 @@ export default class nsfw extends BotCommand {
     constructor() {
         super('meme', {
             aliases: ['meme'],
-            description: `meme`,
+            description: `Spicy Memes`,
             usage: `$meme`,
 
             args: [
