@@ -8,17 +8,16 @@ export default class hug extends BotCommand {
             aliases: ['hug'],
             description: 'Hug someone',
             usage: '$hug @user',
-
             args: [
                 {
-                    id: 'exampleArg',
-                    type: 'string',
+                    id: 'userid',
+                    type: 'user',
                     match: 'restContent'
-                }
+                },
             ]
         })
     }
-    async exec(message) {
+    async exec(message, args) {
 
        const images = [
             "https://media3.giphy.com/media/od5H3PmEG5EVq/giphy.gif?cid=790b7611d83ae7330719da9abb0a6ce1247b71e8834a1d9b&rid=giphy.gif&ct=g",
@@ -47,7 +46,9 @@ export default class hug extends BotCommand {
 
         ]
 
-        const personHugged = message.mentions.users.first()
+        const personHugged = args.userid
+
+
         if (personHugged){
 
         const hugEmbed = new MessageEmbed()

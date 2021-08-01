@@ -7,15 +7,23 @@ export default class blur extends BotCommand {
     constructor() {
         super('blur', {
             aliases: ['blur'],
-            description: 'blur someone kek',
+            description: 'rekt',
             usage: '$blur @user',
+            args: [
+                {
+                    id: 'userid',
+                    type: 'user',
+                    match: 'restContent'
+                }
+            ]
         })
     }
-    async exec(message) {
+    
+    async exec(message, args) {
 //nothing to do here but, if user mentions a role make it say "please do not mention a role. instead mention a user or yourself"
-        const user = message.mentions.users.first() || message.author;
+        const user = message.author;
         
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
+        const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' })
         // Make the image
         const img = await new DIG.Blur().getImage(avatar)
         // Add the image as an attachement

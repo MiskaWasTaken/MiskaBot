@@ -12,6 +12,7 @@ export default class lock extends BotCommand {
     }
     async exec(message) {
 //nothing to do here
+
         const aa = message.guild.roles.cache.find(e => e.name.toLowerCase().trim() == "@everyone")
 
         const upermEmbed = new MessageEmbed()

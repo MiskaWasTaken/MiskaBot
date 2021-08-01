@@ -9,6 +9,7 @@ export default class blur extends BotCommand {
             aliases: ['bed'],
             description: 'bed',
             usage: '$bed @user',
+            
         })
     }
     async exec(message) {

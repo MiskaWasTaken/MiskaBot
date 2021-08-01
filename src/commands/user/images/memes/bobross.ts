@@ -9,13 +9,18 @@ export default class blur extends BotCommand {
             aliases: ['bobross'],
             description: 'bobross',
             usage: '$bobross @user',
+            args: [
+                {
+                    id: 'userid',
+                    type: 'user',
+                    match: 'restContent'
+                }
+            ]
         })
     }
-    async exec(message) {
-//nothing to do here but, if user mentions a role make it say "please do not mention a role. instead mention a user or yourself"
-        const user = message.mentions.users.first() || message.author;
-        
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
+    async exec(message, args) {
+
+        const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image
         const img = await new DIG.Bobross().getImage(avatar)
         // Add the image as an attachement
