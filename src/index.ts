@@ -10,6 +10,7 @@ const SpotifyPlugin = require('@distube/spotify')
 //starting the bot
 
 import BotClient from "@extensions/BotClient"
+import { REPL_MODE_SLOPPY } from 'repl';
 
 const prefix = '$'
 
@@ -28,6 +29,9 @@ const distube = new DisTube.default(client, {
 
 
 client.on('messageCreate', (message) => {
+
+	if(!message.member.voice.channel) return;
+
 	if (!message.content.startsWith(prefix) || message.author.bot) return
 
 	const args = message.content.slice(prefix.length).trim().split(' ')
