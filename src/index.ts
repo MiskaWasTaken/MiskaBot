@@ -25,43 +25,66 @@ const distube = new DisTube.default(client, {
 	plugins: [new SoundCloudPlugin(), new SpotifyPlugin()],
 });
 
+
+
 client.on('messageCreate', (message) => {
 
 
-	if (!message.content.startsWith(prefix) || message.author.bot) return
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+    
 
 	const args = message.content.slice(prefix.length).trim().split(' ')
 	const command = args.shift().toLowerCase()
 
 	if (command === 'stop') {
+		if(!message.member.voice.channel) return 
 		distube.stop(message)
 		message.reply('Music stopped.')
 	}
 
+	if (command == "volume"){
+	if(!message.member.voice.channel) return 
+	distube.setVolume(message, Number(args[0]));
+	message.reply("changed volume")
+	}
+
+	if (command == "shuffle") {
+	if(!message.member.voice.channel) return 
+	distube.shuffle(message);
+	message.reply("Shuffled queue.")
+
+	}
+
 	if (command === 'resume') {
+		if(!message.member.voice.channel) return 
 		distube.resume(message)
 		message.reply('Music resumed.')
 
 	}
 
 	if (command === 'pause') {
+	if(!message.member.voice.channel) return 
 	distube.pause(message)
 	message.reply('Music Paused.')
 
 	}
 
 	if (command === 'skip') {
+	if(!message.member.voice.channel) return 
 	distube.skip(message)
 	message.reply('Song has been skipped.')
 
 	}
 
 	if (command === 'play') {
+		if(!message.member.voice.channel) return 
 		distube.play(message, args.join(' '))
 
 	}
 
 	if (command === 'queue') {
+		if(!message.member.voice.channel) return 
 		const queue = distube.getQueue(message)
 		if (!queue) {
 			message.channel.send('Nothing playing right now!')
@@ -69,7 +92,8 @@ client.on('messageCreate', (message) => {
 			message.channel.send(
 				`Current queue:\n${queue.songs
 					.map(
-						(song, id) =>
+						// eslint-disable-next-line @typescript-eslint/no-explicit-any
+						(song: { name: any; formattedDuration: any }, id: unknown) =>
 							`**${id ? id : 'Playing'}**. ${song.name} - \`${
 								song.formattedDuration
 							}\``,
@@ -91,6 +115,7 @@ client.on('messageCreate', (message) => {
 			`vaporwave`,
 		].includes(command)
 	) {
+		if(!message.member.voice.channel) return 
 		const filter = distube.setFilter(message, command)
 		message.reply(
 			`Current queue filter: ${filter.join(', ') || 'Off'}`,
@@ -98,11 +123,13 @@ client.on('messageCreate', (message) => {
 	}
 
 	if (['repeat', 'loop'].includes(command)) {
+		if(!message.member.voice.channel) return 
 		const mode = distube.setRepeatMode(message)
 		message.reply(`Set repeat mode to \`${mode ? mode === 2 ? 'All Queue' : 'This Song' : 'Off'}\``)
 	}
 
 	if (['disconnect', 'leave'].includes(command)) {
+		if(!message.member.voice.channel) return 
 		distube.disconnect(message)
 	}
 
@@ -126,10 +153,12 @@ distube
 .on('finishSong', (queue) => queue.textChannel.send(`Song has finished playing.`))
 .on('disconnect', (queue) => queue.textChannel.send('Disconnected.'))
 .on('empty', (queue) => queue.textChannel.send('Voice channel is empty.'))
+.on("error", (err) => 
+    console.error(err)
+)
 
-distube.on("error", (channel, error) => channel.send(
-    "An error was encountered: " + error
-));
+
+
 
 
 //console.log(process.env)

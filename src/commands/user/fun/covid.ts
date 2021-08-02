@@ -16,9 +16,10 @@ export default class covid extends BotCommand {
                     id: 'country',
                     type: 'string'
                 }
-            ]
-        })
-    }
+            ],
+
+        })}  
+    
     async exec(message, args) {
 
 

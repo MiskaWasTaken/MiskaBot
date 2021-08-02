@@ -40,7 +40,7 @@ export default class calc extends BotCommand {
 
 
         message.reply({ embeds: [calc] })
-
+console.log(args.equation)
 
     }
 }
