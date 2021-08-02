@@ -20,7 +20,7 @@ export default class blur extends BotCommand {
     }
     async exec(message, args) {
 
-        
+        if(!args.userid) return message.reply("Please mention a user, or yourself.")
         const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image
         const img = await new DIG.Rip().getImage(avatar)

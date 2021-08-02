@@ -21,6 +21,8 @@ export default class unban extends BotCommand {
 //if no id provided say: "please provide an id". if incorrect id say "that user is not banned, or you have provided an incorrect id"
         const user = args.userid
 
+    
+
 
         const permEmbed = new MessageEmbed()
         .setColor('#ff0000')
@@ -83,7 +85,15 @@ export default class unban extends BotCommand {
                  .setFooter(`Requested by: ${message.author.username}`);
           
                  message.reply({ embeds: [invalidEmbed] })
-             }  
-         }  
-     }
-}  }
+                }
+
+                } else {
+             
+      
+                  const invalidEmbed = new MessageEmbed()
+                  .setColor('#fc036f')
+                  .setDescription('<a:xmark:869969568301477929> You did not provide a valid ID! Or i do not have permission to unban.')
+                  .setTimestamp()
+                  .setFooter(`Requested by: ${message.author.username}`);
+           
+                  message.reply({ embeds: [invalidEmbed] })}}}}

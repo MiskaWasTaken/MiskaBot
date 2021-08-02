@@ -22,6 +22,8 @@ export default class userinfo extends BotCommand {
 // if user not provided say "provide a user" or make it see info about urself
         const idk = args.idk
 
+        if(!idk) return message.reply("Please provide a user")
+
         let user;
         const mentionedMember = message.mentions.members.first() || message.member;
     

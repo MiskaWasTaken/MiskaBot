@@ -22,6 +22,8 @@ export default class blur extends BotCommand {
     async exec(message, args) {
 //nothing to do here but, if user mentions a role make it say "please do not mention a role. instead mention a user or yourself"
         const user = message.author;
+
+        if(!args.userid) return message.reply("Please mention a user, or yourself.")
         
         const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' })
         // Make the image

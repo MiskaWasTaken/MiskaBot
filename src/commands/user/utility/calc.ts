@@ -18,17 +18,18 @@ export default class calc extends BotCommand {
         })
     }
     async exec(message, args) {
-// if an incorrect math statment is provided say "please provide a correct math statment"
+
         if (message.content.includes(':')) {
             return message.channel.send('That question is too powerful for me!')
         }
 
         const sum = args.equation
 
-        if (!sum) return message.channel.send('please provide a maths equation')
+        if (!sum) return message.channel.send('please provide a math equation')
 
 
         const result = JSON.stringify(math.evaluate(sum))
+
 
         const calc = new MessageEmbed()
         .setColor('RANDOM')
@@ -39,5 +40,7 @@ export default class calc extends BotCommand {
 
 
         message.reply({ embeds: [calc] })
+
+
     }
 }

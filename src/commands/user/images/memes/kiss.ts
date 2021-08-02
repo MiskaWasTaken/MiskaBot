@@ -9,13 +9,19 @@ export default class blur extends BotCommand {
             aliases: ['kiss'],
             description: 'kiss',
             usage: '$kiss @user',
+            args: [
+                {
+                    id: 'userid',
+                    type: 'user',
+                    match: 'restContent'
+                },]
         })
     }
-    async exec(message) {
+    async exec(message, args) {
 //nothing to do here but, if user mentions a role make it say "please do not mention a role. instead mention a user or yourself"
-        const user = message.mentions.users.first() 
-        
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
+
+        if(!args.userid) return message.reply("Please mention a user, or yourself.")
+        const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
 
         const user2 = message.author
 

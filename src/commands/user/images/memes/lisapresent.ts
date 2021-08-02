@@ -23,7 +23,7 @@ export default class blur extends BotCommand {
     async exec(message, args) {
 //"Error: You must provide a text of 300 characters or less." if text not provided say "please provide a text message"
         const texts = args.text
-
+        if(!args.text) return message.reply("Please provide text. Maximum charecters are 300")
         // Make the image
         const img = await new DIG.LisaPresentation().getImage(texts)
         // Add the image as an attachement
