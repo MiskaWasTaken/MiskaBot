@@ -27,7 +27,6 @@ const distube = new DisTube.default(client, {
 
 client.on('messageCreate', (message) => {
 
-	if(!message.member.voice.channel) return;
 
 	if (!message.content.startsWith(prefix) || message.author.bot) return
 
