@@ -3,7 +3,7 @@ const DIG = require("discord-image-generation");
 const Discord = require('discord.js')
 
 
-export default class blur extends BotCommand {
+export default class invert extends BotCommand {
     constructor() {
         super('invert', {
             aliases: ['invert'],
@@ -11,19 +11,26 @@ export default class blur extends BotCommand {
             usage: '$invert @user',
             args: [
                 {
-                    id: 'userid',
-                    type: 'user',
+                    id: 'user',
+                    type: 'member',
                     match: 'restContent'
+                }
+            ],
+
+            slash: true,
+            slashOptions: [
+                {
+                    name: 'user',
+                    description: 'arg description',
+                    type: 'USER'
                 }
             ]
         })
     }
     async exec(message, args) {
-//nothing to do here but, if user mentions a role make it say "please do not mention a role. instead mention a user or yourself"
-
-if(!args.userid) return message.reply("Please mention a user, or yourself.")
-
-        const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
+        const user = args.user.user || message.author
+        
+        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image
         const img = await new DIG.Invert().getImage(avatar)
         // Add the image as an attachement

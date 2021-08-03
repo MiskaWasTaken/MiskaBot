@@ -1,6 +1,4 @@
 import { BotCommand } from '@extensions/BotCommand';
-import { MessageEmbed } from 'discord.js';
-
 
 export default class kick extends BotCommand {
     constructor() {
@@ -9,104 +7,31 @@ export default class kick extends BotCommand {
             description: 'kick a user',
             usage: '$kick @user',
             args: [
-                {
-                    id: 'userid',
-                    type: 'user',
-                    match: 'restContent'
-                },
-                {
-                    id: 'reasons',
-                    type: 'string',
-                    match: 'restContent'
-                }
-            ]
-        })
-    }
-    async exec(message, args) {
-// if role mentioned say "Please mention a user not a role"
-
-        const user = args.userid
-
-        const permEmbed = new MessageEmbed()
-        .setColor('#ff0000')
-        .setTitle('You do not have permission to use this command!')
-        .setDescription('If you think this is a mistake please contact the server moderators')
-        .setTimestamp()
-        .setFooter('Permission Error KICK_MEMBERS, ADMINISTRATOR')
-      
-          // the permission a member needs to ban
-          if(!message.member.permissions.has(['KICK_MEMBERS', 'ADMINISTRATOR']))
-          // if someone doesnt have perms send this
-          message.reply({ embeds: [permEmbed] })
-      
-          else {
-            if (!message.guild) return;
-        
-            
-            const reason = args.reasons
-
-            const invalidEmbed = new MessageEmbed()
-            .setColor('#fc036f')
-            .setDescription('<a:xmark:869969568301477929> You did not mention the user to kick!')
-            .setTimestamp()
-            .setFooter('Moderation Error')
-     
-            if (!args.userid) {return message.reply({ embeds: [invalidEmbed] })}
-
-            if (user) {
-         
-              const member= message.mentions.members.first() || message.guild.members.cache.get(user[0])
-        
-              if (member) {
-        
-                member
-                // banning code 
-                await message.guild.members.kick(user, { reason });
-
-      
-                  const sucEmbed = new MessageEmbed()
-                  .setColor('#7303fc')
-                  .setDescription(`<a:check:869968688793681921> ${user} has been successfully kicked!`)
-                  .setTimestamp()
-                  .setFooter(`Requested by: ${message.author.username}`);
-      
-                    message.reply({ embeds: [sucEmbed] })
-                  
-                  // log err in the console
-                  .catch(err => {
-                    
-                    const errorEmbed = new MessageEmbed()
-                    .setColor('#fc036f')
-                    .setDescription(`<a:xmark:869969568301477929> Unable to Kick ${user}!`)
-                    .setTimestamp()
-                    .setFooter(`Requested by: ${message.author.username}`);
-      
-                    message.reply({ embeds: [errorEmbed] })
-        
-                    console.error(err);
-                  });
-              } else {
-                
-      
-                const notEmbed = new MessageEmbed()
-                .setColor('#fc036f')
-                .setDescription(`<a:xmark:869969568301477929> ${user} is not in this guild!`)
-                .setTimestamp()
-                .setFooter(`Requested by: ${message.author.username}`);
-      
-                message.reply({ embeds: [notEmbed] })
+              {
+                  id: 'user',
+                  type: 'member',
+                  match: 'rest'
               }
-            } else {
-             
-      
-             const invalidEmbed = new MessageEmbed()
-             .setColor('#fc036f')
-             .setDescription('<a:xmark:869969568301477929> You did not mention the user to kick!')
-             .setTimestamp()
-             .setFooter('Moderation Error')
-      
-             message.reply({ embeds: [invalidEmbed] })
+          ],
+
+          slash:true,
+          slashOptions: [
+            {
+              name: 'user',
+              description:'user to kick',
+              type:'USER',
+              required:true
             }
-        }
-      }
+          ]
+      })
+  }
+  async exec(message, args) {
+    if (!message.member.permissions.has('KICK_MEMBERS')) {return await message.reply('you cant kick people')}
+    if (!args.user) {
+      return message.reply('you cant kick nobody, or they arent in this guild, or i couldnt find them, try using their id')
     }
+    
+    await message.guild.kick(args.user)
+    await message.reply(`${args.user.user.tag} has been kicked`)
+  }
+}

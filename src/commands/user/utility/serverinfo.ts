@@ -7,7 +7,8 @@ export default class serverinfo extends BotCommand {
         super('serverinfo', {
             aliases: ['serverinfo'],
             description: 'Server information',
-            usage: '$serverinfo'
+            usage: '$serverinfo',
+            slash:true
         })
     }
 

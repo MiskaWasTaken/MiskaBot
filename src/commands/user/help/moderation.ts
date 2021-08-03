@@ -10,6 +10,8 @@ export default class moderation extends BotCommand {
             aliases: ['helpmod'],
             description: 'Help for moderation commands',
             usage: '$helpmod',
+
+			slash:true
         })
     }
 

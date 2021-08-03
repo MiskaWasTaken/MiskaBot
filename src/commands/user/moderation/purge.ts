@@ -14,6 +14,14 @@ export default class purge extends BotCommand {
                     type: 'number',
                     match: 'restContent'
                 }
+            ],
+            slash:true,
+            slashOptions:[
+                {
+                    name:'amount',
+                    description:'how many messages to purge',
+                    type:'NUMBER'
+                }
             ]
         })
     }

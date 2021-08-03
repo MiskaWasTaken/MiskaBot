@@ -7,6 +7,7 @@ export default class invite extends BotCommand {
             aliases: ['invite'],
             description: 'Shows the link to invite me to your server!',
             usage: '-invite',
+            slash:true
         })
     }
     async exec(message) {

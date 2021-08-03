@@ -14,6 +14,14 @@ export default class google extends BotCommand {
                     type: 'string',
                     match: 'restContent'
                 }
+            ],
+            slash:true,
+            slashOptions:[
+                {
+                    name:'google',
+                    description:'thing to google',
+                    type:'STRING'
+                }
             ]
         })
     }

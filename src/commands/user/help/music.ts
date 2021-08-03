@@ -11,6 +11,8 @@ export default class music extends BotCommand {
             aliases: ['helpmusic'],
             description: 'Help for music commands',
             usage: '$helpmusic',
+
+			slash:true
         })
     }
 

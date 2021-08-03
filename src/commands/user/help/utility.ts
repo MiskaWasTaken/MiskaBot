@@ -11,6 +11,8 @@ export default class utility extends BotCommand {
             aliases: ['helputility'],
             description: 'Utility Help',
             usage: '$helputility',
+
+            slash:true
         })
     }
 

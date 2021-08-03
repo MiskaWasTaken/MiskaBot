@@ -11,6 +11,8 @@ export default class help extends BotCommand {
             aliases: ['help'],
             description: 'You know what this is',
             usage: '$help',
+
+			slash:true
         })
     }
 

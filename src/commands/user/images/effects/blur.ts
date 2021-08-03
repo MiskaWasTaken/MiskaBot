@@ -11,26 +11,32 @@ export default class blur extends BotCommand {
             usage: '$blur @user',
             args: [
                 {
-                    id: 'userid',
-                    type: 'user',
-                    match: 'restContent'
+                    id: 'user',
+                    type: 'member',
+                    match: 'restContent',
+                }
+            ],
+
+            slash:true,
+            slashOptions: [
+                {
+                    name:'user',
+                    description: 'the user you want to blur',
+                    type:'USER',
+                    required: false
                 }
             ]
         })
     }
     
     async exec(message, args) {
-//nothing to do here but, if user mentions a role make it say "please do not mention a role. instead mention a user or yourself"
-        const user = message.author;
-
-        if(!args.userid) return message.reply("Please mention a user, or yourself.")
+        const user = args.user.user || message.author
         
-        const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' })
+        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' })
         // Make the image
         const img = await new DIG.Blur().getImage(avatar)
         // Add the image as an attachement
         const attach = new Discord.MessageAttachment(img, "delete.png");
 
         message.reply({ files: [attach]  })
-       
     }}

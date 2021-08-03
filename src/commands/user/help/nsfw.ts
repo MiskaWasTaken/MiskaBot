@@ -7,6 +7,8 @@ export default class nsfw extends BotCommand {
 			aliases: ['helpnsfw'],
 			description: 'Help for NSFW commands',
 			usage: '$helpnsfw',
+
+			slash:true
 		})
 	}
 
