@@ -19,7 +19,7 @@ const distube = new DisTube.default(client, {
 	searchSongs: 1,
 	searchCooldown: 5,
 	leaveOnEmpty: true,
-	emptyCooldown: 0,
+	emptyCooldown: 5,
 	leaveOnFinish: false,
 	leaveOnStop: false,
 	plugins: [new SoundCloudPlugin(), new SpotifyPlugin()],
@@ -130,7 +130,6 @@ client.on('messageCreate', (message) => {
 
 	if (['disconnect', 'leave'].includes(command)) {
 		if(!message.member.voice.channel) return 
-		distube.disconnect(message)
 	}
 
 })
@@ -152,7 +151,7 @@ distube
 .on('finish', (queue) => queue.textChannel.send('Queue has been finished.'))
 .on('finishSong', (queue) => queue.textChannel.send(`Song has finished playing.`))
 .on('disconnect', (queue) => queue.textChannel.send('Disconnected.'))
-.on('empty', (queue) => queue.textChannel.send('Voice channel is empty.'))
+.on('empty', (queue) => queue.textChannel.send('Voice channel is empty. Exiting...'))
 .on("error", (err) => 
     console.error(err)
 )
