@@ -164,4 +164,4 @@ distube
 try { client.start() }
 catch (error) { console.error(error) }
 
-export default client
+export default {client,distube}
