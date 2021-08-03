@@ -25,11 +25,10 @@ export default class giveaway extends BotCommand {
     }
 
     async exec(message, args) {
-        if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.channel.reply("You don't have permission to use this command!");
+        if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply("You don't have permission to use this command!");
 
 
         // !giveaway {time s/m/d} {item}
-        if (!message.member.permissions.has(["ADMINISTRATOR"])) return message.channel.send("You don't have enough permissions to start a giveaway !")
         let item = args.item
         
         const time = args.time

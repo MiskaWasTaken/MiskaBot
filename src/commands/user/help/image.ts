@@ -48,7 +48,7 @@ const helpimgEmbed = new MessageEmbed()
 		{ name: 'Jail', value: "`$jail @user`", inline: true },
 		{ name: 'Kiss', value: "`$kiss @user`", inline: true },
 		{ name: 'Present', value: "`$present <text>`", inline: true },
-		{ name: 'Not Stonk', value: "`$notstonk @user`", inline: true },
+		{ name: 'Not Stonk', value: "`$notstonks @user`", inline: true },
 		{ name: 'RIP/Funeral', value: "`$rip @user`", inline: true },
 		{ name: 'Spank', value: "`$spank @user`", inline: true },
 		{ name: 'Stonks', value: "`$stonks @user`", inline: true },

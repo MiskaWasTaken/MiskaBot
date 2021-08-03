@@ -11,19 +11,11 @@ export default class hug extends BotCommand {
             args: [
                 {
                     id: 'user',
-                    type: 'member',
+                    type: 'user',
                     match: 'restContent'
                 },
             ],
 
-            slash:true,
-            slashOptions: [
-                {
-                    name: 'user',
-                    description: 'the person you want to hug',
-                    type:'USER'
-                }
-            ]
         })
     }
     async exec(message, args) {
@@ -57,20 +49,20 @@ export default class hug extends BotCommand {
 
         ]
 
-        const personHugged = args.member
 
 
-        if (personHugged){
+        if (args.user){
 
         const hugEmbed = new MessageEmbed()
-            .setTitle(`You hug ${personHugged.username} :heart:`)
+            .setTitle(`You hug ${args.user.username} :heart:`)
             .setImage(images[Math. floor(Math. random()*images. length)])
             .setTimestamp()
         
             message.reply({ embeds: [hugEmbed] });
         }
-        else{
-            message.reply('That person is not in this server or you have not mentioned a user!')
-        }}}
 
-    
+        if (!args.user) return message.reply("Please mention a user")
+
+        }
+
+}

@@ -50,16 +50,5 @@ export default class nuke extends BotCommand {
         })
     }
         
-        const permEmbed = new MessageEmbed()
-        .setColor('#ff0000')
-        .setTitle('You do not have permission to use this command!')
-        .setDescription('If you think this is a mistake please contact the server moderators')
-        .setTimestamp()
-        .setFooter('Permission Error BAN_MEMBERS, ADMINISTRATOR')
-      
-          // the permission a member needs to ban
-          if(!message.member.permissions.has(['BAN_MEMBERS', 'ADMINISTRATOR']))
-          // if someone doesnt have perms send this
-          message.reply({ embeds: [permEmbed] })
         
 }}

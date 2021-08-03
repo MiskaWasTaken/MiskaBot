@@ -20,7 +20,7 @@ export default class utility extends BotCommand {
 
 const helputilEmbed = new MessageEmbed()
 	.setColor('RANDOM')
-	.setTitle('Music Filters')
+	.setTitle('Configuration')
 	.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 	.setAuthor('Miska Bot', 'https://i.imgur.com/I8qSDdc.jpg', 'https://discordbotlist.com/bots/miska-bot')
 	.setDescription('This is the list of configurations and permissions required for each command.')
