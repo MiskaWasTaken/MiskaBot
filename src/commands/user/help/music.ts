@@ -34,7 +34,7 @@ const helpmusicEmbed = new MessageEmbed()
 		{ name: 'Resume', value: "`$resume`", inline: true },
 		{ name: 'Volume', value: "`$volume (min: 0 | max: 100)`", inline: true },
 		{ name: 'Filters', value: "`$filters`", inline: true },
-		{ name: 'Shuffle', value: "`$shuffle queue`", inline: true },
+		{ name: 'Shuffle', value: "`$shuffle`", inline: true },
 		{ name: 'Pause', value: "`$pause`", inline: true },
 		{ name: 'Loop', value: "`$loop`", inline: true },
 		{ name: 'Disconnect', value: "`$disconnect | $leave`", inline: true },

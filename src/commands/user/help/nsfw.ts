@@ -48,7 +48,7 @@ export default class nsfw extends BotCommand {
 				{ name: 'Hentai', value: "`$hentai`", inline: true },
 				{ name: 'Hololive', value: "`$hololive`", inline: true },
 				{ name: 'Pussy', value: "`$pussy`", inline: true },
-				{ name: 'Fuck', value: "`$fuck @users`" },
+				{ name: 'Fuck', value: "`$fuck @user`" },
 			)
 			.setTimestamp()
 			.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');

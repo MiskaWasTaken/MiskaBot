@@ -78,12 +78,6 @@ client.on('messageCreate', (message) => {
 
 	}
 
-	if (command === 'play') {
-		if(!message.member.voice.channel) return 
-		distube.play(message, args.join(' '))
-
-	}
-
 	if (command === 'queue') {
 		if(!message.member.voice.channel) return 
 		const queue = distube.getQueue(message)
