@@ -32,12 +32,10 @@ const helpmusicEmbed = new MessageEmbed()
 		{ name: 'Stop', value: "`$stop`", inline: true },
 		{ name: 'Pause', value: "`$pause`", inline: true },
 		{ name: 'Resume', value: "`$resume`", inline: true },
-		{ name: 'Volume', value: "`$volume (min: 0 | max: 100)`", inline: true },
 		{ name: 'Filters', value: "`$filters`", inline: true },
 		{ name: 'Shuffle', value: "`$shuffle`", inline: true },
 		{ name: 'Pause', value: "`$pause`", inline: true },
 		{ name: 'Loop', value: "`$loop`", inline: true },
-		{ name: 'Disconnect', value: "`$disconnect | $leave`", inline: true },
 	)
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');

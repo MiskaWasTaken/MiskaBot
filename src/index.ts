@@ -14,7 +14,6 @@ const prefix = '$'
 
 const client = new BotClient()
 
-const voice = require('@discordjs/voice')
 
 const DisTube = require("distube");
 const distube = new DisTube.default(client, {
@@ -38,51 +37,139 @@ client.on('messageCreate', (message) => {
 	const args = message.content.slice(prefix.length).trim().split(' ')
 	const command = args.shift().toLowerCase()
 
+
+
+
+
+	if (command === 'play') {
+		if(!message.member.voice.channel){ 
+			message.reply("You must be in a voice channel to use this command.")
+			return;
+		}
+		distube.play(message, args.join(' '))
+	}
+
+
+
+
+
 	if (command === 'stop') {
-		if(!message.member.voice.channel) return 
-		distube.stop(message)
+
+		if(!message.member.voice.channel) {
+			message.reply("You must be in a voice channel to use this command.")
+			return;
+		}
+
+		const queue = distube.getQueue(message)
+		if (!queue) {
+			message.reply('Nothing playing right now!')
+			return;
+		} 
+		distube.stop(message).catch(err => console.log(err))
 		message.reply('Music stopped.')
 	}
 
-	if (command == "volume"){
-	if(!message.member.voice.channel) return 
-	distube.setVolume(message, Number(args[0]));
-	message.reply("changed volume")
-	}
+
+
 
 	if (command == "shuffle") {
-	if(!message.member.voice.channel) return 
+
+	if(!message.member.voice.channel) {
+		message.reply("You must be in a voice channel to use this command.")
+		return;
+	}
+
+	const queue = distube.getQueue(message)
+	if (!queue) {
+		message.reply('Nothing playing right now!')
+		return;
+	} 
+
+
 	distube.shuffle(message);
 	message.reply("Shuffled queue.")
 
 	}
 
+
+
+
+
 	if (command === 'resume') {
-		if(!message.member.voice.channel) return 
+
+		if(!message.member.voice.channel){
+			message.reply("You must be in a voice channel to use this command.")
+			return;
+		}
+
+		const queue = distube.getQueue(message)
+		if (!queue) {
+			message.reply('Nothing playing right now!')
+			return;
+		} 
 		distube.resume(message)
 		message.reply('Music resumed.')
 
 	}
 
+
+
+
+
+
 	if (command === 'pause') {
-	if(!message.member.voice.channel) return 
+
+	if(!message.member.voice.channel) {
+		message.reply("You must be in a voice channel to use this command.")
+		return;
+	}
+
+	const queue = distube.getQueue(message)
+	if (!queue) {
+		message.reply('Nothing playing right now!')
+		return;
+	} 
+
 	distube.pause(message)
 	message.reply('Music Paused.')
 
 	}
 
+
+
+
+
+
 	if (command === 'skip') {
-	if(!message.member.voice.channel) return 
+
+	if(!message.member.voice.channel) {
+		message.reply("You must be in a voice channel to use this command.")
+		return;
+	}
+
+	const queue = distube.getQueue(message)
+	if (!queue) {
+		message.reply('Nothing playing right now!')
+		return;
+	} 
 	distube.skip(message)
 	message.reply('Song has been skipped.')
 
 	}
 
+
+
+
+
+
 	if (command === 'queue') {
-		if(!message.member.voice.channel) return 
+		if(!message.member.voice.channel){
+			message.reply("You must be in a voice channel to use this command")
+			return;
+		}
 		const queue = distube.getQueue(message)
 		if (!queue) {
-			message.channel.send('Nothing playing right now!')
+			message.reply('Nothing playing right now!')
 		} else {
 			message.channel.send(
 				`Current queue:\n${queue.songs
@@ -100,6 +187,11 @@ client.on('messageCreate', (message) => {
 	}
 
 	
+
+
+
+
+
 	if (
 		[
 			`3d`,
@@ -110,25 +202,50 @@ client.on('messageCreate', (message) => {
 			`vaporwave`,
 		].includes(command)
 	) {
-		if(!message.member.voice.channel) return 
+
+		if(!message.member.voice.channel) {
+			message.reply("You must be in a voice channel to use this command.")
+			return;
+		}
+
+		const queue = distube.getQueue(message)
+		if (!queue) {
+			message.reply('Nothing playing right now!')
+			return;
+		} 
 		const filter = distube.setFilter(message, command)
 		message.reply(
 			`Current queue filter: ${filter.join(', ') || 'Off'}`,
 		)
 	}
 
+
+
+
+
+
+
+
+
 	if (['repeat', 'loop'].includes(command)) {
-		if(!message.member.voice.channel) return 
+
+		if(!message.member.voice.channel){
+			message.reply("You must be in a voice channel to use this command.")
+			return;
+		}
+
+		const queue = distube.getQueue(message)
+		if (!queue) {
+			message.reply('Nothing playing right now!')
+			return;
+		} 
 		const mode = distube.setRepeatMode(message)
 		message.reply(`Set repeat mode to \`${mode ? mode === 2 ? 'All Queue' : 'This Song' : 'Off'}\``)
 	}
 
-	if (['disconnect', 'leave'].includes(command)) {
-		if(!message.member.voice.channel) return 
-		voice.channel.leave()
-	}
 
 })
+
 
 
 const status = (queue) => `Volume: \`${queue.volume}%\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
