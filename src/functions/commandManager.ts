@@ -1,4 +1,5 @@
-import client from '@src/index'
+import index from '@src/index'
+const client = index.client
 
 function getAllCommandIDs() {
     const IDs = []

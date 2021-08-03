@@ -3,7 +3,9 @@ import chalk from "chalk";
 import { TextChannel, GuildMember, User, Message, MessageEmbed } from "discord.js";
 import got from "got/dist/source";
 import HMfull from 'hmfull'
-import client from '@src/index'
+
+import index from '@src/index'
+const client = index.client
 
 const slashGuilds = []
 
