@@ -11,7 +11,7 @@ export default class avatar extends BotCommand {
 			args: [
 				{
 					id: "user",
-					type: "user",
+					type: "member",
 					match: "restContent",
 					default: (message) => message.author,
 				},
@@ -20,10 +20,12 @@ export default class avatar extends BotCommand {
 	}
 
 	async exec(message, args) {
-		const avatar = args.user.displayAvatarURL({ size: 4096, dynamic: true });
+		const user = args.user.user || message.author
+
+		const avatar = user.displayAvatarURL({ size: 4096, dynamic: true });
 
 		const embed = new MessageEmbed()
-            .setTitle(`${args.user.tag}'s Avatar`)
+            .setTitle(`${user.tag}'s Avatar`)
             .setURL(avatar)
             .setImage(avatar)
             .setColor("RANDOM");

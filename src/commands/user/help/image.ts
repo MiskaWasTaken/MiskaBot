@@ -11,6 +11,7 @@ export default class image extends BotCommand {
             aliases: ['helpimage'],
             description: 'Help for Image manipulation',
             usage: '$helpimage',
+
         })
     }
 
@@ -44,7 +45,6 @@ const helpimgEmbed = new MessageEmbed()
 		{ name: 'Discord', value: "`$discord @user`", inline: true },
 		{ name: 'Double Stonks', value: "`$doublestonks @user`", inline: true },
 		{ name: 'Facepalm', value: "`$facepalm @user`", inline: true },
-		{ name: 'Worse Than Hitler', value: "`$hitler @user`", inline: true },
 		{ name: 'Jail', value: "`$jail @user`", inline: true },
 		{ name: 'Kiss', value: "`$kiss @user`", inline: true },
 		{ name: 'Present', value: "`$present <text>`", inline: true },
@@ -53,7 +53,6 @@ const helpimgEmbed = new MessageEmbed()
 		{ name: 'Spank', value: "`$spank @user`", inline: true },
 		{ name: 'Stonks', value: "`$stonks @user`", inline: true },
 		{ name: 'Trash', value: "`$trash @user`", inline: true },	
-		{ name: 'More coming soon', value: "Give me time please"}
 	)
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');

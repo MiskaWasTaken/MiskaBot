@@ -5,7 +5,7 @@ export default class ping extends BotCommand {
         super('ping', {
             aliases: ['ping'],
             description: 'display latency',
-            usage: '$ping'
+            usage: '$ping',
 
         })
     }

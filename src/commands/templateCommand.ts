@@ -18,6 +18,6 @@ export default class templateCommand extends BotCommand {
         })
     }
     async exec(message, args) {
-        message.reply(args.exampleArg)
+        //message.reply(args.exampleArg)
     }
 }

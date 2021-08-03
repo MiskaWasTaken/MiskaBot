@@ -10,6 +10,8 @@ export default class moderation extends BotCommand {
             aliases: ['helpmod'],
             description: 'Help for moderation commands',
             usage: '$helpmod',
+
+		
         })
     }
 
@@ -27,8 +29,7 @@ const helpmusicEmbed = new MessageEmbed()
 		{ name: 'Kick', value: "`$kick @user`", inline: true },
 		{ name: 'Lock', value: "`$lock #channel`", inline: true },
 		{ name: 'Mute', value: "`$mute @user`", inline: true },
-        { name: `Nick`, value: "`$nick @user`", inline: true },
-		{ name: 'Purge', value: "`$purge amount`", inline: true },
+		{ name: 'Purge', value: "`$purge amount | unspecified amount will result in 50`", inline: true },
 		{ name: 'Unban', value: "`$unban @user`", inline: true },
 		{ name: 'Unlock', value: "`$unlock #channel`", inline: true },
 		{ name: 'Unmute', value: "`$unmute @user`", inline: true },

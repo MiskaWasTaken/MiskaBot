@@ -10,10 +10,19 @@ export default class hug extends BotCommand {
             usage: '$hug @user',
             args: [
                 {
-                    id: 'userid',
-                    type: 'user',
+                    id: 'user',
+                    type: 'member',
                     match: 'restContent'
                 },
+            ],
+
+            slash:true,
+            slashOptions: [
+                {
+                    name: 'user',
+                    description: 'the person you want to hug',
+                    type:'USER'
+                }
             ]
         })
     }
@@ -26,7 +35,9 @@ export default class hug extends BotCommand {
             "https://media.giphy.com/media/sUIZWMnfd4Mb6/giphy.gif",
             "https://media1.giphy.com/media/IRUb7GTCaPU8E/giphy.gif?cid=790b7611d5de806d23c37a6aa68aeac92eac6c616507d1d4&rid=giphy.gif&ct=g",
             "https://media0.giphy.com/media/lrr9rHuoJOE0w/giphy.gif?cid=790b761160c4f5187de80dc1385d7118eb50e16e2619f881&rid=giphy.gif&ct=g",
-            "https://media0.giphy.com/media/ZQN9jsRWp1M76/giphy.gif?cid=790b76118fccd6bab25e9aff0ceb3211ccbab641ace82adf&rid=giphy.gif&ct=g",            "https://media2.giphy.com/media/5eyhBKLvYhafu/giphy.gif?cid=790b761113a546f4b114b93d7dbbebcb80470e438dbde73e&rid=giphy.gif&ct=g",            "https://media3.giphy.com/media/pXQhWw2oHoPIs/giphy.gif?cid=790b7611d1c696f8afd499584af0a950d12166ccef2fe3ea&rid=giphy.gif&ct=g",
+            "https://media0.giphy.com/media/ZQN9jsRWp1M76/giphy.gif?cid=790b76118fccd6bab25e9aff0ceb3211ccbab641ace82adf&rid=giphy.gif&ct=g",            
+            "https://media2.giphy.com/media/5eyhBKLvYhafu/giphy.gif?cid=790b761113a546f4b114b93d7dbbebcb80470e438dbde73e&rid=giphy.gif&ct=g",            
+            "https://media3.giphy.com/media/pXQhWw2oHoPIs/giphy.gif?cid=790b7611d1c696f8afd499584af0a950d12166ccef2fe3ea&rid=giphy.gif&ct=g",
             "https://media2.giphy.com/media/3ZnBrkqoaI2hq/giphy.gif?cid=790b7611a0cd20ab0dc417fee1d3818ae55ca91e8fda9d51&rid=giphy.gif&ct=g",
             "https://media1.tenor.com/images/1069921ddcf38ff722125c8f65401c28/tenor.gif?itemid=11074788",
             "https://media1.tenor.com/images/6db54c4d6dad5f1f2863d878cfb2d8df/tenor.gif?itemid=7324587",
@@ -46,7 +57,7 @@ export default class hug extends BotCommand {
 
         ]
 
-        const personHugged = args.userid
+        const personHugged = args.member
 
 
         if (personHugged){

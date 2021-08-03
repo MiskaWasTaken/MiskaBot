@@ -14,7 +14,7 @@ export default class calc extends BotCommand {
                     type: 'string',
                     match: 'restContent'
                 }
-            ]
+            ],
         })
     }
     async exec(message, args) {

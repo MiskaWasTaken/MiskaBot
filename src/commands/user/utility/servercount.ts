@@ -7,7 +7,8 @@ export default class servercount extends BotCommand {
         super('servercount', {
             aliases: ['servercount'],
             description: 'Server Counter',
-            usage: '$servercount'
+            usage: '$servercount',
+            
         })
     }
     async exec(message) {

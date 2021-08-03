@@ -14,6 +14,8 @@ const prefix = '$'
 
 const client = new BotClient()
 
+const voice = require('@discordjs/voice')
+
 const DisTube = require("distube");
 const distube = new DisTube.default(client, {
 	searchSongs: 1,
@@ -32,7 +34,6 @@ client.on('messageCreate', (message) => {
 
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-    
 
 	const args = message.content.slice(prefix.length).trim().split(' ')
 	const command = args.shift().toLowerCase()
@@ -130,6 +131,7 @@ client.on('messageCreate', (message) => {
 
 	if (['disconnect', 'leave'].includes(command)) {
 		if(!message.member.voice.channel) return 
+		voice.channel.leave()
 	}
 
 })

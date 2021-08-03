@@ -11,6 +11,8 @@ export default class music extends BotCommand {
             aliases: ['helpmusic'],
             description: 'Help for music commands',
             usage: '$helpmusic',
+
+		
         })
     }
 
@@ -27,7 +29,15 @@ const helpmusicEmbed = new MessageEmbed()
 		{ name: `Play`, value: "`$play`", inline: true },
 		{ name: 'Queue', value: "`$queue`", inline: true },
 		{ name: 'Skip', value: "`$skip`", inline: true },
-		{ name: 'stop', value: "`$stop`", inline: true }
+		{ name: 'Stop', value: "`$stop`", inline: true },
+		{ name: 'Pause', value: "`$pause`", inline: true },
+		{ name: 'Resume', value: "`$resume`", inline: true },
+		{ name: 'Volume', value: "`$volume (min: 0 | max: 100)`", inline: true },
+		{ name: 'Filters', value: "`$filters`", inline: true },
+		{ name: 'Shuffle', value: "`$shuffle queue`", inline: true },
+		{ name: 'Pause', value: "`$pause`", inline: true },
+		{ name: 'Loop', value: "`$loop`", inline: true },
+		{ name: 'Disconnect', value: "`$disconnect | $leave`", inline: true },
 	)
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');

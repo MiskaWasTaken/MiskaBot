@@ -19,7 +19,8 @@ export default class giveaway extends BotCommand {
                     type: 'string',
                     match: 'restContent'
                 }
-            ]
+            ],
+
         })
     }
 

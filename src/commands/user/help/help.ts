@@ -9,9 +9,11 @@ export default class help extends BotCommand {
     constructor() {
         super('help', {
             aliases: ['help'],
-            description: 'You know what this is',
             usage: '$help',
-        })
+
+
+        }
+		)
     }
 
     async exec(message) {

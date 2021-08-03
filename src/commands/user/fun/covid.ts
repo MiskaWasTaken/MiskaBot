@@ -10,7 +10,6 @@ export default class covid extends BotCommand {
             aliases: ['covid'],
             description: 'Covid statistics',
             usage: '$covid',
-
             args: [
                 {
                     id: 'country',
@@ -82,7 +81,7 @@ export default class covid extends BotCommand {
                     message.reply({ embeds: [statsCovidc] });
 
 
-            }).catch(e => {
-                // if he can't find the country that u said it will send this message
+            }).catch(() => {
+                // if it can't find the country that u said it will send this message
                 return message.channel.send('Something went wrong or you provided an invalid country')
             })}}}

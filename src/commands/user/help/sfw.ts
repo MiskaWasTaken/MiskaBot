@@ -8,6 +8,8 @@ export default class sfw extends BotCommand {
 			aliases: ['helpsfw'],
 			description: 'Help for SFW command',
 			usage: '$helpsfw',
+
+		
 		})
 	}
 

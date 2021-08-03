@@ -11,19 +11,19 @@ export default class blur extends BotCommand {
             usage: '$ad @user',
             args: [
                 {
-                    id: 'userid',
-                    type: 'user',
+                    id: 'user',
+                    type: 'member',
                     match: 'restContent'
                 }
-            ]
+            ],
+
+
         })
     }
     async exec(message, args) {
-  
-
-        if(!args.userid) return message.reply("Please mention a user, or yourself.")
+        const user = args.user.user || message.author
         
-        const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
+        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image
         const img = await new DIG.Ad().getImage(avatar)
         // Add the image as an attachement

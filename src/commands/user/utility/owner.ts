@@ -6,7 +6,7 @@ export default class owner extends BotCommand {
         super('owner', {
             aliases: ['owner'],
             description: 'cool ig',
-            usage: '$owner'
+            usage: '$owner',
         })
     }
     async exec(message) {

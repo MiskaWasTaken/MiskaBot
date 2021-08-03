@@ -14,7 +14,7 @@ export default class google extends BotCommand {
                     type: 'string',
                     match: 'restContent'
                 }
-            ]
+            ],
         })
     }
     async exec(message, args) {

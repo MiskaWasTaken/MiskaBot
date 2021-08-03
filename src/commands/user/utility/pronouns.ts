@@ -6,18 +6,27 @@ export default class pronouns extends BotCommand {
     constructor() {
         super('pronouns', {
             aliases: ['pronouns'],
-            args: [{ id: 'person', type: 'user', match: 'rest', default: message => message.author }],
+            args: [{ id: 'person', type: 'member', match: 'rest'}],
 
             description: 'Shows the pronouns of a user, if they have them set on https://pronoundb.org',
             usage: '-pronouns <user>',
+            slash:true,
+            slashOptions:[
+                {
+                    name:'person',
+                    description:'person',
+                    type:'USER'
+                }
+            ]
         })
     }
     async exec(message, args) {
-        const pronouns = await utils.getPronouns(args.person, 'details')
+        const person = args.person.user || message.author
+        const pronouns = await utils.getPronouns(person, 'details')
         const pronounsEmbed = new MessageEmbed()
 
-        if (args.person.id == message.author.id) { pronounsEmbed.setTitle('Your pronouns') }
-        else { pronounsEmbed.setTitle(`${args.person.username}'s pronouns`) }
+        if (person.id == message.author.id) { pronounsEmbed.setTitle('Your pronouns') }
+        else { pronounsEmbed.setTitle(`${person.username}'s pronouns`) }
 
         pronounsEmbed.setDescription(pronouns)
         pronounsEmbed.setFooter('Data from https://pronoundb.org')

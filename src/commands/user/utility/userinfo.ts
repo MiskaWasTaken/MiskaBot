@@ -11,38 +11,17 @@ export default class userinfo extends BotCommand {
             usage: '$userinfo',
             args: [
                 {
-                    id: 'idk',
-                    type: 'user',
+                    id: 'user',
+                    type: 'member',
                     match: 'restContent'
                 }
             ]
         })
     }
     async exec(message, args) {
-// if user not provided say "provide a user" or make it see info about urself
-        const idk = args.idk
+        const user = args.user.user || message.author
+    
 
-        if(!idk) return message.reply("Please provide a user")
-
-        let user;
-        const mentionedMember = message.mentions.members.first() || message.member;
-    
-        if (!idk[0]) {
-          user = message.member;
-        } else {
-    
-    
-          if (isNaN(idk[0])) return message.channel.send(":x: Invalid ID of the user.")
-    
-    
-          user = message.mentions.members.first() || await message.guild.members.fetch(idk[0]).catch(err => { return message.channel.send(":x: Unable to find this Person") })
-        }
-    
-        if (!user) {
-          return message.channel.send(":x: Unable to find this person!")
-        }
-    
-    
         //OPTIONS FOR STATUS
     
     
@@ -70,7 +49,7 @@ export default class userinfo extends BotCommand {
             .addField("Account Created At", moment(user.user.createdAt).format("LLLL"))
             .addField("Common Information", `ID: \`${user.user.id}\`\nDiscriminator: ${user.user.discriminator}\nBot: ${user.user.bot}\nDeleted User: ${user.deleted}`)
             .addField("Badges", newbadges.join(", ").toLowerCase() || "None")
-            .addField(`**Avatar: **`, `[Click here to view Avatar](${mentionedMember.user.displayAvatarURL({ dynamic: true})})`)
+            .addField(`**Avatar: **`, `[Click here to view Avatar](${user.displayAvatarURL({ dynamic: true})})`)
 
             const userEmbed = new MessageEmbed()
             .setThumbnail(user.user.displayAvatarURL({ dynamic: true }))
@@ -80,11 +59,8 @@ export default class userinfo extends BotCommand {
                 { name: `Account Created At:`, value: `${moment(user.user.createdAt).format("LLLL")}`, inline: true },
                 { name: 'Common Information:', value: `ID: \`${user.user.id}\`\nDiscriminator: ${user.user.discriminator}\nBot: ${user.user.bot}\nDeleted User: ${user.deleted}`, inline: true },
                 { name: 'Badges:', value: `${newbadges.join(", ").toLowerCase() || "None"}`, inline: true },
-                { name: 'Avatar:', value: `[Click here to view Avatar](${mentionedMember.user.displayAvatarURL({ dynamic: true})})`, inline: true}
+                { name: 'Avatar:', value: `[Click here to view Avatar](${user.displayAvatarURL({ dynamic: true})})`, inline: true}
             )
-
-
-
     
           return message.reply({ embeds: [userEmbed] }).catch(err => {
             return message.channel.send("Error : " + err)
