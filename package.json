@@ -41,7 +41,7 @@
 		"discord-buttons": "^4.0.0",
 		"discord-buttons-pages": "^1.1.7",
 		"discord-image-generation": "^1.4.9",
-		"discord.js": "dev",
+		"discord.js": "^13.0.0-dev.t1628035429.00d5cee",
 		"discordjs-button-pagination": "^1.0.4",
 		"distube": "^3.0.0-alpha.17",
 		"dotenv": "^10.0.0",
@@ -58,10 +58,13 @@
 		"node-fetch": "^2.6.1",
 		"node-gyp": "^8.1.0",
 		"node-superfetch": "^0.2.3",
+		"p-finally": "^3.0.0",
 		"pretty-ms": "^7.0.1",
 		"python": "^0.0.4",
 		"quick.db": "^7.1.3",
-		"yarn": "npm:null@*"
+		"sodium": "^3.0.2",
+		"yarn": "npm:null@^2.0.0",
+		"youtube-dl": "^3.4.1"
 	},
 	"prettier": {
 		"tabWidth": 4,
