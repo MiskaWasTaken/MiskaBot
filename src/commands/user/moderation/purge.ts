@@ -23,8 +23,7 @@ export default class purge extends BotCommand {
 
     async exec(message, args) {
 //nothing to do here
-        let purge = args.amount
-        purge += 1
+        const purge = args.amount
 
         const upermEmbed = new MessageEmbed()
         .setColor('#03dbfc')
@@ -38,14 +37,15 @@ export default class purge extends BotCommand {
 
         else {
    
-        const sucEmbed = new MessageEmbed()
-        .setColor('#7303fc')
-        .setDescription(`${purge} messages have been purged`)
-        .setTimestamp()
-        .setFooter(`Requested by: ${message.author.username}`);
+            const sucEmbed = new MessageEmbed()
+            .setColor('#03dbfc')
+            .setTitle('Purge Command')
+            .setDescription(`<a:check:869968688793681921> ${purge} Messages have been deleted.`)
+            .setTimestamp()
+            .setFooter(`Performed by: ${message.author.username}`);
    
-    await message.channel.bulkDelete(args.amount); 
-    await message.reply({ embeds: [sucEmbed] })
+    message.channel.bulkDelete(purge); 
+    await message.reply({ embeds: [sucEmbed] });
        
 
     }

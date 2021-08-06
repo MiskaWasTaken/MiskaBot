@@ -10,7 +10,7 @@ const SpotifyPlugin = require('@distube/spotify')
 
 import BotClient from "@extensions/BotClient"
 
-const prefix = '$'
+const prefix = '-'
 
 const client = new BotClient()
 
@@ -45,11 +45,9 @@ client.on('messageCreate', (message) => {
 			message.reply("You must be in a voice channel to use this command.")
 			return;
 		}
-		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-			message.reply("You must be in the same voice channel I am in to use this command.")
-			return;
-		}	
+
 		distube.play(message, args.join(' '))
+
 	}
 
 	if (command === 'volume') {
@@ -57,10 +55,6 @@ client.on('messageCreate', (message) => {
 			message.reply("You must be in a voice channel to use this command.")
 			return;
 		}
-		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-			message.reply("You must be in the same voice channel I am in to use this command.")
-			return;
-		}	
 		const queue = distube.getQueue(message)
 		if (!queue) {
 			message.reply('Nothing playing right now!')
@@ -90,11 +84,6 @@ client.on('messageCreate', (message) => {
 			return;
 		}
 
-		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-			message.reply("You must be in the same voice channel I am in to use this command.")
-			return;
-		}	
-
 		const queue = distube.getQueue(message)
 		if (!queue) {
 			message.reply('Nothing playing right now!')
@@ -114,10 +103,6 @@ client.on('messageCreate', (message) => {
 		return;
 	}
 
-	if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-		message.reply("You must be in the same voice channel I am in to use this command.")
-		return;
-	}	
 
 	const queue = distube.getQueue(message)
 	if (!queue) {
@@ -142,10 +127,6 @@ client.on('messageCreate', (message) => {
 			return;
 		}
 
-		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-			message.reply("You must be in the same voice channel I am in to use this command.")
-			return;
-		}	
 
 		const queue = distube.getQueue(message)
 		if (!queue) {
@@ -169,10 +150,6 @@ client.on('messageCreate', (message) => {
 		return;
 	}
 
-	if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-		message.reply("You must be in the same voice channel I am in to use this command.")
-		return;
-	}	
 
 	const queue = distube.getQueue(message)
 	if (!queue) {
@@ -193,11 +170,6 @@ client.on('messageCreate', (message) => {
 		return;
 	}
 
-	if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-		message.reply("You must be in the same voice channel I am in to use this command.")
-		return;
-	}	
-
 	const queue = distube.getQueue(message)
 	if (!queue) {
 		message.reply('Nothing playing right now!')
@@ -212,11 +184,6 @@ client.on('messageCreate', (message) => {
 	if (command === 'queue') {
 		if(!message.member.voice.channel){
 			message.reply("You must be in a voice channel to use this command")
-			return;
-		}
-
-		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-			message.reply("You must be in the same voice channel I am in to use this command.")
 			return;
 		}
 
@@ -256,11 +223,7 @@ client.on('messageCreate', (message) => {
 			message.reply("You must be in a voice channel to use this command.")
 			return;
 		}
-
-		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-			message.reply("You must be in the same voice channel I am in to use this command.")
-			return;
-		}	
+	
 
 		const queue = distube.getQueue(message)
 		if (!queue) {
@@ -283,10 +246,6 @@ client.on('messageCreate', (message) => {
 			return;
 		}
 		
-		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
-			message.reply("You must be in the same voice channel I am in to use this command.")
-			return;
-		}	
 
 		const queue = distube.getQueue(message)
 		if (!queue) {

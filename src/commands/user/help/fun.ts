@@ -30,6 +30,8 @@ const helpfEmbed = new MessageEmbed()
 		{ name: `Covid`, value: "`$covid USA`", inline: true },
 		{ name: 'Hug', value: "`$hug @user`", inline: true },
 		{ name: 'Meme', value: "`$meme`", inline: true },
+		{ name: 'Rock Paper Scissors', value: "`$rps`", inline: true },
+		{ name: 'Tic Tac Toe', value: "`$tictactoe`", inline: true },
 		{ name: 'More coming soon', value: "Give me time please", inline: true}
 	)
 	.setTimestamp()

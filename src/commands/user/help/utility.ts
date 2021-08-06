@@ -41,7 +41,6 @@ const helputilEmbed = new MessageEmbed()
         { name: 'Translate', value: "`$translate iso_code message`", inline: true },
         { name: 'User Info', value: "`$user @user`", inline: true },
         { name: 'Youtube Stats', value: "`$ytstats channel_name`", inline: true},
-
 	)
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
