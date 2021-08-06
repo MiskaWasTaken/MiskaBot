@@ -14,7 +14,6 @@ const prefix = '$'
 
 const client = new BotClient()
 
-
 const DisTube = require("distube");
 const distube = new DisTube.default(client, {
 	searchSongs: 1,
@@ -46,9 +45,40 @@ client.on('messageCreate', (message) => {
 			message.reply("You must be in a voice channel to use this command.")
 			return;
 		}
+		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+			message.reply("You must be in the same voice channel I am in to use this command.")
+			return;
+		}	
 		distube.play(message, args.join(' '))
 	}
 
+	if (command === 'volume') {
+		if(!message.member.voice.channel){ 
+			message.reply("You must be in a voice channel to use this command.")
+			return;
+		}
+		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+			message.reply("You must be in the same voice channel I am in to use this command.")
+			return;
+		}	
+		const queue = distube.getQueue(message)
+		if (!queue) {
+			message.reply('Nothing playing right now!')
+			return;
+		} 
+
+		if(!message.member.permissions.has(['MANAGE_CHANNELS', 'ADMINISTRATOR'])){
+			message.reply("You must have MANAGE_CHANNELS permission to use this command!")
+		}
+
+		const volume = parseInt(args[0])
+        if (isNaN(volume)) {
+		message.channel.send(`Please enter a valid number.`)
+		return;
+		}
+        distube.setVolume(message, volume)
+		message.channel.send(`Volume set to \`${volume}\``)
+	}
 
 
 
@@ -59,6 +89,11 @@ client.on('messageCreate', (message) => {
 			message.reply("You must be in a voice channel to use this command.")
 			return;
 		}
+
+		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+			message.reply("You must be in the same voice channel I am in to use this command.")
+			return;
+		}	
 
 		const queue = distube.getQueue(message)
 		if (!queue) {
@@ -78,6 +113,11 @@ client.on('messageCreate', (message) => {
 		message.reply("You must be in a voice channel to use this command.")
 		return;
 	}
+
+	if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+		message.reply("You must be in the same voice channel I am in to use this command.")
+		return;
+	}	
 
 	const queue = distube.getQueue(message)
 	if (!queue) {
@@ -102,6 +142,11 @@ client.on('messageCreate', (message) => {
 			return;
 		}
 
+		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+			message.reply("You must be in the same voice channel I am in to use this command.")
+			return;
+		}	
+
 		const queue = distube.getQueue(message)
 		if (!queue) {
 			message.reply('Nothing playing right now!')
@@ -124,6 +169,11 @@ client.on('messageCreate', (message) => {
 		return;
 	}
 
+	if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+		message.reply("You must be in the same voice channel I am in to use this command.")
+		return;
+	}	
+
 	const queue = distube.getQueue(message)
 	if (!queue) {
 		message.reply('Nothing playing right now!')
@@ -136,16 +186,17 @@ client.on('messageCreate', (message) => {
 	}
 
 
-
-
-
-
 	if (command === 'skip') {
 
 	if(!message.member.voice.channel) {
 		message.reply("You must be in a voice channel to use this command.")
 		return;
 	}
+
+	if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+		message.reply("You must be in the same voice channel I am in to use this command.")
+		return;
+	}	
 
 	const queue = distube.getQueue(message)
 	if (!queue) {
@@ -158,15 +209,17 @@ client.on('messageCreate', (message) => {
 	}
 
 
-
-
-
-
 	if (command === 'queue') {
 		if(!message.member.voice.channel){
 			message.reply("You must be in a voice channel to use this command")
 			return;
 		}
+
+		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+			message.reply("You must be in the same voice channel I am in to use this command.")
+			return;
+		}
+
 		const queue = distube.getQueue(message)
 		if (!queue) {
 			message.reply('Nothing playing right now!')
@@ -188,10 +241,6 @@ client.on('messageCreate', (message) => {
 
 	
 
-
-
-
-
 	if (
 		[
 			`3d`,
@@ -208,6 +257,11 @@ client.on('messageCreate', (message) => {
 			return;
 		}
 
+		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+			message.reply("You must be in the same voice channel I am in to use this command.")
+			return;
+		}	
+
 		const queue = distube.getQueue(message)
 		if (!queue) {
 			message.reply('Nothing playing right now!')
@@ -222,17 +276,17 @@ client.on('messageCreate', (message) => {
 
 
 
-
-
-
-
-
 	if (['repeat', 'loop'].includes(command)) {
 
 		if(!message.member.voice.channel){
 			message.reply("You must be in a voice channel to use this command.")
 			return;
 		}
+		
+		if(message.member.voice.channelId !== message.guild.me.voice.channelId){ 
+			message.reply("You must be in the same voice channel I am in to use this command.")
+			return;
+		}	
 
 		const queue = distube.getQueue(message)
 		if (!queue) {
@@ -259,8 +313,11 @@ queue.textChannel.send(
 	`Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user.tag}`,
 ))
 
+distube.listenerCount("finishSong")
+
+
 distube
-.on('searchNoResult', message => message.channel.send(`No results were found for you music.`))
+.on('searchNoResult', message => message.channel.send(`No results were found for your music.`))
 .on('finish', (queue) => queue.textChannel.send('Queue has been finished.'))
 .on('finishSong', (queue) => queue.textChannel.send(`Song has finished playing.`))
 .on('disconnect', (queue) => queue.textChannel.send('Disconnected.'))

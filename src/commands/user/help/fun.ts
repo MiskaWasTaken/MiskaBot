@@ -11,6 +11,7 @@ export default class fun extends BotCommand {
             aliases: ['helpfun'],
             description: 'Help for fun commamds',
             usage: '$helpfun',
+			cooldown: 5000,
 
 
         })

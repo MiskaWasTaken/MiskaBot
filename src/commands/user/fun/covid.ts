@@ -10,6 +10,7 @@ export default class covid extends BotCommand {
             aliases: ['covid'],
             description: 'Covid statistics',
             usage: '$covid',
+            cooldown: 5000,
             args: [
                 {
                     id: 'country',

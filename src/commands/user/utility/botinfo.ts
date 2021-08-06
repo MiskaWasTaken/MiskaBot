@@ -7,6 +7,7 @@ export default class botinfo extends BotCommand {
             aliases: ['botinfo'],
             description: 'Get information on this bot',
             usage: '$botinfo',
+            cooldown: 10000,
         })
     }
 

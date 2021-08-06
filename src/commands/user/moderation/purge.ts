@@ -7,7 +7,8 @@ export default class purge extends BotCommand {
         super('purge', {
             aliases: ['purge'],
             description: 'mass delete messages',
-            usage: '$purge <amount',
+            usage: '$purge <amount>',
+            cooldown: 2000,
             args: [
                 {
                     id: 'amount',

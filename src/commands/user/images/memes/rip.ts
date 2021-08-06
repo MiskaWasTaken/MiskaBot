@@ -9,6 +9,7 @@ export default class blur extends BotCommand {
             aliases: ['rip'],
             description: 'rip',
             usage: '$rip @user',
+            cooldown: 5000,
             args: [
                 {
                     id: 'userid',
@@ -20,8 +21,11 @@ export default class blur extends BotCommand {
     }
     async exec(message, args) {
 
+        const user = args.userid  || message.author
+        
         if(!args.userid) return message.reply("Please mention a user, or yourself.")
-        const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
+
+        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image
         const img = await new DIG.Rip().getImage(avatar)
         // Add the image as an attachement

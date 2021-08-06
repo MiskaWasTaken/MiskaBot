@@ -9,10 +9,11 @@ export default class blur extends BotCommand {
             aliases: ['bed'],
             description: 'bed',
             usage: '$bed @user',
+            cooldown: 5000,
             args: [
                 {
                     id: 'user',
-                    type: 'member',
+                    type: 'user',
                     match: 'restContent'
                 },],
 
@@ -21,8 +22,9 @@ export default class blur extends BotCommand {
         })
     }
     async exec(message, args) {
+        const user = args.user 
 
-        const user = args.user.user 
+        if(!user) return message.reply("Please mention a user, or yourself.")
         
         const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
 

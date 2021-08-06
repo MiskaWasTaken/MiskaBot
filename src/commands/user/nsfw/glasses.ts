@@ -10,6 +10,7 @@ export default class glasses extends BotCommand {
             aliases: [thing],
             description: `[NSFW CHANNELS ONLY] ${thing} picture`,
             usage: `-${thing}`,
+            cooldown: 1000,
         })
     }
     async exec(message) {

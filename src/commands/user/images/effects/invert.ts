@@ -9,10 +9,11 @@ export default class invert extends BotCommand {
             aliases: ['invert'],
             description: 'invert someone kek',
             usage: '$invert @user',
+            cooldown: 5000,
             args: [
                 {
                     id: 'user',
-                    type: 'member',
+                    type: 'user',
                     match: 'restContent'
                 }
             ],
@@ -21,7 +22,10 @@ export default class invert extends BotCommand {
         })
     }
     async exec(message, args) {
-        const user = args.user.user || message.author
+
+        const user = args.user || message.author
+
+        if(!user) return message.reply("Please mention a user, or yourself.")
         
         const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image

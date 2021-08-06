@@ -6,6 +6,7 @@ export default class ping extends BotCommand {
             aliases: ['ping'],
             description: 'display latency',
             usage: '$ping',
+            cooldown: 5000,
 
         })
     }

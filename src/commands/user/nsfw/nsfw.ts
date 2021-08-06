@@ -9,6 +9,7 @@ export default class nsfw extends BotCommand {
             aliases: ['nsfw'],
             description: `nsfw`,
             usage: `-nsfw`,
+            cooldown: 1000,
 
             args: [
                 {

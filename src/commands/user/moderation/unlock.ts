@@ -7,7 +7,8 @@ export default class unlock extends BotCommand {
         super('unlock', {
             aliases: ['unlock'],
             description: 'unlock a locked channel',
-            usage: '$unlock'
+            usage: '$unlock',
+            cooldown: 2000,
         })
     }
     async exec(message) {

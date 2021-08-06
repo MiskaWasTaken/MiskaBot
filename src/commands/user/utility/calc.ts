@@ -8,6 +8,7 @@ export default class calc extends BotCommand {
             aliases: ['calc'],
             description: 'When you forgot to install the calculator app moment',
             usage: '$calc',
+            cooldown: 5000,
             args: [
                 {
                     id: 'equation',

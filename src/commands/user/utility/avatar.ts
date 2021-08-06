@@ -7,6 +7,7 @@ export default class avatar extends BotCommand {
 			aliases: ["avatar"],
 			description: "Show someones avatar",
 			usage: "$avatar",
+			cooldown: 2000,
 
 			args: [
 				{

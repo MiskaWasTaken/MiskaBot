@@ -11,6 +11,7 @@ export default class image extends BotCommand {
             aliases: ['helpimage'],
             description: 'Help for Image manipulation',
             usage: '$helpimage',
+			cooldown: 5000,
 
         })
     }

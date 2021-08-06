@@ -9,6 +9,7 @@ export default class giveaway extends BotCommand {
             aliases: ['giveaway'],
             description: 'Start a giveaway',
             usage: '$giveaway 1/h/m/s <winner amount> <item>',
+            cooldown: 10000,
             args: [
                 {
                     id: 'time',

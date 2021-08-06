@@ -9,6 +9,7 @@ export default class blur extends BotCommand {
             aliases: ['present'],
             description: 'present something',
             usage: '$present <text>',
+            cooldown: 5000,
             args: [
                 {
                     id: 'text',
@@ -21,7 +22,9 @@ export default class blur extends BotCommand {
 
     
     async exec(message, args) {
-//"Error: You must provide a text of 300 characters or less." if text not provided say "please provide a text message"
+
+        if (args.length < 300) return message.reply("Text must me less than 300 charecters")
+
         const texts = args.text
         if(!args.text) return message.reply("Please provide text. Maximum charecters are 300")
         // Make the image

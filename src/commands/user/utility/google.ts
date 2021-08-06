@@ -8,6 +8,7 @@ export default class google extends BotCommand {
             aliases: ['google'],
             description: 'When your browser breaks moment',
             usage: '$google <query>',
+            cooldown: 5000,
             args: [
                 {
                     id: 'google',

@@ -7,6 +7,7 @@ export default class pronouns extends BotCommand {
         super('pronouns', {
             aliases: ['pronouns'],
             args: [{ id: 'person', type: 'member', match: 'rest'}],
+            cooldown: 10000,
 
             description: 'Shows the pronouns of a user, if they have them set on https://pronoundb.org',
             usage: '-pronouns <user>',

@@ -10,6 +10,7 @@ export default class help extends BotCommand {
         super('help', {
             aliases: ['help'],
             usage: '$help',
+			cooldown: 5000,
 
 
         }
@@ -32,7 +33,7 @@ const helpEmbed = new MessageEmbed()
 		{ name: '🎧Music', value: "`$helpmusic`", inline: true },
 		{ name: '🔞NSFW', value: "`$helpnsfw`", inline: true },
 		{ name: '👩‍💻Config', value: "`$config`", inline: true },
-		{ name: '😉SFW', value: "`$helpsfw`", inline: true },
+		{ name: '📜Change Logs', value: "`$changelog`", inline: true },
 		{ name: '🐱‍💻Utility', value: "`$helputility`", inline: true },
 		{ name: '🆘Help Me', value: "`$helpme`", inline: true }
 	)

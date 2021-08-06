@@ -8,6 +8,7 @@ export default class unban extends BotCommand {
             aliases: ['unban'],
             description: 'rekt',
             usage: '$unban @user',
+            cooldown: 2000,
             args: [
                 {
                     id: 'userid',

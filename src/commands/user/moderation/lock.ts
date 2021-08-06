@@ -7,7 +7,8 @@ export default class lock extends BotCommand {
         super('lock', {
             aliases: ['lock'],
             description: 'lock a channel',
-            usage: '$lock @user'
+            usage: '$lock ',
+            cooldown: 2000,
         })
     }
     async exec(message) {
