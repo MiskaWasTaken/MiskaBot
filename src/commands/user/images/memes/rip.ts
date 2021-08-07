@@ -23,7 +23,7 @@ export default class blur extends BotCommand {
 
         const user = args.userid  || message.author
         
-        if(!args.userid) return message.reply("Please mention a user, or yourself.")
+       if(!args.userid) return message.reply("Please mention a user, or yourself.")
 
         const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image

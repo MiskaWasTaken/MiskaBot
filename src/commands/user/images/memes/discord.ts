@@ -25,7 +25,7 @@ export default class blur extends BotCommand {
         
         if(!args.userid) return message.reply("Please mention a user, or yourself.")
 
-        const avatar = user.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
+        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image
         const img = await new DIG.DiscordBlue().getImage(avatar)
         // Add the image as an attachement

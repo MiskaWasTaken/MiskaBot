@@ -10,7 +10,7 @@ const SpotifyPlugin = require('@distube/spotify')
 
 import BotClient from "@extensions/BotClient"
 
-const prefix = '-'
+const prefix = '$'
 
 const client = new BotClient()
 
