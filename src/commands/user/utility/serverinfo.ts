@@ -8,6 +8,7 @@ export default class serverinfo extends BotCommand {
             aliases: ['serverinfo'],
             description: 'Server information',
             usage: '$serverinfo',
+            cooldown: 10000,
         })
     }
 

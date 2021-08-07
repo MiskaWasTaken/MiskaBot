@@ -8,6 +8,7 @@ export default class nuke extends BotCommand {
             aliases: ['nuke'],
             description: 'rip channel',
             usage: '$nuke',
+            cooldown: 10000,
         })
     }
     async exec(message) {

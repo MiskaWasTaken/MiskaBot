@@ -8,6 +8,7 @@ export default class hug extends BotCommand {
             aliases: ['hug'],
             description: 'Hug someone',
             usage: '$hug @user',
+            cooldown: 2000,
             args: [
                 {
                     id: 'user',

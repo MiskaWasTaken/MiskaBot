@@ -8,6 +8,7 @@ export default class kick extends BotCommand {
             aliases: ['kick'],
             description: 'kick a user',
             usage: '$kick @user',
+            cooldown: 2000,
             args: [
                 {
                     id: 'userid',

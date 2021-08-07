@@ -7,6 +7,7 @@ export default class owner extends BotCommand {
             aliases: ['owner'],
             description: 'cool ig',
             usage: '$owner',
+            cooldown: 10000,
         })
     }
     async exec(message) {
@@ -14,7 +15,7 @@ export default class owner extends BotCommand {
         const ownerEmbed = new MessageEmbed()
             .setColor('#03dbfc')
             .setTitle('Credits')
-            .setDescription('Mentally absused by Zordlan#3560, physically abused by Miska#6969')
+            .setDescription('Mentally abused by Zordlan#3560, physically abused by Miska#6969')
             .setTimestamp()
 
         message.reply({ embeds: [ownerEmbed] });

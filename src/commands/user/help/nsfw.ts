@@ -7,6 +7,7 @@ export default class nsfw extends BotCommand {
 			aliases: ['helpnsfw'],
 			description: 'Help for NSFW commands',
 			usage: '$helpnsfw',
+			cooldown: 5000,
 
 		
 		})
@@ -49,6 +50,7 @@ export default class nsfw extends BotCommand {
 				{ name: 'Hololive', value: "`$hololive`", inline: true },
 				{ name: 'Pussy', value: "`$pussy`", inline: true },
 				{ name: 'Fuck', value: "`$fuck @user`" },
+				{ name: 'Poki', value: "`$poki`", inline: true },
 			)
 			.setTimestamp()
 			.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');

@@ -8,6 +8,7 @@ export default class blowjob extends BotCommand {
             aliases: ['blowjob'],
             description: '[NSFW CHANNELS ONLY] blowjob picture',
             usage: '-pussy',
+            cooldown: 1000,
         })
     }
     async exec(message) {

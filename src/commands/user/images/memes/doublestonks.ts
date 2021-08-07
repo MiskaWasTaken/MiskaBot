@@ -9,6 +9,7 @@ export default class blur extends BotCommand {
             aliases: ['doublestonks'],
             description: 'doublestonks',
             usage: '$doublestonks @user',
+            cooldown: 5000,
             args: [
                 {
                     id: 'userid',
@@ -18,11 +19,13 @@ export default class blur extends BotCommand {
         })
     }
     async exec(message, args) {
-// here it gives displayavatarurl of undefined. instead make it say "please mention a user"
 
-if(!args.userid) return message.reply("Please mention a user, or yourself.")
+
+        const user = args.userid  
         
-        const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
+        if(!args.userid) return message.reply("Please mention a user, or yourself.")
+        
+        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
 
         const user2 = message.author
 

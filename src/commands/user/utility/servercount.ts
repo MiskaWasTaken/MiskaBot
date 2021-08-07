@@ -8,6 +8,7 @@ export default class servercount extends BotCommand {
             aliases: ['servercount'],
             description: 'Server Counter',
             usage: '$servercount',
+            cooldown: 10000,
             
         })
     }

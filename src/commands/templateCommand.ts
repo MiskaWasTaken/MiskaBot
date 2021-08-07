@@ -7,6 +7,7 @@ export default class templateCommand extends BotCommand {
             aliases: ['templateCommand'],
             description: 'This is an example command!',
             usage: '-templateCommand',
+            cooldown: 1000,
 
             args: [
                 {

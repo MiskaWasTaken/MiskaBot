@@ -8,6 +8,7 @@ export default class uptime extends BotCommand {
             aliases: ['uptime'],
             description: 'uptime',
             usage: '$uptime',
+            cooldown: 10000,
         })
     }
     async exec(message) {

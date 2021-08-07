@@ -8,6 +8,7 @@ export default class ahegao extends BotCommand {
             aliases: ['ahegao'],
             description: '[NSFW CHANNELS ONLY] ahegao',
             usage: '-ahegao',
+            cooldown: 1000,
         })
     }
     async exec(message) {

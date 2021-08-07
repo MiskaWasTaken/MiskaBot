@@ -9,6 +9,7 @@ export default class userinfo extends BotCommand {
             aliases: ['userinfo'],
             description: 'userinfo',
             usage: '$userinfo',
+            cooldown: 1000,
             args: [
                 {
                     id: 'user',

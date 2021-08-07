@@ -11,6 +11,7 @@ export default class utility extends BotCommand {
             aliases: ['config'],
             description: 'Configuration',
             usage: '$config',
+			cooldown: 5000,
 
         })
     }

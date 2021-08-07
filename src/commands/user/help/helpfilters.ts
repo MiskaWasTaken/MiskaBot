@@ -11,6 +11,7 @@ export default class utility extends BotCommand {
             aliases: ['filters'],
             description: 'Music filters',
             usage: '$filters',
+			cooldown: 5000,
 
 
         })

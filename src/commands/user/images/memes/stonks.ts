@@ -8,6 +8,7 @@ export default class blur extends BotCommand {
         super('stonks', {
             aliases: ['stonks'],
             description: 'stonks',
+            cooldown: 5000,
             usage: '$stonks @user',
             args: [
                 {
@@ -19,8 +20,11 @@ export default class blur extends BotCommand {
         })
     }
     async exec(message, args) {
+        const user = args.userid  || message.author
+        
         if(!args.userid) return message.reply("Please mention a user, or yourself.")
-        const avatar = args.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
+
+        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image
         const img = await new DIG.Stonk().getImage(avatar)
         // Add the image as an attachement

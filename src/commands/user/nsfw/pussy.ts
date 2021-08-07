@@ -10,6 +10,7 @@ export default class vagina extends BotCommand {
             aliases: [thing, 'pussy'],
             description: `[NSFW CHANNELS ONLY] ${thing} picture`,
             usage: `-${thing}`,
+            cooldown: 1000,
 
             slash:true,
             slashGuilds:['868532678318780496']

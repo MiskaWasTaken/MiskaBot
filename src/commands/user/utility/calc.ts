@@ -1,46 +1,19 @@
+import { MessageEmbed } from 'discord.js'
+const simplydjs = require('simply-djs-v13')
 import { BotCommand } from '@extensions/BotCommand';
-import { MessageEmbed } from 'discord.js';
-const math = require('mathjs')
 
-export default class calc extends BotCommand {
+export default class botinfo extends BotCommand {
     constructor() {
         super('calc', {
             aliases: ['calc'],
-            description: 'When you forgot to install the calculator app moment',
+            description: 'calculator',
             usage: '$calc',
-            args: [
-                {
-                    id: 'equation',
-                    type: 'string',
-                    match: 'restContent'
-                }
-            ],
+            cooldown: 20000
         })
     }
-    async exec(message, args) {
 
-        if (message.content.includes(':')) {
-            return message.channel.send('That question is too powerful for me!')
-        }
+ async exec(message) {
 
-        const sum = args.equation
-
-        if (!sum) return message.channel.send('please provide a math equation')
-
-
-        const result = JSON.stringify(math.evaluate(sum))
-
-
-        const calc = new MessageEmbed()
-        .setColor('RANDOM')
-        .setTitle(`**${args.equation} = ${result}**`)
-        .setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-        .setTimestamp()
-        .setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg')
-
-
-        message.reply({ embeds: [calc] })
-console.log(args.equation)
-
-    }
-}
+    simplydjs.calculator(message, {
+        embedColor: '#075FFF', //default: #075FFF
+    })}}

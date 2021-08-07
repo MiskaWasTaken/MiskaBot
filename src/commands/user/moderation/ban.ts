@@ -8,6 +8,7 @@ export default class ban extends BotCommand {
             aliases: ['ban'],
             description: 'rekt',
             usage: '$ban @user',
+            cooldown: 2000,
             args: [
                 {
                     id: 'userid',

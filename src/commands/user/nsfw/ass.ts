@@ -7,6 +7,7 @@ export default class ass extends BotCommand {
             aliases: ['ass', 'butt'],
             description: '[NSFW CHANNELS ONLY] ass picture',
             usage: '-ass',
+            cooldown: 1000,
         })
     }
     async exec(message) {
