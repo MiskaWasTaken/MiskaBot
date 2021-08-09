@@ -9,9 +9,14 @@ export default class utility extends BotCommand {
     constructor() {
         super('config', {
             aliases: ['config'],
-            description: 'Configuration',
+            description: 'Configuration for Miska Bot',
             usage: '$config',
-			cooldown: 5000,
+			cooldown: 10000,
+		slash: true,
+		slashOptions: [
+
+		]
+
 
         })
     }

@@ -15,7 +15,17 @@ export default class hug extends BotCommand {
                     type: 'user',
                     match: 'restContent'
                 },
-            ],
+
+        ],
+
+        slash:true,
+        slashOptions: [
+            {
+                name: 'user',
+                description: 'the person you want to hug',
+                type:'USER' //says you hugged undefined 
+            }
+        ]
 
         })
     }

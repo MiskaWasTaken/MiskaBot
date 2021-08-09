@@ -17,6 +17,15 @@ export default class covid extends BotCommand {
                     type: 'string'
                 }
             ],
+            slash: true,
+            slashOptions: [
+                {
+                    name: 'country',
+                    description: 'The country you would like to see stats about',
+                    type:'STRING'
+                }
+    
+            ]
 
         })}  
     

@@ -5,18 +5,23 @@ const simplydjs = require('simply-djs-v13')
 
 
 
+
 export default class utility extends BotCommand {
     constructor() {
         super('changelog', {
             aliases: ['changelog'],
-            description: 'change log',
+            description: 'Change logs for Miska Bot',
             usage: '$changelog',
 			cooldown: 10000,
-
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
 
     async exec(message) {
+        
 
 const embed1 = new MessageEmbed()
 .setTitle('All Change Logs of Miska Bot are found here, have a look around!');

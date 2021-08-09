@@ -19,7 +19,6 @@ export default class nsfw extends BotCommand {
             ],
 
             slash:true,
-            slashGuilds: ['868532678318780496'],
             slashOptions: [
                 {
                     name: 'time',

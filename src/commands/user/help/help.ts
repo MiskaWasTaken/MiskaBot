@@ -9,8 +9,13 @@ export default class help extends BotCommand {
     constructor() {
         super('help', {
             aliases: ['help'],
+			description: 'List of help categories ',
             usage: '$help',
-			cooldown: 5000,
+			cooldown: 10000,
+			slash: true,
+			slashOptions: [
+	
+			]
 
 
         }

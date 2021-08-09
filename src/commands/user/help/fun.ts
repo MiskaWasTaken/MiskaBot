@@ -9,9 +9,13 @@ export default class fun extends BotCommand {
     constructor() {
         super('helpfun', {
             aliases: ['helpfun'],
-            description: 'Help for fun commamds',
+            description: 'List of fun commands',
             usage: '$helpfun',
-			cooldown: 5000,
+			cooldown: 10000,
+			slash: true,
+			slashOptions: [
+	
+			]
 
 
         })

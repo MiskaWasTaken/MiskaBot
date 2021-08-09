@@ -13,10 +13,20 @@ export default class blur extends BotCommand {
             args: [
                 {
                     id: 'user',
-                    type: 'user',
+                    type: 'member',
                     match: 'restContent',
                 }
             ],
+
+            slash:true,
+            slashOptions: [
+                {
+                    name:'user',
+                    description: 'the user you want to blur',
+                    type:'USER',
+                    required: false
+                }
+            ]
 
 
         })
@@ -24,7 +34,7 @@ export default class blur extends BotCommand {
     
     async exec(message, args) {
 
-        const user = args.user || message.author
+        const user = args.user 
 
         if(!user) return message.reply("Please mention a user, or yourself.")
         
