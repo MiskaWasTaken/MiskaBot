@@ -34,15 +34,16 @@ export default class blur extends BotCommand {
     
     async exec(message, args) {
 
-        const user = args.user 
+        const user = args.user.user
 
         if(!user) return message.reply("Please mention a user, or yourself.")
         
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' })
-        // Make the image
+        const avatar = user.displayAvatarURL()
+        // // Make the image
         const img = await new DIG.Blur().getImage(avatar)
-        // Add the image as an attachement
+        // // Add the image as an attachement
         const attach = new Discord.MessageAttachment(img, "delete.png");
 
         message.reply({ files: [attach]  })
+        //await message.reply(avatar)
     }}

@@ -53,7 +53,7 @@ class BotClient extends AkairoClient {
 		errorEmbed.setColor('DARK_RED')
 
 		errorChannel.send({ /*content: `\`\`\`js\n${errorStack}\`\`\``,*/ embeds: [errorEmbed] })
-		console.log(errorChannel)
+		// console.log(errorChannel)
 
 		const returnErrorEmbed = new MessageEmbed()
 			.setTitle('An error occured!')
