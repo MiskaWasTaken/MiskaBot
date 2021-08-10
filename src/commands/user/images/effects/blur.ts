@@ -13,15 +13,14 @@ export default class blur extends BotCommand {
             args: [
                 {
                     id: 'user',
-                    type: 'member',
-                    match: 'restContent',
+                    type: 'user',
                 }
             ],
 
             slash:true,
             slashOptions: [
                 {
-                    name:'user',
+                    name:'users',
                     description: 'the user you want to blur',
                     type:'USER',
                     required: false
@@ -34,16 +33,14 @@ export default class blur extends BotCommand {
     
     async exec(message, args) {
 
-        const user = args.user.user
-
-        if(!user) return message.reply("Please mention a user, or yourself.")
+        const user = args.user
         
-        const avatar = user.displayAvatarURL()
+        const avatar = user.displayAvatarURL({ format: 'gif'})
         // // Make the image
         const img = await new DIG.Blur().getImage(avatar)
         // // Add the image as an attachement
-        const attach = new Discord.MessageAttachment(img, "delete.png");
+        const attach = new Discord.MessageAttachment(img, "delete.gif");
 
         message.reply({ files: [attach]  })
         //await message.reply(avatar)
-    }}
+  }}
