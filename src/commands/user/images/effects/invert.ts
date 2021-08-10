@@ -7,7 +7,7 @@ export default class invert extends BotCommand {
     constructor() {
         super('invert', {
             aliases: ['invert'],
-            description: 'invert someone kek',
+            description: 'Invert yourself',
             usage: '$invert @user',
             cooldown: 5000,
             args: [
@@ -18,16 +18,17 @@ export default class invert extends BotCommand {
                 }
             ],
 
+            slash:true,
+            slashOptions: [
+
+            ]
 
         })
     }
-    async exec(message, args) {
+    async exec(message) {
 
-        const user = args.user || message.author
-
-        if(!user) return message.reply("Please mention a user, or yourself.")
         
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
+        const avatar = await message.author.displayAvatarURL({ format: 'jpg'})
         // Make the image
         const img = await new DIG.Invert().getImage(avatar)
         // Add the image as an attachement

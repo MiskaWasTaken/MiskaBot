@@ -15,18 +15,33 @@ export default class blur extends BotCommand {
                     id: 'user',
                     type: 'user',
                     match: 'restContent'
-                },],
+                }
+            ],
+
+            slash:true,
+            slashOptions: [
+                {
+                    name:'users',
+                    description: 'reeee',
+                    type:'USER',
+                    required: false
+                }
+
+            ]
+
 
 
             
         })
     }
-    async exec(message, args) {
-        const user = args.user 
+    async exec(message, slashOptions) {
+        const user = slashOptions.users 
 
         if(!user) return message.reply("Please mention a user, or yourself.")
+
+        const ree = message.guild.fetch(slashOptions.users);
         
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
+        const avatar = ree.displayAvatarURL({ dynamic: false, format: 'jpg' });
 
         const user2 = message.author
 

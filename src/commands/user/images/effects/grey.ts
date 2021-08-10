@@ -7,7 +7,7 @@ export default class grey extends BotCommand {
     constructor() {
         super('grey', {
             aliases: ['grey'],
-            description: 'grey someone kek',
+            description: 'Greyscale yourself',
             usage: '$grey @user',
             cooldown: 5000,
             args: [
@@ -18,15 +18,18 @@ export default class grey extends BotCommand {
                 }
             ],
 
+            slash:true,
+            slashOptions: [
+
+            ]
+
 
         })
     }
-    async exec(message, args) {
-        const user = args.user || message.author
+    async exec(message) {
 
-        if(!user) return message.reply("Please mention a user, or yourself.")
 
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
+        const avatar = await message.author.displayAvatarURL({ format: 'jpg'})
         // Make the image
         const img = await new DIG.Greyscale().getImage(avatar)
         // Add the image as an attachement

@@ -7,7 +7,7 @@ export default class blur extends BotCommand {
     constructor() {
         super('ad', {
             aliases: ['ad'],
-            description: 'make an ad of someone kek',
+            description: 'Advert?',
             usage: '$ad @user',
             cooldown: 5000,
             args: [
@@ -18,15 +18,18 @@ export default class blur extends BotCommand {
                 }
             ],
 
+            slash:true,
+            slashOptions: [
+
+            ]
+
+
 
         })
     }
-    async exec(message, args) {
-        const user = args.user || message.author
-
-        if(!user) return message.reply("Please mention a user, or yourself.")
+    async exec(message) {
         
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
+        const avatar = message.author.displayAvatarURL({ dynamic: false, format: 'jpg' });
         // Make the image
         const img = await new DIG.Ad().getImage(avatar)
         // Add the image as an attachement

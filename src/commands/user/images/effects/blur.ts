@@ -7,7 +7,7 @@ export default class blur extends BotCommand {
     constructor() {
         super('blur', {
             aliases: ['blur'],
-            description: 'rekt',
+            description: 'Blur yourself',
             usage: '$blur @user',
             cooldown: 5000,
             args: [
@@ -19,28 +19,22 @@ export default class blur extends BotCommand {
 
             slash:true,
             slashOptions: [
-                {
-                    name:'users',
-                    description: 'the user you want to blur',
-                    type:'USER',
-                    required: false
-                }
+
             ]
 
 
         })
     }
     
-    async exec(message, args) {
+    async exec(message) {
 
-        const user = args.user
+        // const user = await message.guild.members.fetch(slashOptions.users) || message.author  
         
-        const avatar = user.displayAvatarURL({ format: 'gif'})
-        // // Make the image
+        const avatar = await message.author.displayAvatarURL({ format: 'png'})
+
         const img = await new DIG.Blur().getImage(avatar)
-        // // Add the image as an attachement
-        const attach = new Discord.MessageAttachment(img, "delete.gif");
+
+        const attach = new Discord.MessageAttachment(img, "delete.png");
 
         message.reply({ files: [attach]  })
-        //await message.reply(avatar)
   }}
