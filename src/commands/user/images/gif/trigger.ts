@@ -24,7 +24,11 @@ export default class trigger extends BotCommand {
 
         if(!user) return message.reply("Please mention a user")
         
+<<<<<<< HEAD
         const avatar = user.displayAvatarURL({ dynamic: false, format: 'gif' });
+=======
+        const avatar = user.displayAvatarURL({ dynamic: false, format: 'png' });
+>>>>>>> 597d1bfa728b3314838e5880462da3a68beda7df
         // Make the image
         const img = await new DIG.Triggered().getImage(avatar)
         // Add the image as an attachement

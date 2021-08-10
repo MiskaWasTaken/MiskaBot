@@ -26,6 +26,8 @@ export default class pronouns extends BotCommand {
         const pronouns = await utils.getPronouns(person, 'details')
         const pronounsEmbed = new MessageEmbed()
 
+        if(!person) message.reply('Please mention a user')
+
         if (person.id == message.author.id) { pronounsEmbed.setTitle('Your pronouns') }
         else { pronounsEmbed.setTitle(`${person.username}'s pronouns`) }
 
