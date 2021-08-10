@@ -13,26 +13,28 @@ export default class blur extends BotCommand {
             args: [
                 {
                     id: 'user',
-                    type: 'user',
+                    type: 'string',
                 }
             ],
 
             slash:true,
             slashOptions: [
-
+                {
+                    name: 'user',
+                    description: 'person to blur',
+                    type:'STRING'
+                }
             ]
-
-
         })
     }
     
-    async exec(message) {
-
-        // const user = await message.guild.members.fetch(slashOptions.users) || message.author  
+    async exec(message, args) {        
+        let user
         
-        const avatar = await message.author.displayAvatarURL({ format: 'png'})
+        if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+        else user = message.author
 
-        const img = await new DIG.Blur().getImage(avatar)
+        const img = await new DIG.Blur().getImage(user.displayAvatarURL({format:'png'}))
 
         const attach = new Discord.MessageAttachment(img, "delete.png");
 
