@@ -7,7 +7,7 @@ export default class bobross extends BotCommand {
     constructor() {
         super('bobross', {
             aliases: ['bobross'],
-            description: 'make Bobross draw someone',
+            description: 'Make Bobross draw someone',
             usage: '$bobross @user',
             cooldown: 5000,
             args: [

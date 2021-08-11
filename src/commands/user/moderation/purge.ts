@@ -1,12 +1,14 @@
 import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
+// pls set max limit to 100
+// pls make if no perm for bot = actually send a message instead of showing the defualt error thing
 
 
 export default class purge extends BotCommand {
     constructor() {
         super('purge', {
             aliases: ['purge'],
-            description: 'mass delete messages',
+            description: 'Mass delete messages',
             usage: '$purge <amount>',
             cooldown: 2000,
             args: [
@@ -15,7 +17,17 @@ export default class purge extends BotCommand {
                     type: 'number',
                     match: 'restContent'
                 }
-            ]
+            ],
+
+            slash:true,
+            slashOptions: [
+            {
+                name: 'amount',
+                description: 'Amount to purge',
+                type: 'NUMBER',
+                required: true
+            }
+        ]
         })
     }
 

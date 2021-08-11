@@ -1,14 +1,17 @@
 import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
-
+// pls make if no perm for bot = actually send a message instead of showing the defualt error thing
 
 export default class unlock extends BotCommand {
     constructor() {
         super('unlock', {
             aliases: ['unlock'],
-            description: 'unlock a locked channel',
+            description: 'Unlock a locked channel',
             usage: '$unlock',
             cooldown: 2000,
+            slashOptions: [
+
+            ]
         })
     }
     async exec(message) {

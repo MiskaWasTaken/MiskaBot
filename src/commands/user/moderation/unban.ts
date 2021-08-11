@@ -1,12 +1,13 @@
 import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
+// pls make if no perm for bot = actually send a message instead of showing the defualt error thing
 
 
 export default class unban extends BotCommand {
     constructor() {
         super('unban', {
             aliases: ['unban'],
-            description: 'rekt',
+            description: 'Unban a banned user',
             usage: '$unban @user',
             cooldown: 2000,
             args: [
@@ -15,14 +16,20 @@ export default class unban extends BotCommand {
                     type: 'string',
                     match: 'restContent'
                 },
+            ],
+
+            slash:true,
+            slashOptions: [
+                {
+                    name: 'user',
+                    description: 'The user you would like to unban',
+                    type:'STRING',
+                    required: true
+                },
             ]
         })
     }
     async exec(message, args) {
-//if no id provided say: "please provide an id". if incorrect id say "that user is not banned, or you have provided an incorrect id"
-        const user = args.userid
-
-    
 
 
         const permEmbed = new MessageEmbed()
@@ -40,16 +47,17 @@ export default class unban extends BotCommand {
           else {
             if (!message.guild) return;
 
-            if (user) {
-         
-              const member= this.client.users.fetch(user[0])
-              
+            let user
+        
+            if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+            else user = message.author
 
-              if (!user) {return message.reply(`<a:xmark:869969568301477929> user ID not provided!`)}
+            if (user) {
+      
         
-              if (member) {
+              if (user) {
         
-                member
+                user
 
                 // banning code 
 
@@ -63,19 +71,6 @@ export default class unban extends BotCommand {
                 await message.guild.members.unban(user); {message.reply({ embeds: [sucEmbed] })}
                 await  message.reply({ embeds: [sucEmbed] })
                   
-                  // log err in the console
-                  .catch(err => {
-                    
-                    const errorEmbed = new MessageEmbed()
-                    .setColor('#fc036f')
-                    .setDescription(`<a:xmark:869969568301477929> Unable to unban ${user}!`)
-                    .setTimestamp()
-                    .setFooter(`Requested by: ${message.author.username}`);
-      
-                    message.reply({ embeds: [errorEmbed] })
-        
-                    console.error(err);
-                  });
                 } else {
                  
           
@@ -90,10 +85,10 @@ export default class unban extends BotCommand {
 
                 } else {
              
-      
+      // btw this only works if user id is invalid
                   const invalidEmbed = new MessageEmbed()
                   .setColor('#fc036f')
-                  .setDescription('<a:xmark:869969568301477929> You did not provide a valid ID! Or i do not have permission to unban.')
+                  .setDescription('<a:xmark:869969568301477929> You did not provide a valid ID!')
                   .setTimestamp()
                   .setFooter(`Requested by: ${message.author.username}`);
            

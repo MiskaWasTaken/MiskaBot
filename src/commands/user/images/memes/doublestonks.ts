@@ -7,7 +7,7 @@ export default class doublestonks extends BotCommand {
     constructor() {
         super('doublestonks', {
             aliases: ['doublestonks'],
-            description: 'doublestonks!',
+            description: 'Doublestonks!',
             usage: '$doublestonks @user',
             cooldown: 5000,
             args: [

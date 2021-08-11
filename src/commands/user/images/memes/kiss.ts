@@ -7,7 +7,7 @@ export default class kiss extends BotCommand {
     constructor() {
         super('kiss', {
             aliases: ['kiss'],
-            description: 'kiss someone <3',
+            description: 'Kiss someone <3',
             usage: '$kiss @user',
             cooldown: 5000,
             args: [
