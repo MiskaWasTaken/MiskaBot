@@ -23,7 +23,8 @@ export default class hug extends BotCommand {
             {
                 name: 'user',
                 description: 'the person you want to hug',
-                type:'USER' //says you hugged undefined 
+                type:'USER',  
+                required: true
             }
         ]
 
@@ -61,18 +62,21 @@ export default class hug extends BotCommand {
         ]
 
 
+        let user
+        
+        if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+        else user = message.author
 
         if (args.user){
 
         const hugEmbed = new MessageEmbed()
-            .setTitle(`You hug ${args.user.username} :heart:`)
+            .setDescription(`**You hug ${user} :heart:**`)
             .setImage(images[Math. floor(Math. random()*images. length)])
-            .setTimestamp()
         
             message.reply({ embeds: [hugEmbed] });
         }
 
-        if (!args.user) return message.reply("Please mention a user")
+        if (!args.user) return message.reply("Please add a user without your command")
 
         }
 

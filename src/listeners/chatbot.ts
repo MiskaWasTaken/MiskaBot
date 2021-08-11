@@ -15,6 +15,7 @@ class chatbot extends BotListener {
             if (message.author.id == this.client.user.id) return
             fetch.default(`https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(message.content)}&uid=${message.author.id}`)
             .then(res => res.json())
+            .replace('Aco', 'Miska Bot')
             .then(data => {
                 
               if(message.content.includes('@')){

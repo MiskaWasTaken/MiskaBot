@@ -16,7 +16,8 @@ export default class pronouns extends BotCommand {
                 {
                     name:'person',
                     description:'person',
-                    type:'USER'
+                    type:'USER',
+                    required: true
                 }
             ]
         })

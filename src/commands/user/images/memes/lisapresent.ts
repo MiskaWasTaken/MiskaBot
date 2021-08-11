@@ -3,7 +3,7 @@ const DIG = require("discord-image-generation");
 const Discord = require('discord.js')
 
 
-export default class blur extends BotCommand {
+export default class present extends BotCommand {
     constructor() {
         super('present', {
             aliases: ['present'],
@@ -16,7 +16,20 @@ export default class blur extends BotCommand {
                     type: 'string',
                     match: 'restContent'
                 }
+            ],
+
+            slash:true,
+            slashOptions: [
+
+                {
+                    name: 'text',
+                    description: "The text you would like to present",
+                    type:'STRING',
+                    required: true
+                }
+
             ]
+
         })
     }
 
@@ -32,7 +45,7 @@ export default class blur extends BotCommand {
         // Make the image
         const img = await new DIG.LisaPresentation().getImage(texts)
         // Add the image as an attachement
-        const attach = new Discord.MessageAttachment(img, "delete.png");
+        const attach = new Discord.MessageAttachment(img, "present.png");
 
         message.reply({ files: [attach]  })
        

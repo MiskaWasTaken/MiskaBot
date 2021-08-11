@@ -2,11 +2,7 @@ import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
 const simplydjs = require('simply-djs-v13')
 
-
-
-
-
-export default class utility extends BotCommand {
+export default class changelog  extends BotCommand {
     constructor() {
         super('changelog', {
             aliases: ['changelog'],

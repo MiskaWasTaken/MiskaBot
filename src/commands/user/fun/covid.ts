@@ -33,23 +33,15 @@ export default class covid extends BotCommand {
 
 
         const countries = args.country
-
-        const noArgs = new MessageEmbed()
-        .setTitle('Invalid Command Usage')
-        .setColor('#8153e6')
-        .setDescription(`You Can Try Using **$covid all** or **$covid Canada**`)
-
-        if (!countries) {return message.reply({ embeds: [noArgs] })}
 		
 
-        if (message.content === "$covid all") {
+        if (!countries) {
 
             fetch(`https://covid19.mathdro.id/api`)
             .then(response => response.json())
             .then(data => {
          
                 const confirmed = data.confirmed.value.toLocaleString()
-                const recovered = data.recovered.value.toLocaleString()
                 const deaths = data.deaths.value.toLocaleString()
 
                 // making the covid embed with the world stats
@@ -58,7 +50,6 @@ export default class covid extends BotCommand {
                 .setTitle(`Worldwide COVID-19 Stats 🌎`)
                 .addFields(
                     { name: `Confirmed Cases:`, value: `${confirmed}`, inline: true },
-                    { name: 'Recovered:', value: `${recovered}`, inline: true },
                     { name: 'Deaths', value: `${deaths}`, inline: true })
                     .setTimestamp()
                     .setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
@@ -75,7 +66,6 @@ export default class covid extends BotCommand {
             .then(data => {
 
                 const confirmed = data.confirmed.value.toLocaleString()
-                const  recovered = data.recovered.value.toLocaleString()
                 const deaths = data.deaths.value.toLocaleString()
 
                 const statsCovidc = new MessageEmbed()
@@ -84,7 +74,6 @@ export default class covid extends BotCommand {
                 .addFields(
                     { name: `COVID-19 Stats for:`, value: `${countries}`, inline: true },
                     { name: `Confirmed Cases:`, value: `${confirmed}`, inline: true },
-                    { name: 'Recovered:', value: `${recovered}`, inline: true },
                     { name: 'Deaths', value: `${deaths}`, inline: true })
                     .setTimestamp()
                     .setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');  
@@ -93,5 +82,5 @@ export default class covid extends BotCommand {
 
             }).catch(() => {
                 // if it can't find the country that u said it will send this message
-                return message.channel.send('Something went wrong or you provided an invalid country')
+                return message.reply('Something went wrong or you provided an invalid country')
             })}}}

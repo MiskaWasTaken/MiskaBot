@@ -1,11 +1,8 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
+const simplydjs = require('simply-djs-v13')
 
-
-
-
-
-export default class utility extends BotCommand {
+export default class config extends BotCommand {
     constructor() {
         super('config', {
             aliases: ['config'],
@@ -24,25 +21,48 @@ export default class utility extends BotCommand {
     async exec(message) {
 
 
-const helputilEmbed = new MessageEmbed()
-	.setColor('RANDOM')
-	.setTitle('Configuration')
-	.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-	.setAuthor('Miska Bot', 'https://i.imgur.com/I8qSDdc.jpg', 'https://discordbotlist.com/bots/miska-bot')
-	.setDescription('This is the list of configurations and permissions required for each command.')
-	.addFields(
-		{ name: 'Chat Bot', value: "`Please create a channel specifically called chat-bot`", inline: true },
-		{ name: 'Please make sure the bot has the permissions you accepted during auth', value: "`Some commands may break without it`", inline: true },
-		{ name: 'Ban | Unban', value: "`BAN_MEMBERS`", inline: true },
-		{ name: 'Kick', value: "`KICK_MEMBERS`", inline: true },
-		{ name: 'Lock | Unlock', value: "`MANAGE CHANNELS`", inline: true },
-		{ name: 'Nuke', value: "`ADMINISTRATOR`", inline: true },
-		{ name: 'Purge', value: "`MANAGE_MESSAGES`", inline: true }
 
-	)
-	.setTimestamp()
-	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
+		
+const embed1 = new MessageEmbed()
+.setTitle('These are the configuration/permissions required to run Miska Bot to its fullest potential');
 
-message.reply({ embeds: [helputilEmbed] });
+ const embed2 = new MessageEmbed()
+ .setColor('RANDOM')
+.setTitle('Miscellaneous features')
+.setDescription('Features that stand out')
+.addFields(
+    { name: 'AI Chat Bot', value: `Create a channel specifically called 'chat-bot'. Make sure I have permission to talk in the channel. Thats it!`})
 
-}}
+const embed3 = new MessageEmbed()
+.setColor('RANDOM')
+.setTitle('You reached the end! Keep checking frequently for more updates!')
+.setDescription('Permissions I need for every command.')
+.addFields(
+    { name: 'Ban | Unban', value: `BAN MEMBERS`},
+	{ name: 'Kick', value: `KICK MEMBERS`},
+	{ name: 'Lock | Unlock', value: `MANAGE CHANNELS`},
+	{ name: 'Purge', value: `MANAGE MESSAGES`},
+	{ name: 'Nuke', value: `I must have: MANAGE CHANNELS | The executer must have: ADMINISTRATOR`})
+
+
+const pages = [embed1, embed2, embed3] // REQUIRED
+
+// its still possible without embed
+// let pages = ['page1', 'page2', 'page3']
+
+simplydjs.embedPages(this.client, message, pages, {
+  firstEmoji: '⏪', // default: ⏪
+  backEmoji: '◀️', // default: ◀️
+  delEmoji: '🗑️', // default: 🗑️
+  forwardEmoji: '▶️', // default: ▶️
+  lastEmoji: '⏩', // default: ⏩
+  
+  btncolor: 'SUCCESS', // default: SUCCESS
+  delcolor: 'DANGER', // default: DANGER
+  skipcolor: 'PRIMARY', // default: PRIMARY
+   // Colors that discord.js support (PRIMARY/SECONDARY/SUCCESS/DANGER)
+   
+  skipBtn: true,
+})}}
+
+

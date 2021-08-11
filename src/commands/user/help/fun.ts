@@ -31,12 +31,11 @@ const helpfEmbed = new MessageEmbed()
 	.setAuthor('Miska Bot', 'https://i.imgur.com/I8qSDdc.jpg', 'https://discordbotlist.com/bots/miska-bot')
 	.setDescription('These are the fun commands for Miska Bot')
 	.addFields(
-		{ name: `Covid`, value: "`$covid USA`", inline: true },
-		{ name: 'Hug', value: "`$hug @user`", inline: true },
-		{ name: 'Meme', value: "`$meme`", inline: true },
-		{ name: 'Rock Paper Scissors', value: "`$rps`", inline: true },
-		{ name: 'Tic Tac Toe', value: "`$tictactoe`", inline: true },
-		{ name: 'More coming soon', value: "Give me time please", inline: true}
+		{ name: `Covid`, value: "`/covid <country`", inline: true },
+		{ name: 'Hug', value: "`/hug <user>`", inline: true },
+		{ name: 'Meme', value: "`/meme <time>`", inline: true },
+		{ name: '8ball', value: "`/8ball <user>`", inline: true },
+		{ name: 'How Gay', value: "`/howgay <user>`", inline: true },
 	)
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
