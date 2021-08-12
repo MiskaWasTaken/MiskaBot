@@ -8,9 +8,13 @@ export default class femdom extends BotCommand {
     constructor() {
         super(thing, {
             aliases: [thing],
-            description: `[NSFW CHANNELS ONLY] ${thing} picture`,
+            description: `[NSFW CHANNELS ONLY]`,
             usage: `-${thing}`,
             cooldown: 1000,
+            slash: true,
+            slashOptions: [
+    
+            ]   
         })
     }
     async exec(message) {

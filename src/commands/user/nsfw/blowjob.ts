@@ -6,9 +6,13 @@ export default class blowjob extends BotCommand {
     constructor() {
         super('blowjob', {
             aliases: ['blowjob'],
-            description: '[NSFW CHANNELS ONLY] blowjob picture',
+            description: '[NSFW CHANNELS ONLY]',
             usage: '-pussy',
             cooldown: 1000,
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
     async exec(message) {

@@ -6,9 +6,13 @@ export default class servercount extends BotCommand {
     constructor() {
         super('servercount', {
             aliases: ['servercount'],
-            description: 'Server Counter',
+            description: 'Server member count',
             usage: '$servercount',
             cooldown: 10000,
+            slash: true,
+            slashOptions: [
+    
+            ]
             
         })
     }

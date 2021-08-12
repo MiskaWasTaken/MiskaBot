@@ -8,7 +8,11 @@ export default class botinfo extends BotCommand {
             aliases: ['calc'],
             description: 'calculator',
             usage: '$calc',
-            cooldown: 20000
+            cooldown: 5000,
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
 

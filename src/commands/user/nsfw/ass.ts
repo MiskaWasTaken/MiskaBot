@@ -5,9 +5,13 @@ export default class ass extends BotCommand {
     constructor() {
         super('ass', {
             aliases: ['ass', 'butt'],
-            description: '[NSFW CHANNELS ONLY] ass picture',
+            description: '[NSFW CHANNELS ONLY]',
             usage: '-ass',
             cooldown: 1000,
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
     async exec(message) {

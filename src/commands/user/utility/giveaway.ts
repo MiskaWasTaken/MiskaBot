@@ -21,6 +21,21 @@ export default class giveaway extends BotCommand {
                     match: 'restContent'
                 }
             ],
+            slash:true,
+            slashOptions: [
+                {
+                    name: 'time',
+                    description: 'Duration of giveaway',
+                    type:'STRING',  
+                    required: true
+                },
+                {
+                    name: 'item',
+                    description: 'Item to be given away',
+                    type:'STRING',  
+                    required: true
+                },
+            ]
 
         })
     }

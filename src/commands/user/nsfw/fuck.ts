@@ -17,9 +17,24 @@ export default class hug extends BotCommand {
                 },
             ],
 
+            slash:true,
+            slashOptions: [
+                {
+                    name: 'user',
+                    description: 'the person you want to fuck',
+                    type:'USER',  
+                    required: true
+                }
+            ]
+
         })
     }
     async exec(message, args) {
+
+        let user
+        
+        if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+        else user = message.author
 
         if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
 
@@ -28,7 +43,8 @@ export default class hug extends BotCommand {
         if (args.user){
 
         const hugEmbed = new MessageEmbed()
-            .setTitle(`You fuck ${args.user.username} <a:pepesex:872026071170699305>`)
+            .setColor('RANDOM')
+            .setDescription(`**${message.author} fucks ${user} <a:pepesex:872026071170699305>**`)
             .setImage(`${res.url}`)
             .setTimestamp()
         

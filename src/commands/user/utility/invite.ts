@@ -8,10 +8,14 @@ export default class invite extends BotCommand {
             description: 'Shows the link to invite me to your server!',
             usage: '-invite',
             cooldown: 10000,
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
     async exec(message) {
-        const inviteLink = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+        const inviteLink = 'https://discord.ly/miska-bot'
 
         const inviteEmbed = new MessageEmbed()
             .setTitle('Invite Me')

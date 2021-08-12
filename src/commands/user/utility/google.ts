@@ -16,6 +16,14 @@ export default class google extends BotCommand {
                     match: 'restContent'
                 }
             ],
+            slash:true,
+            slashOptions: [
+                {
+                    name: 'google',
+                    description: 'Search query',
+                    type:'STRING',  
+                    required: true
+                }]
         })
     }
     async exec(message, args) {

@@ -6,13 +6,19 @@ export default class nsfw extends BotCommand {
     constructor() {
         super('nsfw', {
             aliases: ['nsfw'],
-            description: `nsfw`,
+            description: `Random nsfw image`,
             usage: `-nsfw`,
             cooldown: 1000,
+            slash: true,
+            slashOptions: [
+    
+            ] 
 
         })
     }
     async exec(message) {
+
+        
         const NSFW = require("discord-nsfw");
         const nsfww = new NSFW();
 

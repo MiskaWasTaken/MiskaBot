@@ -6,9 +6,13 @@ export default class ahegao extends BotCommand {
     constructor() {
         super('ahegao', {
             aliases: ['ahegao'],
-            description: '[NSFW CHANNELS ONLY] ahegao',
+            description: '[NSFW CHANNELS ONLY]',
             usage: '-ahegao',
             cooldown: 1000,
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
     async exec(message) {

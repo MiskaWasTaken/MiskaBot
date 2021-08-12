@@ -9,6 +9,10 @@ export default class serverinfo extends BotCommand {
             description: 'Server information',
             usage: '$serverinfo',
             cooldown: 10000,
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
 
