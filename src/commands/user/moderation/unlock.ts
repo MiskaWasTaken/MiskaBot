@@ -30,6 +30,8 @@ export default class unlock extends BotCommand {
         if(!message.member.permissions.has(['MANAGE_CHANNELS', 'ADMINISTRATOR'])) 
         message.reply({ embeds: [upermEmbed] })
 
+        if(!message.guild.me.permissions.toArray().includes('MANAGE_CHANNELS')) return message.reply("I do not have permission to unlock this channel. (MANAGE_CHANNELS).")
+
         else {
     
         const msg = await message.reply("Loading...")

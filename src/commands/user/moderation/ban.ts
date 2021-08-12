@@ -52,9 +52,12 @@ export default class ban extends BotCommand {
         .setFooter('Permission Error BAN_MEMBERS, ADMINISTRATOR')
       
           // the permission a member needs to ban
-          if(!message.member.permissions.has(['BAN_MEMBERS', 'ADMINISTRATOR']))
+          if(!message.member.permissions.has(['BAN_MEMBERS']))
           // if someone doesnt have perms send this
           message.reply({ embeds: [permEmbed] })
+
+
+          if(!message.guild.me.permissions.toArray().includes('BAN_MEMBERS')) return message.reply("I do not have permission to ban members (BAN_MEMBERS).")
       
           else {
 

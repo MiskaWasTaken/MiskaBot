@@ -47,6 +47,9 @@ export default class purge extends BotCommand {
         if(!message.member.permissions.has(['MANAGE_MESSAGES', 'ADMINISTRATOR'])) 
         message.reply({ embeds: [upermEmbed] });
 
+        if(!message.guild.me.permissions.toArray().includes('MANAGE_MESSAGES')) return message.reply("I do not have permission to delete messages. (MANAGE_MESSAGES)")
+
+
         else {
    
             const sucEmbed = new MessageEmbed()

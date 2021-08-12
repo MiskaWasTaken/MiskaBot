@@ -52,11 +52,11 @@ export default class kick extends BotCommand {
         .setFooter('Permission Error KICK_MEMBERS, ADMINISTRATOR')
       
           // the permission a member needs to ban
-          if(!message.member.permissions.has(['KICK_MEMBERS', 'ADMINISTRATOR']))
+          if(!message.member.permissions.has(['KICK_MEMBERS']))
           // if someone doesnt have perms send this
           message.reply({ embeds: [permEmbed] })
 
-          
+          if(!message.guild.me.permissions.toArray().includes('KICK_MEMBERS')) return message.reply("I do not have permission to kick members (KICK_MEMBERS).")
       
           else {
             if (!message.guild) return;

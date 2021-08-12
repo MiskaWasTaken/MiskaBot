@@ -43,6 +43,9 @@ export default class unban extends BotCommand {
           if(!message.member.permissions.has(['BAN_MEMBERS', 'ADMINISTRATOR']))
           // if someone doesnt have perms send this
           message.reply({ embeds: [permEmbed] })
+
+          if(!message.guild.me.permissions.toArray().includes('BAN_MEMBERS')) return message.reply("I do not have permission to unban members. (BAN_MEMBERS)")
+
       
           else {
             if (!message.guild) return;

@@ -36,15 +36,6 @@ client.on('messageCreate', (message) => {
 	const args = message.content.slice(prefix.length).trim().split(' ')
 	const command = args.shift().toLowerCase()
 
-	if (command === 'play') {
-		if(!message.member.voice.channel){ 
-			message.reply("You must be in a voice channel to use this command.")
-			return;
-		}
-
-		distube.play(message, args.join(' '))
-
-	}
 
 	if (command === 'volume') {
 		if(!message.member.voice.channel){ 
@@ -259,9 +250,6 @@ client.on('messageCreate', (message) => {
 
 const status = (queue) => `Volume: \`${queue.volume}%\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "Server Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
 
-distube.on("playSong", (queue, song) => queue.textChannel.send(
-    `Playing: \n\`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user.tag}\n${status(queue)}`
-));
 
 distube.on('addSong', (queue, song) =>
 queue.textChannel.send(
