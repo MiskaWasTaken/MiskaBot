@@ -37,6 +37,8 @@ export default class purge extends BotCommand {
 //nothing to do here
         const purge = args.amount
 
+
+
         const upermEmbed = new MessageEmbed()
         .setColor('#03dbfc')
         .setTitle('Purge Command')
@@ -49,6 +51,11 @@ export default class purge extends BotCommand {
 
         if(!message.guild.me.permissions.toArray().includes('MANAGE_MESSAGES')) return message.reply("I do not have permission to delete messages. (MANAGE_MESSAGES)")
 
+        if (purge > 100){
+            message.reply("Maximum purge amount is 100.").then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                return;
+        })}
 
         else {
    

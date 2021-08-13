@@ -11,17 +11,23 @@ export default class reload extends BotCommand {
         super('reload', {
             aliases: ['reload'],
             description: 'Dev only :)',
+            cooldown: 10000,
             slash: true,
             slashOptions: [
 
             ],
-            ownerOnly: true
+
         });
     }
 
 
     async exec(message) {
         
+        if (message.interaction && !this.client.ownerID.includes(message.author.id)){
+            message.reply({content: 'I only respond to the mighty ones who have created me.', ephemeral: true})
+            return;
+        } 
+
         const reloadEmbed = new MessageEmbed()
             .setDescription(`Reloading!`)
             .setColor(message.member.displayColor)

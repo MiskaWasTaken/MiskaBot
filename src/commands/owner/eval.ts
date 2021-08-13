@@ -25,6 +25,7 @@ export default class evaluate extends BotCommand {
         super('eval', {
             aliases: ['eval'],
             description: 'Evaluate code',
+            cooldown: 10000,
             args: [
                 { id: 'codetoeval', type: 'string', match: 'rest' },
                 { id: 'silent', match: 'flag', flag: '--silent', },
@@ -38,11 +39,16 @@ export default class evaluate extends BotCommand {
 					type:'STRING',  
 				}
             ],
-            ownerOnly: true,
         })
     }
 
     async exec(message, args) {  
+
+        if (message.interaction && !this.client.ownerID.includes(message.author.id)){
+            message.reply({content: 'I only respond to the mighty ones who have created me.', ephemeral: true})
+            return;
+        } 
+
         if (args.codetoeval.includes('token')) { return (message.util.send('no token')) }
         if (args.codetoeval.includes('env')) { return message.util.send('no env') }
 

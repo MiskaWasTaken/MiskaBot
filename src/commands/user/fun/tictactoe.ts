@@ -10,6 +10,7 @@ export default class ttt extends BotCommand {
             description: 'Challenge someone to a tic tac toe match',
             usage: '$hug @user',
             cooldown: 5000,
+            prefix: '$',
             args: [
                 {
                     id: 'user',

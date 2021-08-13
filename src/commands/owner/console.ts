@@ -14,6 +14,7 @@ export default class console extends BotCommand {
         super('console', {
             aliases: ['console'],
             description: "Dev only :)",
+            cooldown: 10000,
 
             args: [
                 {
@@ -31,12 +32,16 @@ export default class console extends BotCommand {
 				}
             ],
             channel: 'guild',
-            ownerOnly: true
         });
     }
 
     async exec(message, args) {
 
+        if (message.interaction && !this.client.ownerID.includes(message.author.id)){
+            message.reply({content: 'I only respond to the mighty ones who have created me.', ephemeral: true})
+            return;
+        } 
+        
         const output = await sh(args.command)
 
         const outputembed = new MessageEmbed()

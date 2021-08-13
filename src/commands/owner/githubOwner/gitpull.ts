@@ -10,16 +10,21 @@ export default class gitpull extends BotCommand {
         super('gitpull', {
             aliases: ['gitpull'],
             description: 'Dev only :)',
+            cooldown: 10000,
             slash: true,
             slashOptions: [
 
             ],
-            ownerOnly: true,
             channel: 'guild',
         });
     }
 
     async exec(message) {
+
+        if (message.interaction && !this.client.ownerID.includes(message.author.id)){
+            message.reply({content: 'I only respond to the mighty ones who have created me.', ephemeral: true})
+            return;
+        } 
         
         const githubembed = new MessageEmbed()
 

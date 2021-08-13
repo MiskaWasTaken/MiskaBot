@@ -10,6 +10,7 @@ export default class utility extends BotCommand {
             usage: '$rps user',
 			cooldown: 10000,
             slash: true,
+            prefix: '$',
             slashOptions: [
 
                 {

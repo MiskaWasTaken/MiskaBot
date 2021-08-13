@@ -11,6 +11,7 @@ export default class gitpush extends BotCommand {
         super('gitpush', {
             aliases: ['gitpush'],
             description: "Dev only :)",
+            cooldown: 10000,
             args: [
                 {
                     id: 'commitreason',
@@ -33,6 +34,11 @@ export default class gitpush extends BotCommand {
     }
 
     async exec(message, args) {
+
+        if (message.interaction && !this.client.ownerID.includes(message.author.id)){
+            message.reply({content: 'I only respond to the mighty ones who have created me.', ephemeral: true})
+            return;
+        } 
 
         if (!args.commitreason){
             return message.reply("Give a reason you smoothbrain")
