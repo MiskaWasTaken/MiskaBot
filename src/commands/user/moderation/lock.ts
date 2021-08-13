@@ -1,14 +1,18 @@
 import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
 
-
+// pls make if no perm for bot = actually send a message instead of showing the defualt error thing
 export default class lock extends BotCommand {
     constructor() {
         super('lock', {
             aliases: ['lock'],
-            description: 'lock a channel',
+            description: 'Lock a channel',
             usage: '$lock ',
             cooldown: 2000,
+            slash:true,
+            slashOptions: [
+
+        ]
         })
     }
     async exec(message) {
@@ -23,10 +27,12 @@ export default class lock extends BotCommand {
         .setTimestamp()
         .setFooter('Permission Error MANAGE_CHANNELS')
     
-
-
+    
         if(!message.member.permissions.has(['MANAGE_CHANNELS', 'ADMINISTRATOR']))
         message.reply({ embeds: [upermEmbed] })
+
+        if(!message.guild.me.permissions.toArray().includes('MANAGE_CHANNELS')) return message.reply("I do not have permission to lock this channel. (MANAGE_CHANNELS).")
+
 
         else {
     

@@ -5,9 +5,9 @@ const Discord = require('discord.js')
 
 export default class blur extends BotCommand {
     constructor() {
-        super('smoking', {
-            aliases: ['smoking'],
-            description: 'but it does effect someone kek',
+        super('affect', {
+            aliases: ['affect'],
+            description: 'Dont do it',
             usage: '$smoking @user',
             cooldown: 5000,
             args: [
@@ -16,20 +16,38 @@ export default class blur extends BotCommand {
                     type: 'user',
                     match: 'restContent'
                 }
+            ],
+
+            slash:true,
+            slashOptions: [
+
+                {
+                    name: 'user',
+                    description: "The user you want to affect",
+                    type:'USER',
+                    required: false
+                }
+
             ]
+
         })
     }
     async exec(message, args) {
-        const user = args.userid  || message.author
-        
-        if(!args.userid) return message.reply("Please mention a user, or yourself.")
+        try {
 
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
-        // Make the image
-        const img = await new DIG.Affect().getImage(avatar)
-        // Add the image as an attachement
-        const attach = new Discord.MessageAttachment(img, "delete.png");
-
-        message.reply({ files: [attach]  })
-       
-    }}
+            let user
+            
+            if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+            else user = message.author
+    
+            const img = await new DIG.Affect().getImage(user.displayAvatarURL({format:'png'}))
+    
+            const attach = new Discord.MessageAttachment(img, "affect.png");
+    
+            message.reply({ files: [attach]  })
+    
+            } catch (err) {
+                message.reply("User must have sent a message before incorporating them with this command.")
+            }
+           
+        }}

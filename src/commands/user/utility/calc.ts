@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { MessageEmbed } from 'discord.js'
 const simplydjs = require('simply-djs-v13')
 import { BotCommand } from '@extensions/BotCommand';
@@ -19,16 +20,23 @@ export default class botinfo extends BotCommand {
         embedColor: '#075FFF', //default: #075FFF
 =======
 import { MessageEmbed } from 'discord.js'
+=======
+
+>>>>>>> 74b153700e636a8f014b9da90bc52e857b1774c0
 const simplydjs = require('simply-djs-v13')
 import { BotCommand } from '@extensions/BotCommand';
 
 export default class botinfo extends BotCommand {
     constructor() {
-        super('calc', {
-            aliases: ['calc'],
-            description: 'calculator',
+        super('calculator', {
+            aliases: ['calculator'],
+            description: 'Did you break your calculator again?',
             usage: '$calc',
-            cooldown: 20000
+            cooldown: 5000,
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
 

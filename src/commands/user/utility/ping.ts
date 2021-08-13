@@ -4,9 +4,13 @@ export default class ping extends BotCommand {
     constructor() {
         super('ping', {
             aliases: ['ping'],
-            description: 'display latency',
+            description: 'Display latency',
             usage: '$ping',
             cooldown: 5000,
+            slash: true,
+            slashOptions: [
+    
+            ]
 
         })
     }

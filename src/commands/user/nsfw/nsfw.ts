@@ -1,100 +1,40 @@
 import { BotCommand } from '@extensions/BotCommand';
-import utils from '@functions/utils';
-import axios from 'axios';
 import { MessageEmbed } from 'discord.js';
+
 
 export default class nsfw extends BotCommand {
     constructor() {
         super('nsfw', {
             aliases: ['nsfw'],
-            description: `nsfw`,
+            description: `Random nsfw image`,
             usage: `-nsfw`,
-            cooldown: 1000,
-
-            args: [
-                {
-                    id: 'time',
-                    type: 'string'
-                }
-            ],
-
+            cooldown: 2000,
             slash: true,
-            slashGuilds: ['868532678318780496'],
             slashOptions: [
-                {
-                    name: 'time',
-                    description: 'timespan',
-                    type: 'STRING',
-                    choices: [
-                        {
-                            name: 'hour',
-                            value: 'hour'
-                        },
-                        {
-                            name: 'day',
-                            value: 'day'
-                        },
-                        {
-                            name: 'week',
-                            value: 'week'
-                        },
-                        {
-                            name: 'month',
-                            value: 'month'
-                        },
-                        {
-                            name: 'year',
-                            value: 'year'
-                        },
-                        {
-                            name: 'all',
-                            value: 'all time'
-                        },
-                    ]
-                }
-            ]
+    
+            ] 
+
         })
     }
-    async exec(message, args) {
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
+    async exec(message) {
 
-        let time
+        
+        const NSFW = require("discord-nsfw");
+        const nsfww = new NSFW();
 
-        const times = [
-            'hour',
-            'day',
-            'week',
-            'month',
-            'year',
-            'all'
-        ]
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
 
-        if (!times.includes(args.time)) { time = 'week' }
-        else { time = args.time }
+        const image = await nsfww.pgif();
 
-        //if (message.interaction) { return message.reply('For whatever stupid reason, the government blocked me from accessing this when I\'m hosted in this location.') }
-
-        let body
-
-        try {
-            body = await axios.get(`https://www.reddit.com/r/nude_.json?sort=top&t=${time}`)
-        }
-        catch (error) {
-            if (error == 'Error: Request failed with status code 451') { return message.reply('For whatever stupid reason, the government blocked me from accessing this when I\'m hosted in this location.') }
-            else {
-                return this.handler.emitError(error, message)
-            }
-        }
-
-        const redditPost = body.data.data.children[utils.getRandomInt(body.data.data.children.length)].data
-
+    
         const embed = new MessageEmbed()
             .setColor('RANDOM')
-            .setTitle(`${redditPost.title}`)
-            .setDescription(`Posted by u/${redditPost.author}`)
-            .setImage(`${redditPost.url}`)
-            .setFooter(`Images from https://www.reddit.com/r/nude_  `)
-
-        message.reply({ embeds: [embed], ephemeral: true })
-    }
-}
+            .setImage(image);
+        message.reply({ embeds: [embed], ephemeral: true});
+    
+    }}

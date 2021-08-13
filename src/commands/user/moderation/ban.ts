@@ -1,12 +1,14 @@
 import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
 
+// pls make if no perm for bot = actually send a message instead of showing the defualt error thing
+
 
 export default class ban extends BotCommand {
     constructor() {
         super('ban', {
             aliases: ['ban'],
-            description: 'rekt',
+            description: 'Ban a user',
             usage: '$ban @user',
             cooldown: 2000,
             args: [
@@ -16,17 +18,31 @@ export default class ban extends BotCommand {
                     match: 'restContent'
                 },
                 {
-                    id: 'reasons',
+                    id: 'reason',
                     type: 'string',
                     match: 'restContent'
                 }
+            ],
+
+            slash: true,
+            slashOptions: [
+                {
+                    name: 'user',
+                    description: 'The user you would like to ban',
+                    type:'USER',
+                    required: true
+                },
+                {
+                  name: 'reason',
+                  description: 'Reason for ban',
+                  type:'STRING'
+                }
             ]
+
         })
     }
     async exec(message, args) {
 // if role mentioned say "Please mention a user not a role"
-
-        const user = args.userid
 
         const permEmbed = new MessageEmbed()
         .setColor('#ff0000')
@@ -36,24 +52,27 @@ export default class ban extends BotCommand {
         .setFooter('Permission Error BAN_MEMBERS, ADMINISTRATOR')
       
           // the permission a member needs to ban
-          if(!message.member.permissions.has(['BAN_MEMBERS', 'ADMINISTRATOR']))
+          if(!message.member.permissions.has(['BAN_MEMBERS']))
           // if someone doesnt have perms send this
           message.reply({ embeds: [permEmbed] })
+
+
+          if(!message.guild.me.permissions.toArray().includes('BAN_MEMBERS')) return message.reply("I do not have permission to ban members (BAN_MEMBERS).")
       
           else {
+
+            let user
+        
+            if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+            else user = message.author
+
             if (!message.guild) return;
         
-            const reason = args.reasons
+              if (user) {
 
-            if (user) {
-         
-              const member= message.mentions.members.first() || message.guild.members.cache.get(user[0])
-
-              if (!args.userid) {return message.reply(`<a:xmark:869969568301477929> user not provided!`)}
+                const reason = args.reason
         
-              if (member) {
-        
-                member
+                user
 
                 // banning code 
 
@@ -79,28 +98,19 @@ export default class ban extends BotCommand {
         
                     console.error(err);
                   });
+
               } else {
                 
       
                 const notEmbed = new MessageEmbed()
                 .setColor('#fc036f')
-                .setDescription(`<a:xmark:869969568301477929> That ${user} is not in this guild!`)
+                .setDescription(`<a:xmark:869969568301477929> ${user} is not in this guild!`)
                 .setTimestamp()
                 .setFooter(`Requested by: ${message.author.username}`);
       
                 message.reply({ embeds: [notEmbed] })
               }
-            } else {
-             
-      
-             const invalidEmbed = new MessageEmbed()
-             .setColor('#fc036f')
-             .setDescription('<a:xmark:869969568301477929> You did not mention the user to ban!')
-             .setTimestamp()
-             .setFooter(`Requested by: ${message.author.username}`);
-      
-             message.reply({ embeds: [invalidEmbed] })
-            }
+              
         }
       }
     }

@@ -6,9 +6,13 @@ export default class servercount extends BotCommand {
     constructor() {
         super('servercount', {
             aliases: ['servercount'],
-            description: 'Server Counter',
+            description: 'Server member count',
             usage: '$servercount',
             cooldown: 10000,
+            slash: true,
+            slashOptions: [
+    
+            ]
             
         })
     }
@@ -26,7 +30,7 @@ export default class servercount extends BotCommand {
             { name: 'Created On', value: `${message.guild.createdAt}` },
             { name: 'You Joined At:', value: `${message.member.joinedAt}`, inline: true },
             { name: 'Total Members:', value: `${message.guild.memberCount}` },
-            { name: 'Bot Version:', value: "RW0.1" }
+            { name: 'Bot Version:', value: "RW2.0" }
         )
         .setTimestamp()
         .setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');

@@ -6,14 +6,29 @@ export default class utility extends BotCommand {
     constructor() {
         super('rps', {
             aliases: ['rps'],
-            description: 'Rock paper lol',
+            description: 'Rock Paper Scissors',
             usage: '$rps user',
 			cooldown: 10000,
+            slash: true,
+            prefix: '$',
+            slashOptions: [
+
+                {
+                    name: 'user',
+                    description: 'Your opponent',
+                    type:'USER'
+                }
+    
+            ]
 
         })
     }
 
     async exec(message) {
+        
+        const prefix = "$"
+
+        if (!message.content.startsWith(prefix)) return
 
         simplydjs.rps(message, {
             embedColor: "#1b44fa", // default: #075FFF

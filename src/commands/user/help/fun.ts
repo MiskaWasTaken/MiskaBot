@@ -1,5 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
+const simplydjs = require('no-buttons')
 
 
 
@@ -9,9 +10,13 @@ export default class fun extends BotCommand {
     constructor() {
         super('helpfun', {
             aliases: ['helpfun'],
-            description: 'Help for fun commamds',
+            description: 'List of fun commands',
             usage: '$helpfun',
-			cooldown: 5000,
+			cooldown: 10000,
+			slash: true,
+			slashOptions: [
+	
+			]
 
 
         })
@@ -27,16 +32,26 @@ const helpfEmbed = new MessageEmbed()
 	.setAuthor('Miska Bot', 'https://i.imgur.com/I8qSDdc.jpg', 'https://discordbotlist.com/bots/miska-bot')
 	.setDescription('These are the fun commands for Miska Bot')
 	.addFields(
-		{ name: `Covid`, value: "`$covid USA`", inline: true },
-		{ name: 'Hug', value: "`$hug @user`", inline: true },
-		{ name: 'Meme', value: "`$meme`", inline: true },
-		{ name: 'Rock Paper Scissors', value: "`$rps`", inline: true },
-		{ name: 'Tic Tac Toe', value: "`$tictactoe`", inline: true },
-		{ name: 'More coming soon', value: "Give me time please", inline: true}
+		{ name: 'Update:', value: "`Please keep in mind the / represents a slash command. This is not a prefix.`", inline: true },
+		{ name: `Covid`, value: "`/covid <country>`", inline: true },
+		{ name: 'Hug', value: "`/hug <user>`", inline: true },
+		{ name: 'Meme', value: "`/meme <time>`", inline: true },
+		{ name: '8ball', value: "`/8ball <user>`", inline: true },
+		{ name: 'How Gay', value: "`/howgay <user>`", inline: true },
+		{ name: 'Tic Tac Toe', value: "`$tictactoe @user`", inline: true },
 	)
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
 
-message.reply({ embeds: [helpfEmbed] });
+	const pages = [helpfEmbed] // REQUIRED
 
-}}
+	// its still possible without embed
+	// let pages = ['page1', 'page2', 'page3']
+	
+	simplydjs.embedPages(this.client, message, pages, {
+	delEmoji: '🗑️', // default: 🗑️
+
+	delcolor: 'DANGER', // default: DANGER
+ // Colors that discord.js support (PRIMARY/SECONDARY/SUCCESS/DANGER)  
+ skipBtn: false,
+	})}}

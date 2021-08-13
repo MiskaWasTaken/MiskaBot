@@ -1,6 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
-
+const simplydjs = require('no-buttons')
 
 
 
@@ -11,8 +11,11 @@ export default class utility extends BotCommand {
             aliases: ['helputility'],
             description: 'Utility Help',
             usage: '$helputility',
-			cooldown: 5000,
-
+			cooldown: 10000,
+			slash: true,
+			slashOptions: [
+	
+			]
            
         })
     }
@@ -27,24 +30,21 @@ const helputilEmbed = new MessageEmbed()
 	.setAuthor('Miska Bot', 'https://i.imgur.com/I8qSDdc.jpg', 'https://discordbotlist.com/bots/miska-bot')
 	.setDescription('These are the utility commands available in Miska Bot, Please choose one.')
 	.addFields(
-		{ name: 'Avatar', value: "`$avatar @user`", inline: true },
-		{ name: 'Bot info', value: "`$botinfo @user`", inline: true },
-		{ name: 'Calculator', value: "`$calculator 2+2`", inline: true },
-		{ name: 'Giveaway', value: "`$giveaway 1h/m/s 1 item`", inline: true },
-		{ name: 'Google', value: "`$google item`", inline: true },
-		{ name: 'Invite', value: "`$invite (invite this bot)`", inline: true },
-		{ name: 'Invites', value: "`$invites (see invites of a user)`", inline: true },
-		{ name: 'Owner', value: "`$owner`", inline: true },
-        { name: 'Ping', value: "`$ping`", inline: true },
-        { name: 'Server Count', value: "`$servercount`", inline: true },
-        { name: 'Server Info', value: "`$serverinfo`", inline: true },
-        { name: 'Translate', value: "`$translate iso_code message`", inline: true },
-        { name: 'User Info', value: "`$user @user`", inline: true },
-        { name: 'Youtube Stats', value: "`$ytstats channel_name`", inline: true},
+		{ name: 'Update:', value: `Please keep in mind the / represents a slash command. This is not a prefix. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
+		{ name: 'Utility commands:', value: `\n \n Avatar==> /avatar <user> \n \n Bot Information ==> /botinfo \n \n Calculator ==> /calc \n \n Google ==> /google <query> \n \n Invite ==> /invite (invite this bot) \n \n Owner/Credits ==> /owner \n \n Latency/Ping ==> /ping \n \n Server Count ==> /servercount \n \n Server Info ==> /serverinfo \n \n User Information ==> /userinfo <user> \n \n<:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`, inline: true }
 	)
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
 
-message.reply({ embeds: [helputilEmbed] });
+	const pages = [helputilEmbed] // REQUIRED
 
-}}
+	// its still possible without embed
+	// let pages = ['page1', 'page2', 'page3']
+	
+	simplydjs.embedPages(this.client, message, pages, {
+	delEmoji: '🗑️', // default: 🗑️
+
+	delcolor: 'DANGER', // default: DANGER
+// Colors that discord.js support (PRIMARY/SECONDARY/SUCCESS/DANGER)  
+skipBtn: false,
+})}}

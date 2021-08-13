@@ -2,23 +2,29 @@ import { BotCommand } from '@extensions/BotCommand';
 import utils from '@functions/utils';
 
 
-const thing = 'vagina'
+const thing = 'pussy'
 
-export default class vagina extends BotCommand {
+export default class pussy extends BotCommand {
     constructor() {
-        super(thing, {
-            aliases: [thing, 'pussy'],
-            description: `[NSFW CHANNELS ONLY] ${thing} picture`,
+        super('14', {
+            aliases: ['14'],
+            description: `[NSFW CHANNELS ONLY] See /helpnsfw`,
             usage: `-${thing}`,
-            cooldown: 1000,
-
-            slash:true,
-            slashGuilds:['868532678318780496']
+            cooldown: 2000,
+            slash: true,
+            slashOptions: [
+    
+            ] 
         })
     }
     async exec(message) {
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
 
-        message.reply({ embeds: [await utils.hentai(thing)] })
+        message.reply({ embeds: [await utils.hentai(thing)], ephemeral: true })
     }
 }

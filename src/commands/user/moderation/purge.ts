@@ -1,12 +1,14 @@
 import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
+// pls set max limit to 100
+// pls make if no perm for bot = actually send a message instead of showing the defualt error thing
 
 
 export default class purge extends BotCommand {
     constructor() {
         super('purge', {
             aliases: ['purge'],
-            description: 'mass delete messages',
+            description: 'Mass delete messages',
             usage: '$purge <amount>',
             cooldown: 2000,
             args: [
@@ -15,7 +17,17 @@ export default class purge extends BotCommand {
                     type: 'number',
                     match: 'restContent'
                 }
-            ]
+            ],
+
+            slash:true,
+            slashOptions: [
+            {
+                name: 'amount',
+                description: 'Amount to purge',
+                type: 'NUMBER',
+                required: true
+            }
+        ]
         })
     }
 
@@ -24,6 +36,8 @@ export default class purge extends BotCommand {
     async exec(message, args) {
 //nothing to do here
         const purge = args.amount
+
+
 
         const upermEmbed = new MessageEmbed()
         .setColor('#03dbfc')
@@ -34,6 +48,14 @@ export default class purge extends BotCommand {
 
         if(!message.member.permissions.has(['MANAGE_MESSAGES', 'ADMINISTRATOR'])) 
         message.reply({ embeds: [upermEmbed] });
+
+        if(!message.guild.me.permissions.toArray().includes('MANAGE_MESSAGES')) return message.reply("I do not have permission to delete messages. (MANAGE_MESSAGES)")
+
+        if (purge > 100){
+            message.reply("Maximum purge amount is 100.").then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                return;
+        })}
 
         else {
    

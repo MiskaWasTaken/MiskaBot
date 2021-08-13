@@ -3,14 +3,14 @@ import chalk from "chalk"
 import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler, TaskHandler } from "discord-akairo"
 import { Intents, MessageEmbed, TextChannel } from "discord.js"
 import { join } from "path"
-
+const DisTube = require("distube");
 import config from '../extensions/config/config'
 //import {BotClientUtils} from '@extensions/BotClientUtils'
-
+const SoundCloudPlugin = require('@distube/soundcloud')
+const SpotifyPlugin = require('@distube/spotify')
 
 class BotClient extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
-		prefix: config.prefix,
 		commandUtil: true,
 		handleEdits: true,
 		directory: join(__dirname, "..", "commands"),
@@ -18,6 +18,16 @@ class BotClient extends AkairoClient {
 		automateCategories: true,
 		autoRegisterSlashCommands: true,
 		autoDefer: false,
+	})
+
+	public distube = new DisTube.default(this, {
+		searchSongs: 1,
+		searchCooldown: 5,
+		leaveOnEmpty: true,
+		emptyCooldown: 5,
+		leaveOnFinish: false,
+		leaveOnStop: false,
+		plugins: [new SoundCloudPlugin(), new SpotifyPlugin()],
 	})
 
 	public listenerHandler: ListenerHandler = new ListenerHandler(this, {
@@ -53,7 +63,7 @@ class BotClient extends AkairoClient {
 		errorEmbed.setColor('DARK_RED')
 
 		errorChannel.send({ /*content: `\`\`\`js\n${errorStack}\`\`\``,*/ embeds: [errorEmbed] })
-		console.log(errorChannel)
+		// console.log(errorChannel)
 
 		const returnErrorEmbed = new MessageEmbed()
 			.setTitle('An error occured!')

@@ -5,9 +5,13 @@ export default class owner extends BotCommand {
     constructor() {
         super('owner', {
             aliases: ['owner'],
-            description: 'cool ig',
+            description: 'Cool people gang',
             usage: '$owner',
             cooldown: 10000,
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
     async exec(message) {

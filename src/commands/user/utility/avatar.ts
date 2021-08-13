@@ -17,17 +17,30 @@ export default class avatar extends BotCommand {
 					default: (message) => message.author,
 				},
 			],
+
+			slash:true,
+			slashOptions: [
+				{
+					name: 'user',
+					description: 'Which avatar would you like?',
+					type:'USER',  
+				}
+			]
 		});
 	}
 
 	async exec(message, args) {
-		const user = args.user.user || message.author
+	
+		let user
+        
+        if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+        else user = message.author
+
 
 		const avatar = user.displayAvatarURL({ size: 4096, dynamic: true });
 
 		const embed = new MessageEmbed()
-            .setTitle(`${user.tag}'s Avatar`)
-            .setURL(avatar)
+            .setDescription(`**${user.tag}'s Avatar**`)
             .setImage(avatar)
             .setColor("RANDOM");
 		await message.reply({ embeds: [embed] });

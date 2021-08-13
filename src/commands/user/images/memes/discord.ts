@@ -3,11 +3,11 @@ const DIG = require("discord-image-generation");
 const Discord = require('discord.js')
 
 
-export default class blur extends BotCommand {
+export default class discord extends BotCommand {
     constructor() {
         super('discord', {
             aliases: ['discord'],
-            description: 'Discord',
+            description: 'Discord filter someone',
             usage: '$discord @user',
             cooldown: 5000,
             args: [
@@ -16,11 +16,25 @@ export default class blur extends BotCommand {
                     type: 'user',
                     match: 'restContent'
                 }
-            ]
+            ],
+
+            slash:true,
+            slashOptions: [
+
+                {
+                    name: 'user',
+                    description: "The user you want to discord filter",
+                    type:'USER'
+                }
+
+            ],
+
+            
         })
     }
     async exec(message, args) {
         
+<<<<<<< HEAD
         const user = args.userid  || message.author
         
         if(!args.userid) return message.reply("Please mention a user, or yourself.")
@@ -34,7 +48,23 @@ export default class blur extends BotCommand {
         const img = await new DIG.DiscordBlue().getImage(avatar)
         // Add the image as an attachement
         const attach = new Discord.MessageAttachment(img, "delete.png");
+=======
+        try {
+>>>>>>> 74b153700e636a8f014b9da90bc52e857b1774c0
 
-        message.reply({ files: [attach]  })
-       
-    }}
+            let user
+            
+            if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+            else user = message.author
+    
+            const img = await new DIG.DiscordBlue().getImage(user.displayAvatarURL({format:'png'}))
+    
+            const attach = new Discord.MessageAttachment(img, "discordblue.png");
+    
+            message.reply({ files: [attach]  })
+    
+            } catch (err) {
+                message.reply("User must have sent a message before incorporating them with this command.")
+            }
+           
+        }}

@@ -1,12 +1,14 @@
 import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
 
+// pls make if no perm for bot = actually send a message instead of showing the defualt error thing
+
 
 export default class kick extends BotCommand {
     constructor() {
         super('kick', {
             aliases: ['kick'],
-            description: 'kick a user',
+            description: 'Kick a user',
             usage: '$kick @user',
             cooldown: 2000,
             args: [
@@ -16,9 +18,24 @@ export default class kick extends BotCommand {
                     match: 'restContent'
                 },
                 {
-                    id: 'reasons',
+                    id: 'reason',
                     type: 'string',
                     match: 'restContent'
+                }
+            ],
+
+            slash: true,
+            slashOptions: [
+                {
+                    name: 'user',
+                    description: 'The user you would like to kick',
+                    type:'USER',
+                    required: true
+                },
+                {
+                  name: 'reason',
+                  description: 'Reason for kick',
+                  type:'STRING'
                 }
             ]
         })
@@ -26,7 +43,6 @@ export default class kick extends BotCommand {
     async exec(message, args) {
 // if role mentioned say "Please mention a user not a role"
 
-        const user = args.userid
 
         const permEmbed = new MessageEmbed()
         .setColor('#ff0000')
@@ -36,31 +52,27 @@ export default class kick extends BotCommand {
         .setFooter('Permission Error KICK_MEMBERS, ADMINISTRATOR')
       
           // the permission a member needs to ban
-          if(!message.member.permissions.has(['KICK_MEMBERS', 'ADMINISTRATOR']))
+          if(!message.member.permissions.has(['KICK_MEMBERS']))
           // if someone doesnt have perms send this
           message.reply({ embeds: [permEmbed] })
+
+          if(!message.guild.me.permissions.toArray().includes('KICK_MEMBERS')) return message.reply("I do not have permission to kick members (KICK_MEMBERS).")
       
           else {
             if (!message.guild) return;
+
+            let user
         
-            
-            const reason = args.reasons
-
-            const invalidEmbed = new MessageEmbed()
-            .setColor('#fc036f')
-            .setDescription('<a:xmark:869969568301477929> You did not mention the user to kick!')
-            .setTimestamp()
-            .setFooter('Moderation Error')
+            if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+            else user = message.author
      
-            if (!args.userid) {return message.reply({ embeds: [invalidEmbed] })}
-
             if (user) {
          
-              const member= message.mentions.members.first() || message.guild.members.cache.get(user[0])
+              const reason = args.reason
+
         
-              if (member) {
-        
-                member
+              if (user) {
+                user
                 // banning code 
                 await message.guild.members.kick(user, { reason });
 

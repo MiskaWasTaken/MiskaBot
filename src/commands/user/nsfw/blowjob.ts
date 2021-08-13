@@ -4,17 +4,26 @@ import utils from '@functions/utils';
 
 export default class blowjob extends BotCommand {
     constructor() {
-        super('blowjob', {
-            aliases: ['blowjob'],
-            description: '[NSFW CHANNELS ONLY] blowjob picture',
+        super('3', {
+            aliases: ['3'],
+            description: '[NSFW CHANNELS ONLY] See /helpnsfw',
             usage: '-pussy',
-            cooldown: 1000,
+            cooldown: 2000,
+            slash: true,
+            slashOptions: [
+    
+            ]
         })
     }
     async exec(message) {
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
 
-        message.reply({ embeds: [await utils.hentai('blowjob')] })
+        message.reply({ embeds: [await utils.hentai('blowjob')]})
 
     }
 }

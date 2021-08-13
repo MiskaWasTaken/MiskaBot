@@ -8,6 +8,10 @@ export default class botinfo extends BotCommand {
             description: 'Get information on this bot',
             usage: '$botinfo',
             cooldown: 10000,
+            slash:true,
+            slashOptions: [
+
+            ]
         })
     }
 
@@ -29,7 +33,7 @@ export default class botinfo extends BotCommand {
         **Users:** ${this.client.users.cache.size}
         **Discord.js Version:** discord.js@13.0.0
         **Node.js Version:** 16.6.0
-        **Custom Bot Verson:** RW0.2`
+        **Custom Bot Verson:** RW2.0`
     )
     message.reply({ embeds: [botEmbed] })
 }}

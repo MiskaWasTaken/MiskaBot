@@ -1,13 +1,14 @@
 import { BotCommand } from '@extensions/BotCommand';
 const DIG = require("discord-image-generation");
 const Discord = require('discord.js')
+// if charecter is over 300 = error
 
 
-export default class blur extends BotCommand {
+export default class present extends BotCommand {
     constructor() {
         super('present', {
             aliases: ['present'],
-            description: 'present something',
+            description: 'Present something',
             usage: '$present <text>',
             cooldown: 5000,
             args: [
@@ -16,7 +17,20 @@ export default class blur extends BotCommand {
                     type: 'string',
                     match: 'restContent'
                 }
+            ],
+
+            slash:true,
+            slashOptions: [
+
+                {
+                    name: 'text',
+                    description: "The text you would like to present",
+                    type:'STRING',
+                    required: true
+                }
+
             ]
+
         })
     }
 
@@ -32,7 +46,7 @@ export default class blur extends BotCommand {
         // Make the image
         const img = await new DIG.LisaPresentation().getImage(texts)
         // Add the image as an attachement
-        const attach = new Discord.MessageAttachment(img, "delete.png");
+        const attach = new Discord.MessageAttachment(img, "present.png");
 
         message.reply({ files: [attach]  })
        

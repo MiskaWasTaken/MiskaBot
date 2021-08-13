@@ -1,5 +1,4 @@
 import { BotListener } from '@extensions/BotListener';
-import utils from '@functions/utils'
 
 export default class miscErrorListener extends BotListener {
     constructor() {

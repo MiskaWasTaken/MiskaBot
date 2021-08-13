@@ -7,7 +7,7 @@ export default class invert extends BotCommand {
     constructor() {
         super('invert', {
             aliases: ['invert'],
-            description: 'invert someone kek',
+            description: 'Invert someone',
             usage: '$invert @user',
             cooldown: 5000,
             args: [
@@ -18,21 +18,37 @@ export default class invert extends BotCommand {
                 }
             ],
 
+            slash:true,
+            slashOptions: [
+
+                {
+                    name: 'user',
+                    description: "The person you want to invert",
+                    type:'USER'
+                }
+
+            ]
 
         })
     }
     async exec(message, args) {
 
-        const user = args.user || message.author
+        try {
 
-        if(!user) return message.reply("Please mention a user, or yourself.")
         
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
-        // Make the image
-        const img = await new DIG.Invert().getImage(avatar)
-        // Add the image as an attachement
-        const attach = new Discord.MessageAttachment(img, "delete.png");
+        let user
+        
+        if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+        else user = message.author
+
+        const img = await new DIG.Invert().getImage(user.displayAvatarURL({format:'png'}))
+
+        const attach = new Discord.MessageAttachment(img, "invert.png");
 
         message.reply({ files: [attach]  })
+
+        } catch (err) {
+            message.reply("User must have sent a message before incorporating them with this command.")
+        }
        
     }}

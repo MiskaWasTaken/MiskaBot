@@ -8,14 +8,26 @@ const sh = promisify(exec)
 
 export default class reload extends BotCommand {
     constructor() {
-        super("reload", {
-            aliases: ["reload"],
-            ownerOnly: true
+        super('reload', {
+            aliases: ['reload'],
+            description: 'Dev only :)',
+            cooldown: 10000,
+            slash: true,
+            slashOptions: [
+
+            ],
+
         });
     }
 
 
     async exec(message) {
+        
+        if (message.interaction && !this.client.ownerID.includes(message.author.id)){
+            message.reply({content: 'I only respond to the mighty ones who have created me.', ephemeral: true})
+            return;
+        } 
+
         const reloadEmbed = new MessageEmbed()
             .setDescription(`Reloading!`)
             .setColor(message.member.displayColor)

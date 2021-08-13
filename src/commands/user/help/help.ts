@@ -9,8 +9,13 @@ export default class help extends BotCommand {
     constructor() {
         super('help', {
             aliases: ['help'],
+			description: 'List of help categories ',
             usage: '$help',
-			cooldown: 5000,
+			cooldown: 10000,
+			slash: true,
+			slashOptions: [
+	
+			]
 
 
         }
@@ -27,15 +32,15 @@ const helpEmbed = new MessageEmbed()
 	.setAuthor('Miska Bot', 'https://i.imgur.com/I8qSDdc.jpg', 'https://discordbotlist.com/bots/miska-bot')
 	.setDescription('There are the different category available in Miska Bot, Please choose one.')
 	.addFields(
-		{ name: `📷Image Manipulation`, value: "`$helpimage`", inline: true },
-		{ name: '🎈Fun', value: "`$helpfun`", inline: true },
-		{ name: '🤖Moderation', value: "`$helpmod`", inline: true },
-		{ name: '🎧Music', value: "`$helpmusic`", inline: true },
-		{ name: '🔞NSFW', value: "`$helpnsfw`", inline: true },
-		{ name: '👩‍💻Config', value: "`$config`", inline: true },
-		{ name: '📜Change Logs', value: "`$changelog`", inline: true },
-		{ name: '🐱‍💻Utility', value: "`$helputility`", inline: true },
-		{ name: '🆘Help Me', value: "`$helpme`", inline: true }
+		{ name: 'Update:', value: "`Please keep in mind the / represents a slash command. This is not a prefix.`", inline: true },
+		{ name: `📷Image Manipulation`, value: "`/helpimage`", inline: true },
+		{ name: '🎈Fun', value: "`/helpfun`", inline: true },
+		{ name: '🤖Moderation', value: "`/helpmod`", inline: true },
+		{ name: '🎧Music', value: "`/helpmusic`", inline: true },
+		{ name: '🔞NSFW', value: "`/helpnsfw`", inline: true },
+		{ name: '👩‍💻Config', value: "`/config`", inline: true },
+		{ name: '📜Change Logs', value: "`/changelog`", inline: true },
+		{ name: '🐱‍💻Utility', value: "`/helputility`", inline: true },
 	)
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');

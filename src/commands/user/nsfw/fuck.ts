@@ -4,11 +4,11 @@ const HMfull = require("hmfull");
 
 export default class hug extends BotCommand {
     constructor() {
-        super('fuck', {
-            aliases: ['fuck'],
-            description: 'fuck someone',
+        super('15', {
+            aliases: ['15'],
+            description: '[NSFW CHANNELS ONLY] See /helpnsfw',
             usage: '$fuck @user',
-            cooldown: 1000,
+            cooldown: 3000,
             args: [
                 {
                     id: 'user',
@@ -17,22 +17,43 @@ export default class hug extends BotCommand {
                 },
             ],
 
+            slash:true,
+            slashOptions: [
+                {
+                    name: 'user',
+                    description: 'the person you want to fuck',
+                    type:'USER',  
+                    required: true
+                }
+            ]
+
         })
     }
     async exec(message, args) {
 
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
+        let user
+        
+        if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+        else user = message.author
+
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
 
         const res = HMfull.HMtai.nsfw.gif()
 
         if (args.user){
 
         const hugEmbed = new MessageEmbed()
-            .setTitle(`You fuck ${args.user.username} <a:pepesex:872026071170699305>`)
+            .setColor('RANDOM')
+            .setDescription(`**${message.author} fucks ${user} <a:pepesex:872026071170699305>**`)
             .setImage(`${res.url}`)
             .setTimestamp()
         
-            message.reply({ embeds: [hugEmbed] });
+            message.reply({ embeds: [hugEmbed], ephemeral: true });
         }
 
         if (!args.user) return message.reply("Please mention a user")
