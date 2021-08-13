@@ -9,7 +9,7 @@ export default class nsfw extends BotCommand {
             aliases: ['meme'],
             description: `Spicy Memes`,
             usage: `$meme`,
-            cooldown: 1000,
+            cooldown: 2000,
 
             args: [
                 {

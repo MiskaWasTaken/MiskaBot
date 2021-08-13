@@ -1,6 +1,5 @@
 import { BotCommand } from '@extensions/BotCommand';
 import utils from '@functions/utils';
-import { MessageEmbed } from 'discord.js';
 
 export default class ahegao extends BotCommand {
     constructor() {
@@ -8,7 +7,7 @@ export default class ahegao extends BotCommand {
             aliases: ['1'],
             description: '[NSFW CHANNELS ONLY] See /helpnsfw',
             usage: '-ahegao',
-            cooldown: 1000,
+            cooldown: 2000,
             slash: true,
             slashOptions: [
     
@@ -16,17 +15,15 @@ export default class ahegao extends BotCommand {
         })
     }
     async exec(message) {
-        const nsfwEmbed = new MessageEmbed()
-            .setColor('#ff0000')
-            .setTitle('Please use this command in nsfw marked channels only!')
-            .setDescription('Listen you dummy, please use this command in nsfw channels only!')
-            .setImage('https://i.imgur.com/oe4iK5i.gif')
-            .setTimestamp()
-            .setFooter('Channel Flag Error')
 
-        if (!message.channel.nsfw) { return message.reply({ embeds: [nsfwEmbed] }) }
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
 
-        message.reply({ embeds: [await utils.hentai('ahegao')], ephemeral: true })
+        message.reply({ embeds: [await utils.hentai('ahegao')]})
 
-    }
-}
+    
+}}

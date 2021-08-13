@@ -8,14 +8,20 @@ const sh = promisify(exec)
 
 export default class reload extends BotCommand {
     constructor() {
-        super("reload", {
-            aliases: ["reload"],
+        super('reload', {
+            aliases: ['reload'],
+            description: 'Dev only :)',
+            slash: true,
+            slashOptions: [
+
+            ],
             ownerOnly: true
         });
     }
 
 
     async exec(message) {
+        
         const reloadEmbed = new MessageEmbed()
             .setDescription(`Reloading!`)
             .setColor(message.member.displayColor)

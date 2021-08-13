@@ -22,9 +22,8 @@ export default class avatar extends BotCommand {
 			slashOptions: [
 				{
 					name: 'user',
-					description: 'A users avatar',
+					description: 'Which avatar would you like?',
 					type:'USER',  
-					required: true
 				}
 			]
 		});

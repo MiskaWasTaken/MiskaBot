@@ -11,7 +11,6 @@ const SpotifyPlugin = require('@distube/spotify')
 
 class BotClient extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
-		prefix: config.prefix,
 		commandUtil: true,
 		handleEdits: true,
 		directory: join(__dirname, "..", "commands"),

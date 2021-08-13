@@ -8,7 +8,7 @@ export default class nsfw extends BotCommand {
             aliases: ['nsfw'],
             description: `Random nsfw image`,
             usage: `-nsfw`,
-            cooldown: 1000,
+            cooldown: 2000,
             slash: true,
             slashOptions: [
     
@@ -22,7 +22,12 @@ export default class nsfw extends BotCommand {
         const NSFW = require("discord-nsfw");
         const nsfww = new NSFW();
 
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
 
         const image = await nsfww.pgif();
 

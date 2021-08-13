@@ -1,6 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
-const simplydjs = require('simply-djs-v13')
+const simplydjs = require('no-buttons')
 
 export default class nsfwhelp extends BotCommand {
 	constructor() {

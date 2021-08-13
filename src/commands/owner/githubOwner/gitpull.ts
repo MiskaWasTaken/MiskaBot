@@ -8,13 +8,19 @@ const sh = promisify(exec);
 export default class gitpull extends BotCommand {
     constructor() {
         super('gitpull', {
-            aliases: ['gitpull', 'pull'],
+            aliases: ['gitpull'],
+            description: 'Dev only :)',
+            slash: true,
+            slashOptions: [
+
+            ],
             ownerOnly: true,
             channel: 'guild',
         });
     }
 
     async exec(message) {
+        
         const githubembed = new MessageEmbed()
 
         const pull = await sh('git pull')

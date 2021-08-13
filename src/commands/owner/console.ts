@@ -7,10 +7,14 @@ import utils from '@functions/utils'
 
 const sh = promisify(exec);
 
+
+
 export default class console extends BotCommand {
     constructor() {
         super('console', {
-            aliases: ['console', 'sh'],
+            aliases: ['console'],
+            description: "Dev only :)",
+
             args: [
                 {
                     id: 'command',
@@ -18,12 +22,21 @@ export default class console extends BotCommand {
                     match: 'restContent'
                 },
             ],
+            slash: true,
+            slashOptions: [
+                {
+					name: 'command',
+					description: 'Command to run',
+					type:'STRING',  
+				}
+            ],
             channel: 'guild',
             ownerOnly: true
         });
     }
 
     async exec(message, args) {
+
         const output = await sh(args.command)
 
         const outputembed = new MessageEmbed()

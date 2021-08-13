@@ -8,7 +8,7 @@ export default class blowjob extends BotCommand {
             aliases: ['3'],
             description: '[NSFW CHANNELS ONLY] See /helpnsfw',
             usage: '-pussy',
-            cooldown: 1000,
+            cooldown: 2000,
             slash: true,
             slashOptions: [
     
@@ -16,9 +16,14 @@ export default class blowjob extends BotCommand {
         })
     }
     async exec(message) {
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
 
-        message.reply({ embeds: [await utils.hentai('blowjob')], ephemeral: true })
+        message.reply({ embeds: [await utils.hentai('blowjob')]})
 
     }
 }

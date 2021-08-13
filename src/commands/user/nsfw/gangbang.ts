@@ -10,7 +10,7 @@ export default class gangbang extends BotCommand {
             aliases: ['11'],
             description: `[NSFW CHANNELS ONLY]See /helpnsfw`,
             usage: `-${thing}`,
-            cooldown: 1000,
+            cooldown: 2000,
             slash: true,
             slashOptions: [
     
@@ -18,8 +18,12 @@ export default class gangbang extends BotCommand {
         })
     }
     async exec(message) {
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
-
-        message.reply({ embeds: [await utils.hentai(thing)], ephemeral: true })
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
+        message.reply({ embeds: [await utils.hentai(thing)]})
     }
 }

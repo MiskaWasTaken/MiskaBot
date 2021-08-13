@@ -72,7 +72,6 @@ export default class kick extends BotCommand {
 
         
               if (user) {
-        
                 user
                 // banning code 
                 await message.guild.members.kick(user, { reason });

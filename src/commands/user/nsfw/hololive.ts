@@ -19,7 +19,6 @@ export default class nsfw extends BotCommand {
             ],
 
             slash: true,
-            slashGuilds: ['868532678318780496'],
             slashOptions: [
                 {
                     name: 'time',
@@ -56,7 +55,12 @@ export default class nsfw extends BotCommand {
         })
     }
     async exec(message, args) {
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
 
         let time
 

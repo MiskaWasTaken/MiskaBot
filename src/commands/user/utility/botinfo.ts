@@ -8,6 +8,10 @@ export default class botinfo extends BotCommand {
             description: 'Get information on this bot',
             usage: '$botinfo',
             cooldown: 10000,
+            slash:true,
+            slashOptions: [
+
+            ]
         })
     }
 

@@ -23,7 +23,7 @@ export default class userinfo extends BotCommand {
                     name: 'user',
                     description: 'THe user you would like to display information about',
                     type:'USER',  
-                    required: true
+                    required: false
                 }
             ]
         })

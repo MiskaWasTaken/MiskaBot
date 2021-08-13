@@ -9,13 +9,22 @@ const sh = promisify(exec);
 export default class gitpush extends BotCommand {
     constructor() {
         super('gitpush', {
-            aliases: ['gitpush', 'push'],
+            aliases: ['gitpush'],
+            description: "Dev only :)",
             args: [
                 {
-                    id: 'commitReason',
+                    id: 'commitreason',
                     type: 'string',
                     match: 'restContent'
                 },
+            ],
+            slash: true,
+            slashOptions: [
+                {
+					name: 'commitreason',
+					description: 'Reason for commit',
+					type:'STRING',  
+				}
             ],
             
             ownerOnly: true,
@@ -24,7 +33,12 @@ export default class gitpush extends BotCommand {
     }
 
     async exec(message, args) {
-        if (args.commitReason.length > 50) {
+
+        if (!args.commitreason){
+            return message.reply("Give a reason you smoothbrain")
+        }
+        
+        if (args.commitreason.length > 50) {
             return message.util.send(`Your commit message is too long!`)
         }
 
@@ -38,8 +52,8 @@ export default class gitpush extends BotCommand {
         const gitadd = await sh('git add .')
         githubEmbed.addField(`\`git add .\``, `\`\`\`js\n${inspect(gitadd)}\`\`\``)
 
-        const gitcommit = await sh(`git commit -m "${args.commitReason}"`)
-        githubEmbed.addField(`\`git commit "${args.commitReason}"\``, `\`\`\`js\n${inspect(gitcommit)}\`\`\``)
+        const gitcommit = await sh(`git commit -m "${args.commitreason}"`)
+        githubEmbed.addField(`\`git commit "${args.commitreason}"\``, `\`\`\`js\n${inspect(gitcommit)}\`\`\``)
 
         const githubpush = await sh('git push')
         githubEmbed.addField(`\`git push\``, `\`\`\`js\n${inspect(githubpush)}\`\`\``)

@@ -4,9 +4,9 @@ import { BotCommand } from '@extensions/BotCommand';
 
 export default class botinfo extends BotCommand {
     constructor() {
-        super('calc', {
-            aliases: ['calc'],
-            description: 'calculator',
+        super('calculator', {
+            aliases: ['calculator'],
+            description: 'Did you break your calculator again?',
             usage: '$calc',
             cooldown: 5000,
             slash: true,

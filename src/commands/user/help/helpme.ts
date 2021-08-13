@@ -8,10 +8,6 @@ export default class helpme extends BotCommand {
             description: 'this command does not exist',
             usage: 'zordlan is trying to cover up where i am please send help',
             cooldown: 20000,
-            slash: true,
-			slashOptions: [
-	
-			]
         })
     }
     async exec(message) {

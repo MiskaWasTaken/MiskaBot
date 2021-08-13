@@ -8,7 +8,7 @@ export default class hug extends BotCommand {
             aliases: ['15'],
             description: '[NSFW CHANNELS ONLY] See /helpnsfw',
             usage: '$fuck @user',
-            cooldown: 1000,
+            cooldown: 3000,
             args: [
                 {
                     id: 'user',
@@ -36,7 +36,12 @@ export default class hug extends BotCommand {
         if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
         else user = message.author
 
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
+        if (!message.channel.nsfw){
+            message.reply({ embeds: [this.client.notNsfwEmbed] }).then(ms => {
+                setTimeout(() => ms.delete(), 5000)
+                
+                return;
+        })}
 
         const res = HMfull.HMtai.nsfw.gif()
 

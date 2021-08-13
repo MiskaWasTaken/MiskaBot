@@ -23,7 +23,11 @@ export default class pronouns extends BotCommand {
         })
     }
     async exec(message, args) {
-        const person = args.person.user || message.author
+        let person
+        
+        if (args.person) {person = this.client.util.resolveUser(args.person, this.client.users.cache)}
+        else person = message.author
+
         const pronouns = await utils.getPronouns(person, 'details')
         const pronounsEmbed = new MessageEmbed()
 

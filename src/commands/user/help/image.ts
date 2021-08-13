@@ -37,17 +37,6 @@ const embed1 = new MessageEmbed()
 
 )
 
-const embed2 = new MessageEmbed()
-.setColor('RANDOM')
-.setTitle('Image Effects')
-.setDescription('Gif effects for your profile picture')
-.addFields(
-	{ name: 'Update:', value: `Please keep in mind the / represents a slash command. This is not a prefix. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
-	{ name: '<user>:', value: `Mentioning a user in most image commands are optional. If you have not mentioned a user the effect will take place on your avatar. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
-    { name: 'Trigger', value: `$trigger @user`},
-)
-
-
 const embed3 = new MessageEmbed()
 .setColor('RANDOM')
 .setTitle('Image Effects')
@@ -78,7 +67,7 @@ const embed3 = new MessageEmbed()
 )
 
 
-const pages = [embed1, embed2, embed3] // REQUIRED
+const pages = [embed1, embed3] // REQUIRED
 
 // its still possible without embed
 // let pages = ['page1', 'page2', 'page3']

@@ -13,7 +13,6 @@ export default class pause extends BotCommand {
             slash:true,
             slashOptions: [
 
-
             ]
 
         })  

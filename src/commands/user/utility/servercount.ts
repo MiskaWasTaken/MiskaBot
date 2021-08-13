@@ -30,7 +30,7 @@ export default class servercount extends BotCommand {
             { name: 'Created On', value: `${message.guild.createdAt}` },
             { name: 'You Joined At:', value: `${message.member.joinedAt}`, inline: true },
             { name: 'Total Members:', value: `${message.guild.memberCount}` },
-            { name: 'Bot Version:', value: "RW0.1" }
+            { name: 'Bot Version:', value: "RW2.0" }
         )
         .setTimestamp()
         .setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
