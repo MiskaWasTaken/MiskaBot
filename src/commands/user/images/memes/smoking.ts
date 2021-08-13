@@ -5,8 +5,8 @@ const Discord = require('discord.js')
 
 export default class blur extends BotCommand {
     constructor() {
-        super('smoking', {
-            aliases: ['smoking'],
+        super('affect', {
+            aliases: ['affect'],
             description: 'Dont do it',
             usage: '$smoking @user',
             cooldown: 5000,

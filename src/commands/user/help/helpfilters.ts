@@ -1,5 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
+const simplydjs = require('simply-djs-v13')
 
 
 
@@ -7,8 +8,8 @@ import { BotCommand } from '@extensions/BotCommand';
 
 export default class utility extends BotCommand {
     constructor() {
-        super('filters', {
-            aliases: ['filters'],
+        super('helpfilters', {
+            aliases: ['helpfilters'],
             description: 'Music filters',
             usage: '$filters',
 			cooldown: 10000,
@@ -22,26 +23,29 @@ export default class utility extends BotCommand {
 
     async exec(message) {
 
-
-const helputilEmbed = new MessageEmbed()
+const embed2 = new MessageEmbed()
 	.setColor('RANDOM')
 	.setTitle('Music Filters')
 	.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 	.setAuthor('Miska Bot', 'https://i.imgur.com/I8qSDdc.jpg', 'https://discordbotlist.com/bots/miska-bot')
 	.setDescription('These are the music filters available in Miska Bot.')
 	.addFields(
-		{ name: 'These filters will only work in a voice channel', value: "`Please join a voice channel before using these filters`", inline: true },
-		{ name: '3D | Surrond Sound', value: "`$3d`", inline: true },
-		{ name: 'Bass Boost', value: "`$bassboost`", inline: true },
-		{ name: 'Nightcore', value: "`$nightcore`", inline: true },
-		{ name: 'Vapor Wave', value: "`$vaporwave`", inline: true },
-		{ name: 'Echo', value: "`$echo`", inline: true },
-		{ name: 'Karaoke', value: "`$karaoke`", inline: true }
-
-	)
+		{ name: 'Update:', value: `1. Please keep in mind the / represents a slash command. This is not a prefix. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
+		{ name: 'Filters:', value: `\n \n /filter 3d ==> For Surrond Sound/3D music \n \n /filter bassboost ==> Bassboost filter \n \n /filter nightcore ==> Nightcore filter \n \n /filter vaporwave ==> Vaporwave filter \n \n /filter echo ==> Echo filter \n \n /filter karaoke ==> Karaoke filter \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`, inline: true })
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
 
-message.reply({ embeds: [helputilEmbed] });
+	const pages = [embed2] // REQUIRED
 
-}}
+	// its still possible without embed
+	// let pages = ['page1', 'page2', 'page3']
+	
+	simplydjs.embedPages(this.client, message, pages, {
+	delEmoji: '🗑️', // default: 🗑️
+
+	delcolor: 'DANGER', // default: DANGER
+
+
+  
+ skipBtn: false,
+	})}}

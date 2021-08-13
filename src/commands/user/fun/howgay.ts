@@ -19,7 +19,7 @@ export default class howgay extends BotCommand {
 
         ],
 
-        slash:true,
+        slash: true,
         slashOptions: [
             {
                 name: 'user',

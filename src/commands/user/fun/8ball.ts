@@ -1,5 +1,4 @@
 import { BotCommand } from '@extensions/BotCommand';
-import { MessageEmbed } from 'discord.js';
 const Math = require('math.js');
 
 export default class ball extends BotCommand {
@@ -17,7 +16,7 @@ export default class ball extends BotCommand {
                 }
             ],
 
-            slash:true,
+            slash: true,
             slashOptions: [
 
                 {

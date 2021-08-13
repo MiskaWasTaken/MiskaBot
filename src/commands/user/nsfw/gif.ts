@@ -20,6 +20,6 @@ export default class gif extends BotCommand {
     async exec(message) {
         if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
 
-        message.reply({ embeds: [await utils.hentai(thing)] })
+        message.reply({ embeds: [await utils.hentai(thing)], ephemeral: true })
     }
 }

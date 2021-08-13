@@ -22,7 +22,8 @@ export default class covid extends BotCommand {
                 {
                     name: 'country',
                     description: 'The country you would like to see stats about',
-                    type:'STRING'
+                    type:'STRING',
+                    required: true
                 }
     
             ]

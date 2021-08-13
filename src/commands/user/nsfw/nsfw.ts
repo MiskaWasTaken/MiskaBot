@@ -30,6 +30,6 @@ export default class nsfw extends BotCommand {
         const embed = new MessageEmbed()
             .setColor('RANDOM')
             .setImage(image);
-        message.reply({ embeds: [embed]});
+        message.reply({ embeds: [embed], ephemeral: true});
     
     }}

@@ -6,9 +6,9 @@ const thing = 'cuckold'
 
 export default class cuckold extends BotCommand {
     constructor() {
-        super(thing, {
-            aliases: [thing],
-            description: `[NSFW CHANNELS ONLY]`,
+        super('6', {
+            aliases: ['6'],
+            description: `[NSFW CHANNELS ONLY] See /helpnsfw`,
             usage: `-${thing}`,
             cooldown: 1000,
             slash: true,
@@ -20,6 +20,6 @@ export default class cuckold extends BotCommand {
     async exec(message) {
         if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
 
-        message.reply({ embeds: [await utils.hentai(thing)] })
+        message.reply({ embeds: [await utils.hentai(thing)], ephemeral: true })
     }
 }

@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js'
+
 const simplydjs = require('simply-djs-v13')
 import { BotCommand } from '@extensions/BotCommand';
 

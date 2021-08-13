@@ -5,9 +5,9 @@ const thing = 'ero'
 
 export default class ero extends BotCommand {
     constructor() {
-        super(thing, {
-            aliases: [thing],
-            description: `[NSFW CHANNELS ONLY]`,
+        super('8', {
+            aliases: ['8'],
+            description: `[NSFW CHANNELS ONLY] See /helpnsfw`,
             usage: `-${thing}`,
             cooldown: 1000,
             slash: true,
@@ -19,6 +19,6 @@ export default class ero extends BotCommand {
     async exec(message) {
         if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
 
-        message.reply({ embeds: [await utils.hentai(thing)] })
+        message.reply({ embeds: [await utils.hentai(thing)], ephemeral: true })
     }
 }

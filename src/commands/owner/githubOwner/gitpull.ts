@@ -10,7 +10,7 @@ export default class gitpull extends BotCommand {
         super('gitpull', {
             aliases: ['gitpull', 'pull'],
             ownerOnly: true,
-            channel: 'guild'
+            channel: 'guild',
         });
     }
 

@@ -24,7 +24,7 @@ export default class kick extends BotCommand {
                 }
             ],
 
-            slash:true,
+            slash: true,
             slashOptions: [
                 {
                     name: 'user',

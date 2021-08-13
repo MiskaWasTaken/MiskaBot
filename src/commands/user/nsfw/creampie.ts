@@ -4,9 +4,9 @@ import utils from '@functions/utils';
 
 export default class creampie extends BotCommand {
     constructor() {
-        super('creampie', {
-            aliases: ['creampie'],
-            description: '[NSFW CHANNELS ONLY]',
+        super('5', {
+            aliases: ['5'],
+            description: '[NSFW CHANNELS ONLY] See /helpnsfw',
             usage: '-creampie',
             cooldown: 1000,
             slash: true,
@@ -18,6 +18,6 @@ export default class creampie extends BotCommand {
     async exec(message) {
         if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
 
-        message.reply({ embeds: [await utils.hentai('creampie')] })
+        message.reply({ embeds: [await utils.hentai('creampie')], ephemeral: true })
     }
 }

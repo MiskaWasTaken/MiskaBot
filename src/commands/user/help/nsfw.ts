@@ -1,7 +1,8 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
+const simplydjs = require('simply-djs-v13')
 
-export default class nsfw extends BotCommand {
+export default class nsfwhelp extends BotCommand {
 	constructor() {
 		super('helpnsfw', {
 			aliases: ['helpnsfw'],
@@ -36,28 +37,23 @@ export default class nsfw extends BotCommand {
 			.setAuthor('Miska Bot', 'https://i.imgur.com/I8qSDdc.jpg', 'https://discordbotlist.com/bots/miska-bot')
 			.setDescription('These are the NSFW commands for Miska Bot')
 			.addFields(
-				{ name: `Ahegao`, value: "`$ahegao`", inline: true },
-				{ name: 'Ass', value: "`$ass`", inline: true },
-				{ name: 'Blowjob', value: "`$blowjob`", inline: true },
-				{ name: 'Boobs', value: "`$boobs`", inline: true },
-				{ name: `Creampie`, value: "`$creampie`", inline: true },
-				{ name: 'Cuckold', value: "`$cuckold`", inline: true },
-				{ name: 'Cum', value: "`$cum`", inline: true },
-				{ name: 'Ero', value: "`$ero`", inline: true },
-				{ name: `Femdom`, value: "`$femdom`", inline: true },
-				{ name: 'Foot', value: "`$foot`", inline: true },
-				{ name: 'Gangbang', value: "`$gangbang`", inline: true },
-				{ name: 'Gif', value: "`$gif`", inline: true },
-				{ name: `Glasses`, value: "`$glasses`", inline: true },
-				{ name: 'Hentai', value: "`$hentai`", inline: true },
-				{ name: 'Hololive', value: "`$hololive`", inline: true },
-				{ name: 'Pussy', value: "`$pussy`", inline: true },
-				{ name: 'Fuck', value: "`$fuck @user`" },
+				{ name: 'Update:', value: `Please keep in mind the / represents a slash command. This is not a prefix. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
+				{ name: 'Issues:', value: `Unfortunately discord does not allow some slash commands to be behind an age-gate. In the meantime, until Discord allows such a feature I will be associating NSFW commands to an ID. I will do this since some people may feel uncomfortable looking at explicit commands. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
+				{ name: 'NSFW commands:', value: `\n \n Ahegao ==> /1 \n \n Ass ==> /2 \n \n Blowjob ==> /3 \n \n Boobs ==> /4 \n \n Creampie ==> /5 \n \n Cuckold ==> /6 \n \n Cum ==> /7 \n \n /Ero ==> /8 \n \n /Femdom ==> /9 \n \n /Foot ==> /10 \n \n /Gangbang ==> /11 \n \n /Gif ==> /gif \n \n Glasses ==> /12 \n \n Hentai ==> /13 \n \n Hololive ==> /hololive \n \n Pussy ==> /14 \n \n nsfw ==> /nsfw \n \n Fuck ==> /15 <user> \n \n<:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`, inline: true }
 			)
 			.setTimestamp()
 			.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
 
-		message.reply({ embeds: [helpnsfwEmbed] });
+			const pages = [helpnsfwEmbed] // REQUIRED
 
-	}
-}
+			// its still possible without embed
+			// let pages = ['page1', 'page2', 'page3']
+			
+			simplydjs.embedPages(this.client, message, pages, {
+			delEmoji: '🗑️', // default: 🗑️
+		
+			delcolor: 'DANGER', // default: DANGER
+		// Colors that discord.js support (PRIMARY/SECONDARY/SUCCESS/DANGER)  
+		skipBtn: false,
+			})}}
+		

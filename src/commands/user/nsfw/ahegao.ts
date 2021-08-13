@@ -4,9 +4,9 @@ import { MessageEmbed } from 'discord.js';
 
 export default class ahegao extends BotCommand {
     constructor() {
-        super('ahegao', {
-            aliases: ['ahegao'],
-            description: '[NSFW CHANNELS ONLY]',
+        super('1', {
+            aliases: ['1'],
+            description: '[NSFW CHANNELS ONLY] See /helpnsfw',
             usage: '-ahegao',
             cooldown: 1000,
             slash: true,
@@ -26,7 +26,7 @@ export default class ahegao extends BotCommand {
 
         if (!message.channel.nsfw) { return message.reply({ embeds: [nsfwEmbed] }) }
 
-        message.reply({ embeds: [await utils.hentai('ahegao')] })
+        message.reply({ embeds: [await utils.hentai('ahegao')], ephemeral: true })
 
     }
 }

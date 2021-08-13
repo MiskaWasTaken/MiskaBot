@@ -7,10 +7,18 @@ export default class helpme extends BotCommand {
             aliases: ['helpme'],
             description: 'this command does not exist',
             usage: 'zordlan is trying to cover up where i am please send help',
-            cooldown: 10000,
+            cooldown: 20000,
+            slash: true,
+			slashOptions: [
+	
+			]
         })
     }
     async exec(message) {
+        const prefix = "$"
+
+        if (!message.content.startsWith(prefix)) return
+
         const PLEASESENDHELP = [
             'help im stuck in zordlans basement',
             'i havent eaten anything in weeks',

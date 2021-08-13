@@ -17,6 +17,7 @@ export default class gitpush extends BotCommand {
                     match: 'restContent'
                 },
             ],
+            
             ownerOnly: true,
             channel: 'guild'
         });

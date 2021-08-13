@@ -24,7 +24,7 @@ export default class ban extends BotCommand {
                 }
             ],
 
-            slash:true,
+            slash: true,
             slashOptions: [
                 {
                     name: 'user',

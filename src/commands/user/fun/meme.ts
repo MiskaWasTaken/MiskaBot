@@ -18,7 +18,7 @@ export default class nsfw extends BotCommand {
                 }
             ],
 
-            slash:true,
+            slash: true,
             slashOptions: [
                 {
                     name: 'time',

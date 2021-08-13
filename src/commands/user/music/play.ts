@@ -1,5 +1,4 @@
 import { BotCommand } from '@extensions/BotCommand';
-import { MessageEmbed } from 'discord.js';
 
 export default class play extends BotCommand {
     constructor() {
@@ -36,17 +35,9 @@ export default class play extends BotCommand {
 			return;
 		}
 
-		this.client.distube.play(message, args.song)
+		this.client.distube.play(message, args.song).catch(err => console.log(err))
 
-        this.client.distube
-        .on("playSong", (message, song) => {
-            const playingEmbed = new MessageEmbed()
-            .setColor("#FFFF00")
-            .setTitle(`🎵 Now Playing 🎵`)
-            .setDescription(`[**${song.name} - ${song.formattedDuration}**](${song.url})`)
-            .setFooter(`Requested by ${song.user.tag}`)
-            message.reply({ embeds: [playingEmbed] })
-        })
 
     }
 }
+

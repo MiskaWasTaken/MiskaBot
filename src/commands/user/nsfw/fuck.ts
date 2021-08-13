@@ -4,9 +4,9 @@ const HMfull = require("hmfull");
 
 export default class hug extends BotCommand {
     constructor() {
-        super('fuck', {
-            aliases: ['fuck'],
-            description: 'fuck someone',
+        super('15', {
+            aliases: ['15'],
+            description: '[NSFW CHANNELS ONLY] See /helpnsfw',
             usage: '$fuck @user',
             cooldown: 1000,
             args: [
@@ -48,7 +48,7 @@ export default class hug extends BotCommand {
             .setImage(`${res.url}`)
             .setTimestamp()
         
-            message.reply({ embeds: [hugEmbed] });
+            message.reply({ embeds: [hugEmbed], ephemeral: true });
         }
 
         if (!args.user) return message.reply("Please mention a user")

@@ -27,11 +27,13 @@ const embed1 = new MessageEmbed()
 .setTitle('Image Effects')
 .setDescription('Image effects for your profile picture')
 .addFields(
-    { name: 'Blur', value: `$blur @user`},
-    { name: 'Delete', value: `$delete @user`},
-    { name: 'Grey', value: `$grey @user`},
-	{ name: 'Invert', value: `$invert @user`},
-	{ name: 'Pride', value: `$pride @user`},
+	{ name: 'Update:', value: `Please keep in mind the / represents a slash command. This is not a prefix. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
+	{ name: '<user>:', value: `Mentioning a user in most image commands are optional. If you have not mentioned a user the effect will take place on your avatar. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
+    { name: 'Blur', value: `/blur <user>`},
+    { name: 'Delete', value: `/delete <user>`},
+    { name: 'Grey', value: `/grey <user>`},
+	{ name: 'Invert', value: `/invert <user>`},
+	{ name: 'Pride', value: `/pride <user>`},
 
 )
 
@@ -40,6 +42,8 @@ const embed2 = new MessageEmbed()
 .setTitle('Image Effects')
 .setDescription('Gif effects for your profile picture')
 .addFields(
+	{ name: 'Update:', value: `Please keep in mind the / represents a slash command. This is not a prefix. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
+	{ name: '<user>:', value: `Mentioning a user in most image commands are optional. If you have not mentioned a user the effect will take place on your avatar. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
     { name: 'Trigger', value: `$trigger @user`},
 )
 
@@ -49,26 +53,28 @@ const embed3 = new MessageEmbed()
 .setTitle('Image Effects')
 .setDescription('Meme effects')
 .addFields(
-	{ name: 'Advert', value: "`$ad @user`", inline: true },
-	{ name: 'Smoking', value: "`$smoking @user`", inline: true },
-	{ name: 'Pride', value: "`$pride @user`", inline: true },
-	{ name: 'Slap', value: "`$slap @user`", inline: true },
-	{ name: 'Pretty', value: "`$pretty @user`", inline: true },
-	{ name: 'Bed', value: "`$bed @user`", inline: true },
-	{ name: 'Bobross', value: "`$bobross @user`", inline: true },
-	{ name: 'Confused Stonk', value: "`$confusedstonk @user`", inline: true },
-	{ name: 'Discord Black', value: "`$disblack @user`", inline: true },
-	{ name: 'Discord', value: "`$discord @user`", inline: true },
-	{ name: 'Double Stonks', value: "`$doublestonks @user`", inline: true },
-	{ name: 'Facepalm', value: "`$facepalm @user`", inline: true },
-	{ name: 'Jail', value: "`$jail @user`", inline: true },
-	{ name: 'Kiss', value: "`$kiss @user`", inline: true },
-	{ name: 'Present', value: "`$present <text>`", inline: true },
-	{ name: 'Not Stonk', value: "`$notstonks @user`", inline: true },
-	{ name: 'RIP/Funeral', value: "`$rip @user`", inline: true },
-	{ name: 'Spank', value: "`$spank @user`", inline: true },
-	{ name: 'Stonks', value: "`$stonks @user`", inline: true },
-	{ name: 'Trash', value: "`$trash @user`", inline: true },	
+	{ name: 'Update:', value: `Please keep in mind the / represents a slash command. This is not a prefix. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
+	{ name: '<user>:', value: `Mentioning a user in most image commands are optional. If you have not mentioned a user the effect will take place on your avatar. \n \n <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570> <:tic:873280900052418570>`},
+	{ name: 'Advert', value: "`/ad <user>`", inline: true },
+	{ name: 'Affect', value: "`/affect <user>`", inline: true },
+	{ name: 'Pride', value: "`/pride <user>`", inline: true },
+	{ name: 'Slap', value: "`/slap <user>`", inline: true },
+	{ name: 'Pretty', value: "`/pretty <user>`", inline: true },
+	{ name: 'Bed', value: "`/bed <user>`", inline: true },
+	{ name: 'Bobross', value: "`/bobross <user>`", inline: true },
+	{ name: 'Confused Stonk', value: "`/confusedstonk <user>`", inline: true },
+	{ name: 'Discord Black', value: "`/disblack <user>`", inline: true },
+	{ name: 'Discord', value: "`/discord <user>`", inline: true },
+	{ name: 'Double Stonks', value: "`/doublestonks <user>`", inline: true },
+	{ name: 'Facepalm', value: "`/facepalm <user>`", inline: true },
+	{ name: 'Jail', value: "`/jail <user>`", inline: true },
+	{ name: 'Kiss', value: "`/kiss <user>`", inline: true },
+	{ name: 'Present', value: "`/present <text>`", inline: true },
+	{ name: 'Not Stonk', value: "`/notstonks <user>`", inline: true },
+	{ name: 'RIP/Funeral', value: "`/rip <user>`", inline: true },
+	{ name: 'Spank', value: "`/spank <user>`", inline: true },
+	{ name: 'Stonks', value: "`/stonks <user>`", inline: true },
+	{ name: 'Trash', value: "`/trash <user>`"},	
 )
 
 
