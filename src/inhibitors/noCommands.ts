@@ -11,7 +11,10 @@ class noCommands extends BotInhibitor {
 		const prefixes = this.client.commandHandler.prefix as string[]
         this.client.commandHandler.modules.forEach(command => {
             command.aliases.forEach(alias => {
-                prefixes.forEach(prefix => {if (message.content.startsWith(`${prefix}${alias}`)) message.reply('Normal commands have been deprecated. Please re-invite the bot with this link:\nhttps://discord.com/oauth2/authorize?client_id=847828846597373973&scope=bot+applications.commands&permissions=2956324342')
+                prefixes.forEach(prefix => {if (message.content.startsWith(`${prefix}${alias}`)) message.reply('Normal commands have been deprecated, use slash commands. Please re-invite the bot with this link if you do not see slash commands:\nhttps://discord.com/oauth2/authorize?client_id=847828846597373973&scope=bot+applications.commands&permissions=2956324342').then(ms => {
+                    setTimeout(() => ms.delete(), 10000)})
+                    
+                    return;
                 return true
             })
             })
