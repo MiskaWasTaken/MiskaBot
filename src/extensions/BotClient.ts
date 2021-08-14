@@ -18,6 +18,7 @@ class BotClient extends AkairoClient {
 		automateCategories: true,
 		autoRegisterSlashCommands: true,
 		autoDefer: false,
+		prefix:['$']
 	})
 
 	public distube = new DisTube.default(this, {

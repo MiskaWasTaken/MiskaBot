@@ -2,10 +2,6 @@ import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
 const simplydjs = require('no-buttons')
 
-
-
-
-
 export default class fun extends BotCommand {
     constructor() {
         super('helpfun', {
@@ -22,10 +18,10 @@ export default class fun extends BotCommand {
         })
     }
 
-    async exec(message) {
+	async exec(message) {
 
 
-const helpfEmbed = new MessageEmbed()
+	const helpfEmbed = new MessageEmbed()
 	.setColor('RANDOM')
 	.setTitle('Help Command')
 	.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
@@ -43,15 +39,10 @@ const helpfEmbed = new MessageEmbed()
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');
 
-	const pages = [helpfEmbed] // REQUIRED
-
-	// its still possible without embed
-	// let pages = ['page1', 'page2', 'page3']
+	const pages = [helpfEmbed] 
 	
 	simplydjs.embedPages(this.client, message, pages, {
-	delEmoji: '🗑️', // default: 🗑️
-
-	delcolor: 'DANGER', // default: DANGER
- // Colors that discord.js support (PRIMARY/SECONDARY/SUCCESS/DANGER)  
- skipBtn: false,
+		delEmoji: '🗑️', 
+		delcolor: 'DANGER',
+        skipBtn: false,
 	})}}
