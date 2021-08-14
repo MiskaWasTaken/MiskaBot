@@ -34,23 +34,7 @@ export default class discord extends BotCommand {
     }
     async exec(message, args) {
         
-<<<<<<< HEAD
-        const user = args.userid  || message.author
-        
-        if(!args.userid) return message.reply("Please mention a user, or yourself.")
-
-<<<<<<< HEAD
-        const avatar = user.userid.displayAvatarURL({ dynamic: false, format: 'jpg' });
-=======
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
->>>>>>> 597d1bfa728b3314838e5880462da3a68beda7df
-        // Make the image
-        const img = await new DIG.DiscordBlue().getImage(avatar)
-        // Add the image as an attachement
-        const attach = new Discord.MessageAttachment(img, "delete.png");
-=======
         try {
->>>>>>> 74b153700e636a8f014b9da90bc52e857b1774c0
 
             let user
             

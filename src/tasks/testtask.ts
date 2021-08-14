@@ -9,10 +9,10 @@ export default class extends BotTasks {
 		});
 	}
 	async exec() {
-		const guild = this.client.guilds.cache.get('868532678318780496');
+		const guild = this.client.guilds.cache.get('794739329956053063');
 
           const userCount = guild.memberCount;
-          const channel = guild.channels.cache.get('868532678318780501');
+          const channel = guild.channels.cache.get('864182952937127948');
         channel.setName(`Total Members: ${userCount.toLocaleString()}`);
         console.log("Updating Member Count For Glowstik's Git Repo");
    

@@ -33,25 +33,6 @@ export default class rip extends BotCommand {
     async exec(message, args) {
         try {
 
-<<<<<<< HEAD
-        const user = args.userid  || message.author
-        
-<<<<<<< HEAD
-        if(!args.userid) return message.reply("Please mention a user, or yourself.")
-=======
-       if(!args.userid) return message.reply("Please mention a user, or yourself.")
->>>>>>> 597d1bfa728b3314838e5880462da3a68beda7df
-
-        const avatar = user.displayAvatarURL({ dynamic: false, format: 'jpg' });
-        // Make the image
-        const img = await new DIG.Rip().getImage(avatar)
-        // Add the image as an attachement
-        const attach = new Discord.MessageAttachment(img, "delete.png");
-
-        message.reply({ files: [attach]  })
-       
-    }}
-=======
             let user
             
             if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
@@ -68,4 +49,3 @@ export default class rip extends BotCommand {
             }
            
         }}
->>>>>>> 74b153700e636a8f014b9da90bc52e857b1774c0
