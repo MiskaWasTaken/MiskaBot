@@ -1,6 +1,6 @@
 import { MessageEmbed } from 'discord.js';
 import { BotCommand } from '@extensions/BotCommand';
-const simplydjs = require('no-buttons')
+const simplydjs = require('simply-djs-v13')
 
 
 

@@ -1,5 +1,6 @@
 import { BotCommand } from '@extensions/BotCommand';
-const  ultrax = require('ultrax') 
+const fetch = require('node-fetch')
+import { MessageEmbed } from 'discord.js';
 
 export default class wikipedia extends BotCommand {
     constructor() {
@@ -25,20 +26,37 @@ export default class wikipedia extends BotCommand {
                 }]
         })
     }
+
     async exec(message, args) {
 
-        if (!message.channel.nsfw) { return message.reply({ embeds: [this.client.notNsfwEmbed] }) }
+        const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(args.query)}`
 
-
-        const query = args.query
-
-
-    const  res = new ultrax.Wikipedia({ 
-	message:  message, // The message
-	color:  "RED", // Color of embed that will be sent
-	query:  query  // what the search query is
-})
-
-res.fetch() 
-    
-    }}
+        let response;
+        try {
+          response = await fetch(url).then(res => res.json())
+        } catch (e) {
+          console.log('Something went wrong with Wikipedia search\n' + e)
+        }
+        try {
+          if (response.type === 'disambiguation') {
+            const embed = new MessageEmbed()
+              .setTitle(response.title)
+              .setColor('RED')
+              .setURL(response.content_urls.desktop.page)
+              .setThumbnail(response.thumbnail.source)
+              .setDescription(`${response.extract} Other Links for the same topic: [Click Me!](${response.content_urls.desktop.page}).`)
+            message.reply({ embeds: [embed] }).catch()
+          } else {
+            const fullEmbed = new MessageEmbed()
+              .setTitle(response.title)
+              .setColor('RED')
+              .setURL(response.content_urls.desktop.page)
+              .setThumbnail(response.thumbnail.source)
+              .setDescription(response.extract)
+            message.reply({ embeds: [fullEmbed] }).catch()
+          }
+        } catch (e) {
+          message.reply({ embeds: [new MessageEmbed().setDescription(`:x: | No results for ${args.query}`).setColor('RED')] })
+        }
+      }
+    }

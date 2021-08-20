@@ -9,21 +9,7 @@ export default class search extends BotCommand {
             description: 'yes',
             usage: 'gassist',
             cooldown: 5000,
-            args: [
-                {
-                    id: 'search',
-                    type: 'string',
-                    match: 'restContent'
-                }
-            ],
-            slash:true,
-            slashOptions: [
-                {
-                    name: 'search',
-                    description: 'Search query',
-                    type:'STRING',  
-                    required: true
-                }]
+            prefix: '$'
         })
     }
     async exec() {
