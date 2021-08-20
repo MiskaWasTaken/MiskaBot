@@ -2,12 +2,12 @@ import { BotCommand } from '@extensions/BotCommand';
 import { Assistant, AssistantLanguage } from "nodejs-assistant";
 import config from '../../../extensions/config/config' //pls dont steal my data zord
 
-export default class google extends BotCommand {
+export default class search extends BotCommand {
     constructor() {
         super('serach', {
             aliases: ['search'],
-            description: 'When your browser breaks moment',
-            usage: '$google <query>',
+            description: 'yes',
+            usage: 'gassist',
             cooldown: 5000,
             args: [
                 {
