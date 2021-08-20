@@ -37,6 +37,11 @@ export default class console extends BotCommand {
 
     async exec(message, args) {
 
+        
+        if(!args.command){
+            return message.reply("Actually provide me something to evaluate you smoothbrain")
+        }
+
         if (message.interaction && !this.client.ownerID.includes(message.author.id)){
             message.reply({content: 'I only respond to the mighty ones who have created me.', ephemeral: true})
             return;

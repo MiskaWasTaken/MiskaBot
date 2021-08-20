@@ -31,6 +31,7 @@ class BotClient extends AkairoClient {
 		plugins: [new SoundCloudPlugin(), new SpotifyPlugin()],
 	})
 
+
 	public listenerHandler: ListenerHandler = new ListenerHandler(this, {
 		directory: join(__dirname, "..", "listeners"),
 		automateCategories: true

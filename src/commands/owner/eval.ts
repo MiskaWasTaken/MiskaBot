@@ -44,10 +44,15 @@ export default class evaluate extends BotCommand {
 
     async exec(message, args) {  
 
+
         if (message.interaction && !this.client.ownerID.includes(message.author.id)){
             message.reply({content: 'I only respond to the mighty ones who have created me.', ephemeral: true})
             return;
         } 
+
+        if(!args.codetoeval){
+            return message.reply("Actually provide me something to evaluate you smoothbrain")
+        }
 
         if (args.codetoeval.includes('token')) { return (message.util.send('no token')) }
         if (args.codetoeval.includes('env')) { return message.util.send('no env') }
