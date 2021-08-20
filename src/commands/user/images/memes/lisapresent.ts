@@ -1,7 +1,6 @@
 import { BotCommand } from '@extensions/BotCommand';
 const DIG = require("discord-image-generation");
 const Discord = require('discord.js')
-// if charecter is over 300 = error
 
 
 export default class present extends BotCommand {

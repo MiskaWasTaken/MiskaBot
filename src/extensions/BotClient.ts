@@ -2,6 +2,7 @@ import utils from "@functions/utils"
 import chalk from "chalk"
 import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler, TaskHandler } from "discord-akairo"
 import { Intents, MessageEmbed, TextChannel } from "discord.js"
+import { Assistant, AssistantLanguage, } from "nodejs-assistant";
 import { join } from "path"
 const DisTube = require("distube");
 import config from '../extensions/config/config'
@@ -18,7 +19,6 @@ class BotClient extends AkairoClient {
 		automateCategories: true,
 		autoRegisterSlashCommands: true,
 		autoDefer: false,
-		prefix:['$']
 	})
 
 	public distube = new DisTube.default(this, {
@@ -29,6 +29,17 @@ class BotClient extends AkairoClient {
 		leaveOnFinish: false,
 		leaveOnStop: false,
 		plugins: [new SoundCloudPlugin(), new SpotifyPlugin()],
+	})
+
+	public assistant = new Assistant( {
+		type: 'authorized_user',
+		client_id: config.client_id,
+		client_secret: config.client_secret, 
+		refresh_token: config.refresh_token,
+	}, {
+		locale: AssistantLanguage.ENGLISH, 
+		deviceId: '287698408855044097',  
+		deviceModelId: '444871677176709141', 
 	})
 
 

@@ -2,12 +2,12 @@ import { BotCommand } from '@extensions/BotCommand';
 import { MessageEmbed } from 'discord.js';
 const googleIt = require('google-it')
 
-export default class google extends BotCommand {
+export default class search extends BotCommand {
     constructor() {
-        super('google', {
-            aliases: ['google'],
+        super('search', {
+            aliases: ['search'],
             description: 'When your browser breaks moment',
-            usage: '$google <query>',
+            usage: '/search <query>',
             cooldown: 5000,
             args: [
                 {

@@ -60,6 +60,7 @@
 		"node-fetch": "^2.6.1",
 		"node-gyp": "^8.1.0",
 		"node-superfetch": "^0.2.3",
+		"nodejs-assistant": "^0.8.0",
 		"pretty-ms": "^7.0.1",
 		"python": "^0.0.4",
 		"quick.db": "^7.1.3",
