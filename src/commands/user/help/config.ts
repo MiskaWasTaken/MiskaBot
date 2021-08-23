@@ -42,6 +42,7 @@ const embed3 = new MessageEmbed()
 	{ name: 'Kick', value: `KICK MEMBERS`},
 	{ name: 'Lock | Unlock', value: `MANAGE CHANNELS`},
 	{ name: 'Purge', value: `MANAGE MESSAGES`},
+    { name: 'Chat Bot | /google', value: `MANAGE MESSAGES`},
 	{ name: 'Nuke', value: `I must have: MANAGE CHANNELS | The executer must have: ADMINISTRATOR`})
 
 

@@ -13,7 +13,7 @@ export default class console extends BotCommand {
     constructor() {
         super('console', {
             aliases: ['console'],
-            description: "Dev only :)",
+            description: "Dev only :) | Run a console command",
             cooldown: 10000,
 
             args: [
@@ -28,7 +28,8 @@ export default class console extends BotCommand {
                 {
 					name: 'command',
 					description: 'Command to run',
-					type:'STRING',  
+					type:'STRING', 
+                    required: true 
 				}
             ],
             channel: 'guild',

@@ -10,7 +10,7 @@ export default class reload extends BotCommand {
     constructor() {
         super('reload', {
             aliases: ['reload'],
-            description: 'Dev only :)',
+            description: 'Dev only :) | Restarts bot',
             cooldown: 10000,
             slash: true,
             slashOptions: [

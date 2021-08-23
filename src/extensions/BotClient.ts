@@ -43,6 +43,7 @@ class BotClient extends AkairoClient {
 	})
 
 
+
 	public listenerHandler: ListenerHandler = new ListenerHandler(this, {
 		directory: join(__dirname, "..", "listeners"),
 		automateCategories: true
@@ -85,6 +86,7 @@ class BotClient extends AkairoClient {
 
 		return returnErrorEmbed
 	}
+
 
 	public notNsfwEmbed = new MessageEmbed()
 		.setColor('#ff0000')

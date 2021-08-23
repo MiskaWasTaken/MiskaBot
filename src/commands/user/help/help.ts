@@ -41,6 +41,7 @@ const helpEmbed = new MessageEmbed()
 		{ name: '👩‍💻Config', value: "`/config`", inline: true },
 		{ name: '📜Change Logs', value: "`/changelog`", inline: true },
 		{ name: '🐱‍💻Utility', value: "`/helputility`", inline: true },
+		{ name: '❓Suggest', value: "`/suggest`", inline: true },
 	)
 	.setTimestamp()
 	.setFooter(`Requested by: ${message.author.username}`, 'https://i.imgur.com/I8qSDdc.jpg');

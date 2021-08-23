@@ -24,7 +24,7 @@ export default class evaluate extends BotCommand {
     constructor() {
         super('eval', {
             aliases: ['eval'],
-            description: 'Evaluate code',
+            description: 'Dev only :) | Evaluate code',
             cooldown: 10000,
             args: [
                 { id: 'codetoeval', type: 'string', match: 'rest' },
@@ -36,7 +36,8 @@ export default class evaluate extends BotCommand {
                 {
 					name: 'codetoeval',
 					description: 'Dev only :)',
-					type:'STRING',  
+					type:'STRING',
+                    required: true  
 				}
             ],
         })

@@ -21,7 +21,7 @@ export default class userinfo extends BotCommand {
             slashOptions: [
                 {
                     name: 'user',
-                    description: 'THe user you would like to display information about',
+                    description: 'The user you would like to display information about',
                     type:'USER',  
                     required: false
                 }
@@ -53,7 +53,6 @@ export default class userinfo extends BotCommand {
             .setColor('RANDOM')
             .setAuthor(user.tag, user.displayAvatarURL({ dynamic: true }))
             .addFields(
-                { name: `Account Created At:`, value: `${moment(user.createdAt).format("LLLL")}`, inline: true },
                 { name: `Joined At:`, value: `${moment(user.joinedAt).format("LLLL")}`, inline: true },
                 { name: 'Common Information:', value: `ID: \`${user.id}\`\n\nDiscriminator: ${user.discriminator}\n\nBot: ${user.bot}`, inline: true },
                 { name: 'Avatar:', value: `[Click here to view Avatar](${user.displayAvatarURL({ dynamic: true})})`, inline: true}
