@@ -33,7 +33,7 @@ export default class botinfo extends BotCommand {
         **Users:** ${this.client.users.cache.size}
         **Discord.js Version:** discord.js@13.0.0
         **Node.js Version:** 16.7.0
-        **Custom Bot Verson:** RW3.0`
+        **Custom Bot Version:** RW3.0`
     )
     message.reply({ embeds: [botEmbed] })
 }}
