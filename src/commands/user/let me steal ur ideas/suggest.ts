@@ -11,7 +11,7 @@ export default class suggest extends BotCommand {
             cooldown: 5000,
             args: [
                 {
-                    id: 'text',
+                    id: 'suggestion',
                     type: 'string',
                     match: 'restContent'
                 }
@@ -37,15 +37,10 @@ export default class suggest extends BotCommand {
     async exec(message, args) {
 
 
-        const suggestion = args.text
+        const suggestion = args.suggestion
 
         const suggestionChannel = await this.client.channels.cache.get('878917528313819148') as TextChannel
 
-
-        if(suggestion.length > 20){
-            message.reply('Suggestions must be atleast 20 characters long')
-            return;
-        }
 	
         const warnEmbed = new MessageEmbed()
         .setColor('RED')
