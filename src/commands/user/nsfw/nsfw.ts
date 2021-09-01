@@ -99,6 +99,6 @@ export default class nsfw extends BotCommand {
             .setImage(`${redditPost.url}`)
             .setFooter(`Boners provided from https://www.reddit.com/r/nude_`)
 
-        message.reply({ embeds: [embed], ephemeral: true })
+        message.reply({ embeds: [embed]})
     }
 }

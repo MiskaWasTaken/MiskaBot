@@ -6,6 +6,7 @@
 		"lib": ["ESNext", "ESNext.Array", "ESNext.AsyncIterable", "ESNext.Intl", "ESNext.Symbol", "DOM"],
 		"sourceMap": false,
 		"inlineSourceMap": true,
+		"strict": false,
 		"inlineSources": true,
 		"incremental": true,
 		"esModuleInterop": true,

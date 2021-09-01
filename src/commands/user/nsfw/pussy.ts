@@ -2,7 +2,7 @@ import { BotCommand } from '@extensions/BotCommand';
 import utils from '@functions/utils';
 
 
-const thing = 'pussy'
+const thing = 'vagina'
 
 export default class pussy extends BotCommand {
     constructor() {
@@ -25,6 +25,6 @@ export default class pussy extends BotCommand {
                 return;
         })}
 
-        message.reply({ embeds: [await utils.hentai(thing)], ephemeral: true })
+        message.reply({ embeds: [await utils.hentai(thing)]})
     }
 }

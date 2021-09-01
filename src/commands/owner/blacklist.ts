@@ -1,6 +1,7 @@
 import { BotCommand } from "@extensions/BotCommand"
 const db = require('quick.db')
 const ms = require('ms')
+const BUserList = require('../../schema/blacklistSchema')
 
 
 export default class blacklist extends BotCommand {
@@ -41,15 +42,19 @@ export default class blacklist extends BotCommand {
 
     async exec(message, args) {
 
+        const user = args.user
+        const time = args.time
+        const newUser = await BUserList.create({
+            username: user.tag,
+            discordId: user
+        })
+        const savedUser = await newUser.save();
+
+
         if (message.interaction && !this.client.ownerID.includes(message.author.id)){
             message.reply({content: 'I only respond to the mighty ones who have created me.', ephemeral: true})
             return;
         } 
-
-        
-
-        const user = args.user
-        const time = args.time
 
         if(user == '@'){
             message.reply('an id you smoothbrain not a ping')
@@ -59,6 +64,7 @@ export default class blacklist extends BotCommand {
         if(user.length > 18){
             message.reply('look you smooth brain thats not a discord id')
         }
+
 
         if(time){
             db.push('list', user)
