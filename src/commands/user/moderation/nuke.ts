@@ -16,20 +16,21 @@ export default class nuke extends BotCommand {
         })
     }
     async exec(message) {
-//nothing to do here
+
+
         const upermEmbed = new MessageEmbed()
-        .setColor('#03dbfc')
-        .setTitle('Nuke Command')
-        .setDescription('You do not have permission to do execute this command!')
+        .setColor('#ff0000')
+        .setTitle('You do not have permission to use this command!')
+        .setDescription('If you think this is a mistake please contact the server moderators')
         .setTimestamp()
         .setFooter('Permission Error ADMINISTRATOR')
     
-
-
-        if(!message.member.permissions.has(['ADMINISTRATOR']))
+        if(!message.member.permissions.has(['ADMINISTRATOR'])) { 
         message.reply({ embeds: [upermEmbed] })
+        return;
+        }
 
-        if(!message.guild.me.permissions.toArray().includes('MANAGE_CHANNELS')) return message.reply("I do not have permission to nuke this channel. (MANAGE_CHANNELS)")
+        if(!message.guild.me.permissions.toArray().includes('MANAGE_CHANNELS')){ return message.reply("I do not have permission to nuke this channel. Please provide ome 'manage channels' permission") }
 
       
           else {

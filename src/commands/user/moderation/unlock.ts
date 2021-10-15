@@ -27,10 +27,12 @@ export default class unlock extends BotCommand {
     
 
 
-        if(!message.member.permissions.has(['MANAGE_CHANNELS', 'ADMINISTRATOR'])) 
+        if(!message.member.permissions.has(['MANAGE_CHANNELS'])){
         message.reply({ embeds: [upermEmbed] })
+        return;
+        }
 
-        if(!message.guild.me.permissions.toArray().includes('MANAGE_CHANNELS')) return message.reply("I do not have permission to unlock this channel. (MANAGE_CHANNELS).")
+        if(!message.guild.me.permissions.toArray().includes('MANAGE_CHANNELS')){ return message.reply("I do not have permission to unlock this channel. (MANAGE_CHANNELS).") }
 
         else {
     

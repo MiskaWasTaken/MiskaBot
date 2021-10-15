@@ -37,10 +37,10 @@ export default class unban extends BotCommand {
         .setTitle('You do not have permission to use this command!')
         .setDescription('If you think this is a mistake please contact the server moderators')
         .setTimestamp()
-        .setFooter('Permission Error BAN_MEMBERS, ADMINISTRATOR')
+        .setFooter('Permission Error BAN_MEMBERS')
       
           // the permission a member needs to ban
-          if(!message.member.permissions.has(['BAN_MEMBERS', 'ADMINISTRATOR']))
+          if(!message.member.permissions.has(['BAN_MEMBERS']))
           // if someone doesnt have perms send this
           message.reply({ embeds: [permEmbed] })
 

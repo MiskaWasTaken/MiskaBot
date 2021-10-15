@@ -16,22 +16,26 @@ export default class lock extends BotCommand {
         })
     }
     async exec(message) {
-//nothing to do here
 
         const aa = message.guild.roles.cache.find(e => e.name.toLowerCase().trim() == "@everyone")
 
         const upermEmbed = new MessageEmbed()
-        .setColor('#03dbfc')
-        .setTitle('Lock Command')
-        .setDescription('You do not have permission to do execute this command!')
+        .setColor('#ff0000')
+        .setTitle('You do not have permission to use this command!')
+        .setDescription('If you think this is a mistake please contact the server moderators')
         .setTimestamp()
         .setFooter('Permission Error MANAGE_CHANNELS')
     
     
-        if(!message.member.permissions.has(['MANAGE_CHANNELS', 'ADMINISTRATOR']))
+        if(!message.member.permissions.has(['MANAGE_CHANNELS'])){
         message.reply({ embeds: [upermEmbed] })
+        return;
+        }
 
-        if(!message.guild.me.permissions.toArray().includes('MANAGE_CHANNELS')) return message.reply("I do not have permission to lock this channel. (MANAGE_CHANNELS).")
+        if(!message.guild.me.permissions.toArray().includes('MANAGE_CHANNELS')){ 
+        message.reply("I do not have permission to lock this channel. Please provide me 'manage channels' permission.") 
+        return;
+        }
 
 
         else {

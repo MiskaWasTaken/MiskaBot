@@ -49,16 +49,18 @@ export default class ban extends BotCommand {
         .setTitle('You do not have permission to use this command!')
         .setDescription('If you think this is a mistake please contact the server moderators')
         .setTimestamp()
-        .setFooter('Permission Error BAN_MEMBERS, ADMINISTRATOR')
+        .setFooter('Permission Error BAN_MEMBERS')
       
           // the permission a member needs to ban
-          if(!message.member.permissions.has(['BAN_MEMBERS']))
-          // if someone doesnt have perms send this
-          message.reply({ embeds: [permEmbed] })
+          if(!message.member.permissions.has(['BAN_MEMBERS'])){
+              message.reply({ embeds: [permEmbed] })
+              return;
+          }
 
-
-          if(!message.guild.me.permissions.toArray().includes('BAN_MEMBERS')) return message.reply("I do not have permission to ban members (BAN_MEMBERS).")
-      
+          if(!message.guild.me.permissions.toArray().includes('BAN_MEMBERS')){ 
+            return message.reply("I do not have permission to ban members (BAN_MEMBERS).") 
+          }
+    
           else {
 
             let user

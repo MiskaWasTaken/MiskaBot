@@ -37,19 +37,19 @@ export default class purge extends BotCommand {
 //nothing to do here
         const purge = args.amount
 
-
-
         const upermEmbed = new MessageEmbed()
-        .setColor('#03dbfc')
-        .setTitle('Purge Command')
-        .setDescription('You do not have permission to do execute this command!')
+        .setColor('#ff0000')
+        .setTitle('You do not have permission to use this command!')
+        .setDescription('If you think this is a mistake please contact the server moderators')
         .setTimestamp()
         .setFooter('Permission Error MANAGE_MESSAGES')
 
-        if(!message.member.permissions.has(['MANAGE_MESSAGES', 'ADMINISTRATOR'])) 
+        if(!message.member.permissions.has(['MANAGE_MESSAGES'])){
         message.reply({ embeds: [upermEmbed] });
+        return;
+        }
 
-        if(!message.guild.me.permissions.toArray().includes('MANAGE_MESSAGES')) return message.reply("I do not have permission to delete messages. (MANAGE_MESSAGES)")
+        if(!message.guild.me.permissions.toArray().includes('MANAGE_MESSAGES')){ return message.reply("I do not have permission to delete messages. Please provide me 'manage messages' permission") }
 
         if (purge > 100){
             message.reply("Maximum purge amount is 100.").then(ms => {
