@@ -25,7 +25,7 @@ export default class botinfo extends BotCommand {
         **Tag:** ${this.client.user.tag}
         **ID:** ${this.client.user.id} 
         **Created At:** ${this.client.user.createdAt}
-        **Owner:** Miska#0229, Zordlan#3560`
+        **Owner:** Miska#0229, Raine#7430`
     )
     .addField(`**Stats**`,
         `**Servers:** ${this.client.guilds.cache.size}

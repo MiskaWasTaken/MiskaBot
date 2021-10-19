@@ -5,7 +5,6 @@ import { Intents, MessageEmbed, TextChannel } from "discord.js"
 import { Assistant, AssistantLanguage, } from "nodejs-assistant";
 import { join } from "path"
 const DisTube = require("distube");
-const mongoose = require("mongoose")
 import config from '../extensions/config/config'
 //import {BotClientUtils} from '@extensions/BotClientUtils'
 const SoundCloudPlugin = require('@distube/soundcloud')
@@ -31,14 +30,6 @@ class BotClient extends AkairoClient {
 		leaveOnStop: false,
 		plugins: [new SoundCloudPlugin(), new SpotifyPlugin()],
 	})
-
-
-	public mongo = mongoose.connect(config.MONGODB_URI, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	}).then(()=>[
-		console.log('Connected to MongoDB')
-	])
 
 	public assistant = new Assistant( {
 		type: 'authorized_user',

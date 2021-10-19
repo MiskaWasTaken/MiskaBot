@@ -1,8 +1,6 @@
 import { BotCommand } from "@extensions/BotCommand"
 const db = require('quick.db')
 const ms = require('ms')
-const BUserList = require('../../schema/blacklistSchema')
-
 
 export default class blacklist extends BotCommand {
     constructor() {
@@ -44,11 +42,6 @@ export default class blacklist extends BotCommand {
 
         const user = args.user
         const time = args.time
-        const newUser = await BUserList.create({
-            username: user.tag,
-            discordId: user
-        })
-        const savedUser = await newUser.save();
 
 
         if (message.interaction && !this.client.ownerID.includes(message.author.id)){
