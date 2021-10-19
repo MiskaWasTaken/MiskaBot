@@ -1,0 +1,691 @@
+const Discord = require('discord.js')
+const fetch = require('node-fetch')
+let users = new Map();
+
+const client = new Discord.Client({
+    intents: [
+        "GUILDS",
+        "GUILD_MEMBERS",
+        "GUILD_BANS",
+        "GUILD_EMOJIS_AND_STICKERS",
+        "GUILD_INTEGRATIONS",
+        "GUILD_WEBHOOKS",
+        "GUILD_INVITES",
+        "GUILD_VOICE_STATES",
+        "GUILD_PRESENCES",
+        "GUILD_MESSAGES",
+        "GUILD_MESSAGE_REACTIONS",
+        "GUILD_MESSAGE_TYPING",
+        "DIRECT_MESSAGES",
+        "DIRECT_MESSAGE_REACTIONS",
+        "DIRECT_MESSAGE_TYPING",
+    ],
+});
+
+client.on('ready', async () => {
+
+})
+
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isButton) return;
+
+    suggestBtn(interaction, users)
+})
+
+client.on('messageCreate', async (message) => {
+
+
+    if (message.content.indexOf('!') !== 0) return;
+    let prefix = '!';
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase()
+
+    if (command === 'suggest') {
+        suggestSystem(client, message, args, {
+            chid: '868506665102762034'
+        })
+    }
+
+    if(command === 'rps'){
+        rps(message)
+    }
+
+
+})
+async function rps(message, options = []){
+    let opponent = message.mentions.members.first()
+    if(!opponent) return message.channel.send('No opponent mentioned!')
+    if(opponent.id == message.author.id) return message.channel.send('You cannot play by yourself!')
+
+    if(options.credit === false){
+        foot = options.embedFooter || "Rock Paper Scissors"
+    }else{
+        foot = "©️ Simply Develop. | By- ImpassiveMoon + Rahuletto"
+    }
+
+    let acceptEmbed = new Discord.MessageEmbed()
+    .setTitle(`Waiting for ${opponent.user.tag} to accept!`)
+    .setAuthor(message.author.tag, message.author.displayAvatarURL())
+    .setColor(options.embedColor || 0x075FFF)
+    .setFooter(foot)
+
+    let accept = new Discord.MessageButton()
+    .setLabel('Accept')
+    .setStyle('SUCCESS')
+    .setCustomId('accept')
+
+    let decline = new Discord.MessageButton()
+    .setLabel('Decline')
+    .setStyle('DANGER')
+    .setCustomId('decline')
+
+    let accep = new Discord.MessageActionRow()
+    .addComponents([accept, decline])
+    message.channel.send({
+        embeds: [acceptEmbed],
+        components: [accep]
+    }).then(m => {
+        let filter = (button) => button.user.id == opponent.id
+        const collector = m.createMessageComponentCollector({type: 'BUTTON', time: 30000, filter: filter})
+        collector.on('collect', (button) => {
+            if(button.customId == 'decline'){
+                button.deferUpdate()
+                return collector.stop('decline')
+            }
+            button.deferUpdate()
+            let embed = new Discord.MessageEmbed()
+            .setTitle(`${message.author.tag} VS. ${opponent.user.tag}`)
+            .setColor(options.embedColor || 0x075FFF)
+            .setFooter(foot)
+            .setDescription("Select 🪨, 📄, or ✂️")
+
+            let rock = new Discord.MessageButton()
+            .setLabel('ROCK')
+            .setCustomId('rock')
+            .setStyle(options.rockColor || 'SECONDARY')
+            .setEmoji("🪨")
+            let paper = new Discord.MessageButton()
+            .setLabel('PAPER')
+            .setCustomId('paper')
+            .setStyle(options.paperColor || 'SECONDARY')
+            .setEmoji("📄")
+            let scissors = new Discord.MessageButton()
+            .setLabel('SCISSORS')
+            .setCustomId('scissors')
+            .setStyle(options.scissorsColor || 'SECONDARY')
+            .setEmoji("✂️")
+
+            let row = new Discord.MessageActionRow()
+            .addComponents([rock, paper, scissors])
+
+            m.edit({
+                embeds: [embed],
+                components: [row]
+            })
+            
+            collector.stop()
+            let ids = new Set()
+            ids.add(message.author.id)
+            ids.add(opponent.id)
+            let op, auth
+            let filter = (button) => ids.has(button.user.id)
+            const collect = m.createMessageComponentCollector({filter: filter, type: 'BUTTON', time: 30000})
+            collect.on('collect', (b) => {
+                ids.delete(b.user.id)
+                b.deferUpdate()
+                if(b.user.id == opponent.id){
+                    mem = b.customId
+                }
+                if(b.user.id == message.author.id){
+                    auth = b.customId
+                }
+                if(ids.size == 0) collect.stop()
+            })
+            collect.on('end', (c, reason) => {
+                if(reason == 'time'){
+                    let embed = new Discord.MessageEmbed()
+                    .setTitle('Game Timed Out!')
+                    .setColor(options.timeoutEmbedColor || 0xFF0000)
+                    .setDescription('One or more players did not make a move in time(30s)')
+                    .setFooter(foot)
+                    m.edit({
+                        embeds: [embed],
+                        components: []
+                    })
+                }else{
+                    if(mem == 'rock' && auth == 'scissors'){
+                        let embed = new Discord.MessageEmbed()
+                        .setTitle(`${opponent.user.tag} Wins!`)
+                        .setColor(options.winEmbedColor || 0x00FF00)
+                        .setDescription('Rock defeats Scissors')
+                        .setFooter(foot)
+                        m.edit({embeds: [embed], components: []})
+                    }else if(mem == 'scissors' && auth == 'rock'){
+                        let embed = new Discord.MessageEmbed()
+                        .setTitle(`${message.member.user.tag} Wins!`)
+                        .setColor(options.winEmbedColor || 0x00FF00)
+                        .setDescription('Rock defeats Scissors')
+                        .setFooter(foot)
+                        m.edit({embeds: [embed], components: []})
+                    }
+                    else if(mem == 'scissors' && auth == 'paper'){
+                        let embed = new Discord.MessageEmbed()
+                        .setTitle(`${opponent.user.tag} Wins!`)
+                        .setColor(options.winEmbedColor || 0x00FF00)
+                        .setDescription('Scissors defeats Paper')
+                        .setFooter(foot)
+                        m.edit({embeds: [embed], components: []})
+                    }else if(mem == 'paper' && auth == 'scissors'){
+                        let embed = new Discord.MessageEmbed()
+                        .setTitle(`${message.member.user.tag} Wins!`)
+                        .setColor(options.winEmbedColor || 0x00FF00)
+                        .setDescription('Scissors defeats Paper')
+                        .setFooter(foot)
+                        m.edit({embeds: [embed], components: []})
+                    }
+                    else if(mem == 'paper' && auth == 'rock'){
+                        let embed = new Discord.MessageEmbed()
+                        .setTitle(`${opponent.user.tag} Wins!`)
+                        .setColor(options.winEmbedColor || 0x00FF00)
+                        .setDescription('Paper defeats Rock')
+                        .setFooter(foot)
+                        m.edit({embeds: [embed], components: []})
+                    }else if(mem == 'rock' && auth == 'paper'){
+                        let embed = new Discord.MessageEmbed()
+                        .setTitle(`${message.member.user.tag} Wins!`)
+                        .setColor(options.winEmbedColor || 0x00FF00)
+                        .setDescription('Paper defeats Rock')
+                        .setFooter(foot)
+                        m.edit({embeds: [embed], components: []})
+                    }
+                    else{
+                        let embed = new Discord.MessageEmbed()
+                        .setTitle('Draw!')
+                        .setColor(options.winEmbedColor || 0x00FF00)
+                        .setDescription(`Both players chose ${mem}`)
+                        .setFooter(foot)
+                        m.edit({embeds: [embed], components: []})
+                    }
+                }
+            })
+        })
+        collector.on('end', (collected, reason) => {
+            if(reason == 'time'){
+                let embed = new Discord.MessageEmbed()
+                .setTitle('Challenge Not Accepted in Time')
+                .setAuthor(message.author.tag, message.author.displayAvatarURL())
+                .setColor(options.timeoutEmbedColor || 0xFF0000)
+                .setFooter(foot)
+                .setDescription('Ran out of time!\nTime limit: 30s')
+                m.edit({
+                    embeds: [embed],
+                    components: []
+                })
+            }
+            if(reason == 'decline'){
+                let embed = new Discord.MessageEmbed()
+                .setTitle("Game Declined!")
+                .setAuthor(message.author.tag, message.author.displayAvatarURL())
+                .setColor(options.declineEmbedColor || 0xFF0000)
+                .setFooter(foot)
+                .setDescription(`${opponent.user.tag} has declined your game!`)
+                m.edit({
+                    embeds: [embed],
+                    components: []
+                })
+            }
+        })
+    })
+}
+
+async function suggestSystem(client, message, args, options = []) {
+    let channel = options.chid
+
+    let { MessageButton, MessageActionRow } = require('discord.js')
+
+    const ch = client.channels.cache.get(channel);
+    if (!ch) throw new Error('INVALID_CHANNEL_ID. The channel id you specified is not valid (or) I dont have VIEW_CHANNEL permission. Go to https://discord.com/invite/3JzDV9T5Fn to get support');;
+
+    let suggestion = args.join(" ")
+
+    if (options.credit === false) {
+        foot = options.embedFoot || 'Ghost Ping.'
+    } else {
+        foot = '©️ Simply Develop. npm i simply-djs'
+    }
+
+
+    let surebtn = new MessageButton()
+        .setStyle('SUCCESS')
+        .setLabel('Sure')
+        .setCustomId('send-sug')
+
+    let nobtn = new MessageButton()
+        .setStyle('DANGER')
+        .setLabel('Cancel')
+        .setCustomId('nope-sug')
+
+    let row1 = new MessageActionRow()
+        .addComponents([surebtn, nobtn])
+
+
+    if (options.credit === false) {
+        foot = button.message.guild.name, button.message.guild.iconURL()
+    } else {
+        foot = '©️ Simply Develop. npm i simply-djs'
+    }
+
+    let embedo = new Discord.MessageEmbed()
+        .setTitle('Are you sure ?')
+        .setDescription(`Is this your suggestion ? \`${suggestion}\``)
+        .setTimestamp()
+        .setColor(options.embedColor || '#075FFF')
+        .setFooter(foot)
+
+    message.channel.send({ embeds: [embedo], components: [row1] }).then((m) => {
+        const filter = (button) => button.user.id === message.author.id
+        const collect = m.createMessageComponentCollector({ filter, componentType: 'BUTTON', max: 1, time: 15000 })
+
+        collect.on("collect", async b => {
+
+            if (b.customId === 'send-sug') {
+                b.reply({ content: 'Ok Suggested.', ephemeral: true });
+                b.message.delete();
+
+                const emb = new Discord.MessageEmbed()
+                    .setDescription(suggestion)
+                    .setAuthor(message.author.tag, message.author.displayAvatarURL())
+                    .setColor(options.embedColor || '#075FFF')
+                    .setFooter(foot)
+                    .addFields(
+                        { name: 'Status:', value: `\`\`\`Waiting for the response..\`\`\`` },
+                        { name: 'Reactions', value: `*Likes:* \`0\` \n*Dislikes:* \`0\`` }
+                    )
+
+                let approve = new MessageButton()
+                    .setEmoji(options.yesEmoji || '☑️')
+                    .setStyle(options.yesColor || 'SUCCESS')
+                    .setCustomId('agree-sug')
+
+                let no = new MessageButton()
+                    .setEmoji(options.noEmoji || '🇽')
+                    .setStyle(options.noColor || 'DANGER')
+                    .setCustomId('no-sug')
+
+                let row = new MessageActionRow()
+                    .addComponents([approve, no])
+
+                ch.send({ embeds: [emb], components: [row] })
+            } else if (b.customId === 'nope-sug') {
+                b.message.delete()
+                b.reply({ content: 'Ok i am not sending the suggestion', ephemeral: true })
+            }
+
+        })
+
+        collect.on("end", async b => {
+            if (b.size == 0) {
+                m.delete()
+                m.channel.send({ content: 'Timeout.. So I didnt send the suggestion.' })
+            }
+        })
+
+    })
+
+
+}
+
+async function suggestBtn(button, users, options = []) {
+    if (!button.isButton()) return;
+
+    let { MessageButton, MessageActionRow } = require('discord.js')
+
+    if (button.customId === 'no-sug') {
+        let target = await button.message.channel.messages.fetch(button.message.id)
+        let oldemb = target.embeds[0]
+
+        if (button.member.permissions.has('ADMINISTRATOR')) {
+
+            button.reply({ content: 'Reason ?? if not, Ill give it as `No Reason` Timeout: 15 Seconds..', ephemeral: true })
+
+            let filter = m => button.user.id === m.author.id
+
+            const collector = button.channel.createMessageCollector({ filter, time: 15000 });
+
+            collector.on('collect', m => {
+
+                if (m.content.toLowerCase() === 'cancel') {
+                    m.delete()
+                    button.reply.edit('Refusal Cancelled')
+                    collector.stop()
+                } else {
+                    m.delete()
+                    dec(m.content, oldemb)
+                    collector.stop()
+                }
+            })
+
+            collector.on('end', collected => {
+
+                if (collected.size === 0) {
+                    dec('No Reason', oldemb)
+                }
+
+            });
+        } else {
+
+            if (users.has(`${button.message.id}-${button.user.id}-dislike`, button.user.id)) {
+                button.reply({ content: 'You cannot react again.', ephemeral: true })
+            }
+            else {
+
+                if (users.has(`${button.message.id}-${button.user.id}-like`, button.user.id)) {
+                    users.delete(`${button.message.id}-${button.user.id}-like`, button.user.id)
+
+                    users.set(`${button.message.id}-${button.user.id}-dislike`, button.user.id)
+
+
+                    removelike(oldemb)
+
+                } else {
+
+                    button.deferUpdate()
+                    users.set(`${button.message.id}-${button.user.id}-dislike`, button.user.id)
+
+                    dislike(oldemb)
+                }
+
+            }
+
+        }
+    }
+
+    async function removelike(oldemb) {
+
+        let approve = new MessageButton()
+            .setEmoji(options.yesEmoji || '☑️')
+            .setStyle(options.yesColor || 'SUCCESS')
+            .setCustomId('agree-sug')
+
+        let no = new MessageButton()
+            .setEmoji(options.noEmoji || '🇽')
+            .setStyle(options.noColor || 'DANGER')
+            .setCustomId('no-sug')
+
+        let row = new MessageActionRow()
+            .addComponents([approve, no])
+
+        let likesnd = oldemb.fields[1].value.split(/\s+/);
+
+        let likes = likesnd[1].replace('`', '')
+        let dislikes = likesnd[3].replace('`', '')
+
+        let dislik = parseInt(dislikes) + 1
+
+        let lik = parseInt(likes) - 1
+
+        const newemb = new Discord.MessageEmbed()
+            .setDescription(oldemb.description)
+            .setColor(oldemb.color)
+            .setAuthor(oldemb.author.name, oldemb.author.iconURL)
+            .setFooter(oldemb.footer.text)
+            .setImage(oldemb.image)
+            .addFields(
+                { name: oldemb.fields[0].name, value: oldemb.fields[0].value },
+                { name: 'Reactions', value: `*Likes:* \`${lik}\` \n*Dislikes:* \`${dislik}\`` }
+            )
+
+        button.message.edit({ embeds: [newemb], components: [row] })
+
+    }
+
+    async function dislike(oldemb) {
+
+        let approve = new MessageButton()
+            .setEmoji(options.yesEmoji || '☑️')
+            .setStyle(options.yesColor || 'SUCCESS')
+            .setCustomId('agree-sug')
+
+        let no = new MessageButton()
+            .setEmoji(options.noEmoji || '🇽')
+            .setStyle(options.noColor || 'DANGER')
+            .setCustomId('no-sug')
+
+        let row = new MessageActionRow()
+            .addComponents([approve, no])
+
+        let likesnd = oldemb.fields[1].value.split(/\s+/);
+
+        let lik = likesnd[1]
+        let dislikes = likesnd[3].replace('`', '')
+
+        let dislik = parseInt(dislikes) + 1
+
+        const newemb = new Discord.MessageEmbed()
+            .setDescription(oldemb.description)
+            .setColor(oldemb.color)
+            .setAuthor(oldemb.author.name, oldemb.author.iconURL)
+            .setImage(oldemb.image)
+            .setFooter(oldemb.footer.text)
+            .addFields(
+                { name: oldemb.fields[0].name, value: oldemb.fields[0].value },
+                { name: 'Reactions', value: `*Likes:* ${lik} \n*Dislikes:* \`${dislik}\`` }
+            )
+
+        button.message.edit({ embeds: [newemb], components: [row] })
+    }
+
+    async function dec(reason, oldemb) {
+
+        let approve = new MessageButton()
+            .setEmoji(options.yesEmoji || '☑️')
+            .setStyle(options.yesColor || 'SUCCESS')
+            .setCustomId('agree-sug')
+            .setDisabled(true)
+
+        let no = new MessageButton()
+            .setEmoji(options.noEmoji || '🇽')
+            .setStyle(options.noColor || 'DANGER')
+            .setCustomId('no-sug')
+            .setDisabled(true)
+
+        let row = new MessageActionRow()
+            .addComponents([approve, no])
+
+        let likesnd = oldemb.fields[1].value.split(/\s+/);
+
+        let lik = likesnd[1]
+        let dislik = likesnd[3]
+
+        const newemb = new Discord.MessageEmbed()
+            .setDescription(oldemb.description)
+            .setColor(options.denyEmbColor || 'RED')
+            .setAuthor(oldemb.author.name, oldemb.author.iconURL)
+            .setImage(oldemb.image)
+            .setFooter(oldemb.footer.text)
+            .addFields({ name: 'Status:', value: `\`\`\`Rejected !\`\`\`` },
+                { name: 'Reason:', value: `\`\`\`${reason}\`\`\`` },
+                { name: 'Reactions', value: `*Likes:* ${lik} \n*Dislikes:* ${dislik}` }
+            )
+
+        button.message.edit({ embeds: [newemb], components: [row] })
+
+    }
+
+    if (button.customId === 'agree-sug') {
+
+        let target = await button.message.channel.messages.fetch(button.message.id)
+        let oldemb = target.embeds[0]
+
+        if (button.member.permissions.has('ADMINISTRATOR')) {
+
+            button.reply({ content: 'Tell me the reason.. if not, Ill give it as `No Reason` Timeout: 15 Seconds..', ephemeral: true })
+
+            let filter = m => button.user.id === m.author.id
+
+            const collector = button.channel.createMessageCollector({ filter, time: 15000 });
+
+            collector.on('collect', m => {
+
+                if (m.content.toLowerCase() === 'cancel') {
+                    m.delete()
+                    button.reply.edit('Approval Cancelled')
+                    collector.stop()
+                } else {
+                    m.delete()
+                    aprov(m.content, oldemb)
+                    collector.stop()
+                }
+            })
+
+            collector.on('end', collected => {
+
+                if (collected.size === 0) {
+                    aprov('No Reason', oldemb)
+                }
+
+            });
+        } else {
+
+
+            if (users.has(`${button.message.id}-${button.user.id}-like`, button.user.id)) {
+                button.reply({ content: 'You cannot react again.', ephemeral: true })
+            }
+            else {
+
+                if (users.has(`${button.message.id}-${button.user.id}-dislike`, button.user.id)) {
+                    users.delete(`${button.message.id}-${button.user.id}-dislike`, button.user.id)
+
+
+                    users.set(`${button.message.id}-${button.user.id}-like`, button.user.id)
+
+                    removedislike(oldemb)
+
+                } else {
+                    button.deferUpdate()
+                    users.set(`${button.message.id}-${button.user.id}-like`, button.user.id)
+
+                    like(oldemb)
+                }
+
+            }
+
+        }
+
+    }
+
+    async function removedislike(oldemb) {
+
+        let approve = new MessageButton()
+            .setEmoji(options.yesEmoji || '☑️')
+            .setStyle(options.yesColor || 'SUCCESS')
+            .setCustomId('agree-sug')
+
+        let no = new MessageButton()
+            .setEmoji(options.noEmoji || '🇽')
+            .setStyle(options.noColor || 'DANGER')
+            .setCustomId('no-sug')
+
+        let row = new MessageActionRow()
+            .addComponents([approve, no])
+
+        let likesnd = oldemb.fields[1].value.split(/\s+/);
+
+        let likes = likesnd[1].replace('`', '')
+
+
+        let lik = parseInt(likes) + 1
+
+        let dislike = likesnd[3].replace('`', '')
+
+        let dislik = parseInt(dislike) - 1
+
+        const newemb = new Discord.MessageEmbed()
+            .setDescription(oldemb.description)
+            .setColor(oldemb.color)
+            .setAuthor(oldemb.author.name, oldemb.author.iconURL)
+            .setImage(oldemb.image)
+            .setFooter(oldemb.footer.text)
+            .addFields(
+                { name: oldemb.fields[0].name, value: oldemb.fields[0].value },
+                { name: 'Reactions', value: `*Likes:* \`${lik}\` \n*Dislikes:* \`${dislik}\`` }
+            )
+
+        button.message.edit({ embeds: [newemb], components: [row] })
+    }
+
+    async function like(oldemb) {
+
+        let approve = new MessageButton()
+            .setEmoji(options.yesEmoji || '☑️')
+            .setStyle(options.yesColor || 'SUCCESS')
+            .setCustomId('agree-sug')
+
+        let no = new MessageButton()
+            .setEmoji(options.noEmoji || '🇽')
+            .setStyle(options.noColor || 'DANGER')
+            .setCustomId('no-sug')
+
+        let row = new MessageActionRow()
+            .addComponents([approve, no])
+
+        let likesnd = oldemb.fields[1].value.split(/\s+/);
+
+        let likes = likesnd[1].replace('`', '')
+        let dislik = likesnd[3]
+
+        let lik = parseInt(likes) + 1
+
+        const newemb = new Discord.MessageEmbed()
+            .setDescription(oldemb.description)
+            .setColor(oldemb.color)
+            .setAuthor(oldemb.author.name, oldemb.author.iconURL)
+            .setImage(oldemb.image)
+            .setFooter(oldemb.footer.text)
+            .addFields(
+                { name: oldemb.fields[0].name, value: oldemb.fields[0].value },
+                { name: 'Reactions', value: `*Likes:* \`${lik}\` \n*Dislikes:* ${dislik}` }
+            )
+
+        button.message.edit({ embeds: [newemb], components: [row] })
+    }
+
+    async function aprov(reason, oldemb) {
+        let approve = new MessageButton()
+            .setEmoji(options.yesEmoji || '☑️')
+            .setStyle(options.yesColor || 'SUCCESS')
+            .setCustomId('agree-sug')
+            .setDisabled(true)
+
+        let no = new MessageButton()
+            .setEmoji(options.noEmoji || '🇽')
+            .setStyle(options.noColor || 'DANGER')
+            .setCustomId('no-sug')
+            .setDisabled(true)
+
+        let row = new MessageActionRow()
+            .addComponents([approve, no])
+
+        let likesnd = oldemb.fields[1].value.split(/\s+/);
+
+        let lik = likesnd[1]
+        let dislik = likesnd[3]
+
+        const newemb = new Discord.MessageEmbed()
+            .setDescription(oldemb.description)
+            .setColor(options.agreeEmbColor || 'GREEN')
+            .setAuthor(oldemb.author.name, oldemb.author.iconURL)
+            .setImage(oldemb.image)
+            .setFooter(oldemb.footer.text)
+            .addFields({ name: 'Status:', value: `\`\`\`Accepted !\`\`\`` },
+                { name: 'Reason:', value: `\`\`\`${reason}\`\`\`` },
+                { name: 'Reactions', value: `*Likes:* ${lik} \n*Dislikes:* ${dislik}` }
+            )
+
+        button.message.edit({ embeds: [newemb], components: [row] })
+
+    }
+}
+
+client.login('ODcxNjM3MTQxNDMwNjI4Mzcy.YQeNWA.wDNZ2b4zxZyZ0I_6GKvmtTgeBG8')
