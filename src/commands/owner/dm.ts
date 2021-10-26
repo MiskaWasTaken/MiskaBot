@@ -84,18 +84,21 @@ export default class dm extends BotCommand {
 
         if(color == 'red'){
             const userdm = await this.client.users.cache.get(user);
-            userdm.send({ embeds: [dmRedEmbed] });
+            userdm.send({ embeds: [dmRedEmbed] })
+            message.reply(`maybe sent ${user} a dm with content ${subject} and color ${color}`);
         }
 
         if(color == 'green'){
             const userdm = await this.client.users.cache.get(user);
             userdm.send({ embeds: [dmGreenEmbed] });
+            message.reply(`maybe sent ${user} a dm with content ${subject} and color ${color}`);
         }
 
         
         if(color == undefined){
             const userdm = await this.client.users.cache.get(user);
             userdm.send({ embeds: [dmNoEmbed] });
+            message.reply(`maybe ${user} a dm with content ${subject} and color ${color}`); 
         }
     }
 }

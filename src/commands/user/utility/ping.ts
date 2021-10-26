@@ -17,6 +17,6 @@ export default class ping extends BotCommand {
     async exec(message) {
         
 
-        message.channel.send(`🏓Latency is ${message.createdTimestamp - Date.now()}ms. API Latency is ${Math.round(this.client.ws.ping)}ms`)
+        message.reply(`🏓Latency is ${message.createdTimestamp - Date.now()}ms. API Latency is ${Math.round(this.client.ws.ping)}ms`)
     }
 }

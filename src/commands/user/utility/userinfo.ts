@@ -59,7 +59,7 @@ export default class userinfo extends BotCommand {
             )
     
           return message.reply({ embeds: [userEmbed] }).catch(err => {
-            return message.channel.send("Error : " + err)
+            return message.reply("Error : " + err)
           })}}
 
 

@@ -17,7 +17,7 @@ export default class uptime extends BotCommand {
     }
     async exec(message) {
 
-        message.channel.send(`Uptime: ${prettyMilliseconds(this.client.uptime)}`)
+        message.reply(`Uptime: ${prettyMilliseconds(this.client.uptime)}`)
         
 
     }
