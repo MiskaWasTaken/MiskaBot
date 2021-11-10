@@ -31,13 +31,14 @@ export default class userinfo extends BotCommand {
     async exec(message, args) {
       let user
         
-      if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
-      else user = message.author
-    
+    if (args.user) {user = this.client.util.resolveUser(args.user, this.client.users.cache)}
+    else user = message.author
 
-        //OPTIONS FOR STATUS
-    
-  
+    const Member = message.guild.members.cache.get(user.id) 
+    let roles = Member.roles.cache.map(r => r).join(' ').replace('@everyone', "")
+
+    if(!roles) roles = `**User has no roles**`
+
     
         const embed = new MessageEmbed()
           .setThumbnail(user.displayAvatarURL({ dynamic: true }))
@@ -53,8 +54,10 @@ export default class userinfo extends BotCommand {
             .setColor('RANDOM')
             .setAuthor(user.tag, user.displayAvatarURL({ dynamic: true }))
             .addFields(
-                { name: `Joined At:`, value: `${moment(user.joinedAt).format("LLLL")}`, inline: true },
-                { name: 'Common Information:', value: `ID: \`${user.id}\`\n\nDiscriminator: ${user.discriminator}\n\nBot: ${user.bot}`, inline: true },
+                { name: `Joined Server At:`, value: `${moment(Member.joinedAt).format('MMMM Do YYYY h:mm:ss a')}\n**-**  ${moment(Member.joinedAt).startOf('day').fromNow()}`, inline: true },
+                { name: `Joined Discord At:`, value: `${moment(user.createdAt).format('MMMM Do YYYY h:mm:ss a')}\n**-**  ${moment(user.createdAt).startOf('day').fromNow()}`, inline: true },
+                { name: `Roles:`, value: `${roles}`, inline: true },
+                { name: 'Common Information:', value: `ID: \`${user.id}\`\n\nDiscriminator: ${user.discriminator}\n\nBot: ${user.bot}\n\nDeleted User: ${Member.deleted}`, inline: true },
                 { name: 'Avatar:', value: `[Click here to view Avatar](${user.displayAvatarURL({ dynamic: true})})`, inline: true}
             )
     
