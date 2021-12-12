@@ -12,7 +12,7 @@ const SpotifyPlugin = require('@distube/spotify')
 
 class BotClient extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
-		prefix: 'hahahafunnynumberis696969696969696996969696996969696969alsomiskaismaybeafemboywedontknowalsoits744amon1152021',
+		prefix: 'spamRandomTextAndNumbersHere',
 		commandUtil: true,
 		handleEdits: true,
 		directory: join(__dirname, "..", "commands"),
