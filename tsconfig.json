@@ -5,6 +5,8 @@
 		"outDir": "dist",
 		"lib": ["ESNext", "ESNext.Array", "ESNext.AsyncIterable", "ESNext.Intl", "ESNext.Symbol", "DOM"],
 		"sourceMap": false,
+		"skipDefaultLibCheck": true,
+		"moduleResolution": "Node",
 		"inlineSourceMap": true,
 		"strict": false,
 		"inlineSources": true,
