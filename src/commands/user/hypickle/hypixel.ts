@@ -3,7 +3,7 @@ import { BotCommand } from "@extensions/BotCommand";
 import Hypixel from "hypixel-api-reborn";
 import config from "../../../extensions/config/config";
 import { AkairoMessage } from "discord-akairo";
-import simplydjs from "simply-djs-v13";
+import simplydjs from "../../../../custom modules/simply-djs-v13";
 import fetch from "node-fetch"
 const hypixel = new Hypixel.Client(config.hypixel_key);
 
